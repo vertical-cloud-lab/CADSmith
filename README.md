@@ -101,7 +101,20 @@ requirements.txt   # Python dependencies
 
 ## Setup
 
-CADSmith uses CadQuery, which needs a conda environment:
+CADSmith needs CadQuery and VTK. Either of the following environments works.
+
+**Option A — pip (Linux/macOS, Python 3.10–3.12):**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+`cadquery` (and its OCCT kernel via `cadquery-ocp`) and `vtk` are pulled in
+automatically by `requirements.txt`, so no separate installs are needed.
+
+**Option B — conda (recommended on Windows or if the pip wheels misbehave):**
 
 ```bash
 conda create -n cadquery python=3.10
@@ -110,15 +123,16 @@ conda install -c cadquery -c conda-forge cadquery=master
 pip install -r requirements.txt
 ```
 
-VTK is required for the three-view rendering:
+Set your Anthropic API key. Copy the template and fill in your key:
+
 ```bash
-pip install vtk
+cp .env.example .env
+# then edit .env and replace `your-key-here` with your real key
 ```
 
-Set your Anthropic API key:
-```bash
-echo "ANTHROPIC_API_KEY=your-key-here" > .env
-```
+You can get a key at https://platform.claude.com/. Without a valid key the
+agents will fail fast with a clear error message — the pipeline cannot run
+without it because every agent (Planner, Coder, Judge, Refiner) is an LLM.
 
 ## Usage
 

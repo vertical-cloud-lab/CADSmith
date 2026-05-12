@@ -108,7 +108,17 @@ def generate_reference_stl(reference_code: str, entry_id: str, output_dir: Path)
 
 def zero_shot_generate(prompt: str) -> tuple[str, dict]:
     """One raw LLM call. Returns (code, token_usage)."""
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key or api_key == "your-key-here":
+        raise RuntimeError(
+            "ANTHROPIC_API_KEY is not set. The zero-shot baseline requires an "
+            "Anthropic API key.\nSet it in your environment or in a .env file at "
+            "the repo root, e.g.:\n"
+            "    echo 'ANTHROPIC_API_KEY=sk-ant-...' > .env   "
+            "# replace sk-ant-... with your real key\n"
+            "See .env.example for a template."
+        )
+    client = anthropic.Anthropic(api_key=api_key)
     response = client.messages.create(
         model=MODEL,
         max_tokens=4096,

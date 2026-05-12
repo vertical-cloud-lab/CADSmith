@@ -33,7 +33,18 @@ def reset_token_usage():
 
 
 def _get_client() -> anthropic.Anthropic:
-    return anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key or api_key == "your-key-here":
+        raise RuntimeError(
+            "ANTHROPIC_API_KEY is not set. CADSmith's agents (Planner, Coder, "
+            "Judge, Refiner) all require an Anthropic API key.\n"
+            "Set it in your environment or in a .env file at the repo root, e.g.:\n"
+            "    echo 'ANTHROPIC_API_KEY=sk-ant-...' > .env   "
+            "# replace sk-ant-... with your real key\n"
+            "See .env.example for a template, and https://platform.claude.com/ "
+            "to obtain a key."
+        )
+    return anthropic.Anthropic(api_key=api_key)
 
 
 def _call_claude(system: str, user: str, model: str = "claude-sonnet-4-5-20250929", max_tokens: int = 4096) -> str:
