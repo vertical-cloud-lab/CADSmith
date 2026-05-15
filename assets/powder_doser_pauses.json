@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "part": "powder_doser_chassis",
+  "print_orientation": "vertical, dispense end (Z=0) on the build plate",
+  "layer_height_mm": 0.2,
+  "pauses": [
+    {
+      "name": "ERM disc insertion",
+      "part": "Adafruit #1201 vibrating motor disc (\u00d810 \u00d7 2.7 mm, 3 V)",
+      "z_mm": 125.0,
+      "layer": 625,
+      "instructions": "Pause printer at this Z. The +X radial pocket is now open; epoxy the ERM coin into the \u00d810.3 \u00d7 2.9 mm pocket with leads exiting through the 1.5 \u00d7 2 mm wire channel toward the +X face. Resume to encapsulate the disc."
+    },
+    {
+      "name": "Solenoid insertion",
+      "part": "Adafruit #412 JF-0530B 5 V mini push-pull solenoid (9.6 \u00d7 19 \u00d7 22 mm)",
+      "z_mm": 41.1,
+      "layer": 206,
+      "instructions": "Pause printer at this Z. Insert the JF-0530B body into the -X pocket (plunger pointing toward the auger bore through the 2.5 \u00d7 6 mm slot). Route leads through the 2 \u00d7 2 mm wire channel. Resume to lock the solenoid in place."
+    }
+  ],
+  "install_after_print": [
+    {
+      "name": "Metal-gear servo install",
+      "part": "Adafruit #1142 HD-1810MG (40.7 \u00d7 19.7 \u00d7 42.9 mm)",
+      "instructions": "Slide the servo into the +Y through-pocket and secure with two M3 screws through the chassis flange holes."
+    },
+    {
+      "name": "Pi Zero 2 W mount",
+      "part": "Pi Zero 2 W on the -Y face landing",
+      "instructions": "Bolt the Pi Zero 2 W onto the -Y bay using four M2.5 screws (58 \u00d7 23 mm pattern). Connect ERM/solenoid/servo leads through the wire channels and to the Bonnet."
+    },
+    {
+      "name": "Stepper + coupler install (top)",
+      "part": "NEMA 11 11HS18-0674S stepper + ST-FC01 5\u20135 mm coupler",
+      "instructions": "Slide the ST-FC01 coupler into the \u00d819 \u00d7 26 mm chamber below the stepper plate. Drop the auger M3 spindle into one side of the coupler, the stepper's \u00d85 D-cut shaft into the other. Bolt the stepper to the top plate (four M2.5 on a 23 \u00d7 23 mm pattern, \u00d822 pilot pass-through)."
+    }
+  ],
+  "notes": "Pause Z is in millimetres along the chassis Z axis (matches the CadQuery script). Layer index = round(z_mm / layer_height_mm) at 0.2 mm; rescale if you slice differently."
+}
