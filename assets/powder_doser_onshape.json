@@ -1,0 +1,61 @@
+{
+  "document_id": "759fa38a34fbec11bde13f9b",
+  "workspace_id": "cd557d4ee923fdbd0fb34a83",
+  "url": "https://cad.onshape.com/documents/759fa38a34fbec11bde13f9b/w/cd557d4ee923fdbd0fb34a83",
+  "uploads": [
+    {
+      "file": "powder_doser_auger.step",
+      "name": "auger",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_chassis.step",
+      "name": "chassis",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_coupler.step",
+      "name": "coupler",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_erm.step",
+      "name": "erm",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_pi.step",
+      "name": "pi",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_servo.step",
+      "name": "servo",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_solenoid.step",
+      "name": "solenoid",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_stepper.step",
+      "name": "stepper",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_assembly.step",
+      "name": "powder_doser_full_assembly",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}
