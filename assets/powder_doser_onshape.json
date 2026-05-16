@@ -1,80 +1,68 @@
 {
-  "document_id": "86f9133ce49439484fc4b7e3",
-  "workspace_id": "4bb034ec219e57c7b33aaaa9",
-  "url": "https://cad.onshape.com/documents/86f9133ce49439484fc4b7e3/w/4bb034ec219e57c7b33aaaa9",
-  "design_version": "v2",
+  "document_url": "https://cad.onshape.com/documents/8c6e676e2cbaef98da211264/w/fb9771abca9c3e2888a839e1",
+  "document_id": "8c6e676e2cbaef98da211264",
+  "workspace_id": "fb9771abca9c3e2888a839e1",
+  "design_version": "v3",
   "uploads": [
     {
-      "file": "powder_doser_auger.step",
-      "name": "auger",
-      "status": 200,
-      "ok": true
+      "part": "chassis",
+      "path": "assets/powder_doser_parts/powder_doser_chassis.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_bonnet.step",
-      "name": "bonnet",
-      "status": 200,
-      "ok": true
+      "part": "auger",
+      "path": "assets/powder_doser_parts/powder_doser_auger.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_chassis.step",
-      "name": "chassis",
-      "status": 200,
-      "ok": true
+      "part": "stepper",
+      "path": "assets/powder_doser_parts/powder_doser_stepper.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_coupler.step",
-      "name": "coupler",
-      "status": 200,
-      "ok": true
+      "part": "coupler",
+      "path": "assets/powder_doser_parts/powder_doser_coupler.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_drv8825.step",
-      "name": "drv8825",
-      "status": 200,
-      "ok": true
+      "part": "erm",
+      "path": "assets/powder_doser_parts/powder_doser_erm.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_erm.step",
-      "name": "erm",
-      "status": 200,
-      "ok": true
+      "part": "solenoid",
+      "path": "assets/powder_doser_parts/powder_doser_solenoid.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_pi.step",
-      "name": "pi",
-      "status": 200,
-      "ok": true
+      "part": "servo",
+      "path": "assets/powder_doser_parts/powder_doser_servo.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_servo.step",
-      "name": "servo",
-      "status": 200,
-      "ok": true
+      "part": "pi",
+      "path": "assets/powder_doser_parts/powder_doser_pi.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_solenoid.step",
-      "name": "solenoid",
-      "status": 200,
-      "ok": true
+      "part": "bonnet",
+      "path": "assets/powder_doser_parts/powder_doser_bonnet.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_stepper.step",
-      "name": "stepper",
-      "status": 200,
-      "ok": true
+      "part": "tic500",
+      "path": "assets/powder_doser_parts/powder_doser_tic500.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_tic500.step",
-      "name": "tic500",
-      "status": 200,
-      "ok": true
+      "part": "drv8825",
+      "path": "assets/powder_doser_parts/powder_doser_drv8825.step",
+      "status": 200
     },
     {
-      "file": "powder_doser_assembly.step",
-      "name": "powder_doser_full_assembly",
-      "status": 200,
-      "ok": true
+      "part": "full_assembly",
+      "path": "assets/powder_doser_assembly.step",
+      "status": 200
     }
   ]
 }

@@ -37,6 +37,11 @@ funnel_h = 12.0
 exit_r = 1.5
 top_cap_h = 6.0
 boss_h = 6.0
+# v3: spindle that bridges from top of tube up into the ST-FC01 coupler.
+# Ø5 mm matches the coupler's 5–5 mm bore; length 24 mm leaves enough
+# overlap with the coupler's auger-side jaw to be gripped solidly.
+spindle_d = 5.0
+spindle_l = 24.0
 m3_pilot_d = 2.5
 slot_count = 4
 slot_len = 7.0
@@ -82,6 +87,17 @@ boss = (
     .extrude(boss_h)
 )
 result = result.union(boss)
+
+# ----- Step 5b (v3): Ø5 spindle on top of the auger that engages the coupler.
+# Bridges the v2 dead-air gap between auger Z=auger_tube_length and the
+# coupler chamber bottom. -----
+spindle = (
+    cq.Workplane("XY")
+    .workplane(offset=auger_tube_length)
+    .circle(spindle_d / 2.0)
+    .extrude(spindle_l)
+)
+result = result.union(spindle)
 
 # ----- Step 6: Cut M3 pilot through cap + boss -----
 pilot_depth = top_cap_h + boss_h
