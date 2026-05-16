@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "agent": "edison-scientific-analysis",
+  "job_name": "ANALYSIS",
+  "design_version_reviewed": "v3 (pre-v3.1 solenoid fix)",
+  "review_round": 2,
+  "query_chars": 38414,
+  "answer_chars": 5937,
+  "wall_time_s": 776,
+  "focus": "Solenoid actuator reach + ERM placement + v3 P0/P1 follow-ups"
+}
