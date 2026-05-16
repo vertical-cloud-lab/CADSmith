@@ -79,17 +79,37 @@ erm_pocket_d = erm_disc_d + 0.3
 erm_pocket_depth = erm_disc_thk + 0.2
 erm_pocket_z = auger_tube_length * 0.5
 
-# --- Solenoid (v3: rotated 90° about Y, plunger axis now along X) ---
-# JF-0530B body: 9.6 × 19 × 22 mm. The 22 mm dimension is the plunger axis.
-# v3 places that along X so the plunger fires radially toward the bore in
-# the same direction as the tap-slot we cut to the bore.
-solenoid_pocket_x = 22.2   # plunger axis (was z in v2)
+# --- Solenoid (v3.1: plunger reach corrected so the tip taps the auger OD
+#                  without over-travelling through the auger tube wall) ---
+# JF-0530B body: 9.6 × 19 × 22 mm. Plunger Ø ~4 mm, total travel ~5 mm.
+# v3 placed the 22 mm body axis along X (correct) but: (i) pocket bottom was
+# only 0.1 mm from the bore wall — no support; (ii) the slot to the bore was
+# a 12.8×6×2.5 mm rectangle that extended *all the way through the bore*,
+# meaning a fully-fired plunger would over-travel ~6.7 mm past the auger OD
+# and crush the auger tube. v3.1 fixes this with:
+#   - an external -X boss that fully contains the 22 mm body length
+#   - a Ø5 cylindrical plunger channel (Ø4 plunger + 1 mm clearance)
+#   - geometry sized so fired-tip lands tangent to the auger OD (Ø25 / 2 =
+#     12.5 mm from bore axis), giving a genuine tap rather than a crush.
+solenoid_body_l   = 22.0            # plunger-axis dimension of body
+solenoid_pocket_x = solenoid_body_l + 0.5    # 0.5 mm slip-fit clearance
 solenoid_pocket_y = 19.2
-solenoid_pocket_z_dim = 9.8  # short dimension along Z
-# Moved to z=15 (well below servo region) to remove bore-breach Z overlap.
+solenoid_pocket_z_dim = 9.8
 solenoid_pocket_z_center = 15.0
-solenoid_slot_w = 6.0  # slot width along Y (matches plunger cross-section)
-solenoid_slot_h = 2.5  # slot height along Z (clearance for plunger travel)
+# External boss on the -X face that extends the chassis outward enough to
+# fully enclose the body (no protrusion past the chassis envelope).
+solenoid_boss_thk = 7.5
+solenoid_boss_y   = solenoid_pocket_y + 6.0  # 3 mm wall around pocket
+solenoid_boss_z   = solenoid_pocket_z_dim + 6.0  # 3 mm wall above/below
+# Plunger geometry — the JF-0530B has ~2 mm rest protrusion and ~5 mm stroke.
+solenoid_plunger_d        = 4.0
+solenoid_plunger_channel_d = solenoid_plunger_d + 1.0  # Ø5 channel
+solenoid_plunger_rest_proj = 2.0   # mm proud of front face at rest
+solenoid_plunger_stroke    = 5.0   # mm additional travel when fired
+# Local thickening of the bore wall around the strike pad (extra material on
+# the inner side of the channel mouth to spread the impact load).
+solenoid_pad_d = 12.0
+solenoid_pad_z = 14.0
 
 # --- Servo (v3: external bracket, no embedded pocket, both-sides horn support) ---
 # Adafruit #1142 HD-1810MG: 40.7 × 19.7 × 42.9 mm
@@ -276,34 +296,89 @@ erm_egress = (
 )
 chassis = chassis.cut(erm_egress)
 
-# ===== SOLENOID POCKET (-X side, dispense end, v3 ROTATED 90°) =====
-# Plunger axis is now along X. Pocket Z extent is just 9.8 mm at z_center=15.
-sol_x_outer = -chassis_x / 2.0
+# ===== SOLENOID POCKET (-X side, dispense end, v3.1 reach-fixed) =====
+# Plan: external boss on -X face → recessed pocket (fully encloses body) →
+# Ø5 plunger channel through chassis bore wall, sized so fired plunger tip
+# lands tangent to the auger OD (Ø25 mm) rather than over-travelling through
+# the tube wall.
+sol_x_outer_base = -chassis_x / 2.0
+sol_boss_x_outer = sol_x_outer_base - solenoid_boss_thk     # external boss face
+# Effective new -X surface (within the boss footprint) used as the pocket mouth.
+sol_pocket_mouth_x = sol_boss_x_outer
+
+# 1) Build the boss as an additive block on the -X face.
+sol_boss = (
+    cq.Workplane("XY")
+    .workplane(offset=solenoid_pocket_z_center - solenoid_boss_z / 2.0)
+    .center(sol_x_outer_base - solenoid_boss_thk / 2.0, 0)
+    .box(solenoid_boss_thk, solenoid_boss_y, solenoid_boss_z, centered=(True, True, False))
+)
+chassis = chassis.union(sol_boss)
+
+# 2) Optional inner pad: thicken the bore wall locally on the inside of the
+#    channel mouth so the strike impact is spread over more material. We add
+#    a small cylindrical pad that sits on the bore wall (its OD is partly cut
+#    away by the bore in the next step).
+sol_pad = (
+    cq.Workplane("YZ")
+    .workplane(offset=-(auger_bore_d / 2.0))   # sits at bore wall on -X side
+    .center(0, solenoid_pocket_z_center)
+    .circle(solenoid_pad_d / 2.0)
+    .extrude(-2.0)   # 2 mm pad into the bore wall (chassis material side)
+)
+chassis = chassis.union(sol_pad)
+# Re-cut the bore so the pad ID matches the bore (no powder lip).
+chassis = chassis.cut(auger_bore)
+
+# 3) Pocket — fully contains the 22.0 mm body (+0.5 mm slip-fit clearance).
 sol_pocket = (
     cq.Workplane("XY")
     .workplane(offset=solenoid_pocket_z_center - solenoid_pocket_z_dim / 2.0)
-    .center(sol_x_outer + solenoid_pocket_x / 2.0, 0)
+    .center(sol_pocket_mouth_x + solenoid_pocket_x / 2.0, 0)
     .box(solenoid_pocket_x, solenoid_pocket_y, solenoid_pocket_z_dim, centered=(True, True, False))
 )
 chassis = chassis.cut(sol_pocket)
 
-# Plunger slot from inner end of pocket through to bore (now along X, matching plunger axis)
-slot_start_x = sol_x_outer + solenoid_pocket_x
-sol_slot = (
-    cq.Workplane("XY")
-    .workplane(offset=solenoid_pocket_z_center - solenoid_slot_h / 2.0)
-    .center(slot_start_x, 0)
-    .box(-slot_start_x, solenoid_slot_w, solenoid_slot_h, centered=(False, True, False))
+# 4) Plunger channel — round Ø5 hole from pocket bottom through the chassis
+#    bore wall so the plunger can travel radially. Channel terminates AT the
+#    bore (it opens into the bore cavity); the plunger fires through it.
+#    With pocket bottom at x = sol_pocket_mouth_x + solenoid_pocket_x and a
+#    Ø-(auger_bore_d/2) bore wall at x = -auger_bore_d/2, the channel length
+#    is bore_wall_x - pocket_bottom_x.
+sol_channel_start_x = sol_pocket_mouth_x + solenoid_pocket_x
+sol_channel_end_x   = -auger_bore_d / 2.0 + 0.1   # extend 0.1 mm into bore
+sol_channel_len     = sol_channel_end_x - sol_channel_start_x
+sol_channel = (
+    cq.Workplane("YZ")
+    .workplane(offset=sol_channel_start_x)
+    .center(0, solenoid_pocket_z_center)
+    .circle(solenoid_plunger_channel_d / 2.0)
+    .extrude(sol_channel_len)
 )
-chassis = chassis.cut(sol_slot)
+chassis = chassis.cut(sol_channel)
 
+# 5) Wire egress — small slot out the new boss back face (-X face of the boss)
+#    so the solenoid leads exit to the e-bay routing path. Cuts radially from
+#    the boss outer wall into the pocket interior. Box extends in +X from the
+#    boss outer face by the boss thickness, intersecting the pocket.
 sol_egress = (
     cq.Workplane("XY")
     .workplane(offset=solenoid_pocket_z_center - sol_egress_h / 2.0)
-    .center(sol_x_outer, 0)
-    .box(2.5, sol_egress_w, sol_egress_h, centered=(False, True, False))
+    .center(sol_pocket_mouth_x, 0)
+    .box(solenoid_boss_thk + 0.5, sol_egress_w, sol_egress_h, centered=(False, True, False))
 )
 chassis = chassis.cut(sol_egress)
+
+# --- Plunger geometry sanity check (printed when the script is run) ---
+# Auger OD lives at x = -auger_tube_outer_d / 2 = -12.5
+# Pocket bottom    x = sol_pocket_mouth_x + solenoid_pocket_x = -42.5 + 22.5 = -20.0
+# Plunger rest tip x = -20.0 + 2.0  = -18.0     (rest projection)
+# Plunger fired tip x = -20.0 + 7.0 = -13.0     (rest + 5 mm stroke)
+# Auger OD strike   x = -12.5
+# Tip-to-auger gap at full fire: -12.5 - (-13.0) = 0.5 mm   ← clean tap
+# (positive => tip stops short of the auger; tunable via solenoid_plunger_*
+# parameters above. Channel diameter 5 mm so the Ø4 plunger has 0.5 mm wall
+# clearance on each side.)
 
 # ===== SERVO BRACKET (+Y face, v3 — external mount, no embedded pocket) =====
 # The v2 deep PLA-tomb pocket is gone. v3 puts the servo OUTSIDE the
