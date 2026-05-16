@@ -38,9 +38,13 @@ exit_r = 1.5
 top_cap_h = 6.0
 boss_h = 6.0
 # v3: spindle that bridges from top of tube up into the ST-FC01 coupler.
-# Ø5 mm matches the coupler's 5–5 mm bore; length 24 mm leaves enough
-# overlap with the coupler's auger-side jaw to be gripped solidly.
-spindle_d = 5.0
+# v3.2: spindle bumped from Ø5 → Ø7 mm to address PLA cantilever bending
+# stress (Edison P1: a Ø5 × 24 mm PLA cantilever under 20 N transverse
+# load reaches ~39 MPa, above PLA's Z-direction ~30 MPa yield; Ø7 brings
+# this down to ~14 MPa, well within margin). The ST-FC01 5–5 mm coupler
+# can accommodate up to Ø8 with the supplied bore; user may alternately
+# embed a Ø5 steel rod through a Ø5 axial pilot in the spindle.
+spindle_d = 7.0
 spindle_l = 24.0
 m3_pilot_d = 2.5
 slot_count = 4

@@ -1,34 +1,27 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "part": "powder_doser_chassis",
-  "design_version": "v3.1",
+  "design_version": "v3.2",
   "print_orientation": "vertical, dispense end (Z=0) on the build plate",
   "layer_height_mm": 0.2,
   "pauses": [
     {
-      "name": "Solenoid insertion (v3.1 reach-fixed geometry)",
-      "part": "Adafruit #412 JF-0530B 5 V mini push-pull solenoid (9.6 \u00d7 19 \u00d7 22 mm, \u00d84 plunger, ~5 mm stroke)",
+      "name": "Solenoid + back-mounted ERM insertion (v3.2 co-located vibration source)",
+      "part": "Adafruit #412 JF-0530B solenoid (9.6 \u00d7 19 \u00d7 22 mm) with Adafruit #1201 ERM disc (\u00d810 \u00d7 2.7 mm) epoxied to its rear face",
       "z_mm": 19.9,
       "layer": 100,
-      "instructions": "Pause at this Z. v3.1 changes: the -X face now has an external boss (7.5 mm thick) that fully ENCLOSES the 22 mm solenoid body — no protrusion past the chassis envelope. The pocket bottom is at x = -20.0 mm (still leaves ~7.5 mm of chassis material between pocket bottom and bore wall at x = -12.7). The 22.2 \u00d7 6 \u00d7 2.5 mm rectangular through-slot from v3 has been REPLACED with a \u00d85 mm circular plunger channel (\u00d84 plunger + 1 mm clearance), sized so the plunger fired-tip lands at x = -13.0 mm — i.e. 0.5 mm short of the auger OD at x = -12.5 mm. This means the plunger TAPS the rotating auger tube wall at full extension without crushing it. Insert the JF-0530B body fully into the pocket, plunger pointing +X (toward the bore through the \u00d85 channel). Route leads through the 2.5 \u00d7 3 mm wire-egress slot out the boss face. Resume to lock the body in place."
-    },
-    {
-      "name": "ERM disc insertion",
-      "part": "Adafruit #1201 vibrating motor disc (\u00d810 \u00d7 2.7 mm, 3 V, ~0.8 G @ 5 V no-load)",
-      "z_mm": 125.0,
-      "layer": 625,
-      "instructions": "Pause printer at this Z. The +X radial pocket (\u00d810.3 \u00d7 2.9 mm) is open along with the short \u00d82.5 \u00d7 2 mm radial wire-egress slot directly out the +X face. Epoxy the ERM coin in with leads exiting through the egress slot. Route leads down/around to the e-bay grommet (z = ~152 mm on the +X external wall of the e-bay). Resume to encapsulate the disc. *NOTE on coupling efficiency:* PLA's mechanical loss factor (~0.05) attenuates ERM coupling to the powder column. If declog vibration proves weak in bench testing, the recommended retrofit is to surface-mount the ERM externally on a stiff metal bracket bolted to the +X face (or attach the ERM to a 'tap pin' pressed against the chassis bore wall \u2014 per the user's plunger-of-sorts idea \u2014 which transmits ERM vibration radially into the bore via a hard interface rather than through PLA bulk)."
+      "instructions": "v3.2 co-locates the ERM with the solenoid so ERM vibration couples through the steel solenoid body \u2192 plunger \u2192 bore wall, instead of dissipating through PLA bulk as in v3. (1) BEFORE pause: epoxy the \u00d810 \u00d7 2.7 mm ERM disc flat onto the back face of the JF-0530B body (the non-plunger end), leads dressed alongside the solenoid leads. (2) Pause printer at z = 19.9 mm. The -X face now exposes a pocket whose mouth is at x \u2248 -45.2 mm (the boss outer face) and whose bottom is at x = -20.0 mm. Pocket length is solenoid_body_l + erm_disc_thk + 0.5 mm slip = 25.2 mm. (3) Insert the solenoid+ERM stack as a unit, ERM-first (against the pocket back wall at x = -45.2). The solenoid plunger points +X through the \u00d85 plunger channel toward the bore. The fired plunger tip lands at x = -13.0 mm \u2014 0.5 mm short of the auger OD at x = -12.5 mm \u2014 so the plunger TAPS the rotating tube without crushing it. (4) Route the four leads (two ERM + two solenoid) out through the 2.5 \u00d7 3 mm wire-egress slot on the back face of the -X boss. (5) Resume to lock the stack in place. Wired to the Bonnet: ERM \u2192 PWM (continuous fine vibration, low amplitude), solenoid \u2192 MOSFET (impulsive tapping, high amplitude)."
     }
   ],
   "install_after_print": [
     {
       "name": "Heat-set inserts",
-      "instructions": "Press heat-set brass inserts: 4\u00d7 M3 (\u00d84.0 \u00d7 5.5 mm deep) into the e-bay lid corner holes (now 6 mm in from each outer edge, well inside the 8.5 mm flange that surrounds the lid opening); 4\u00d7 M3 into the new servo bracket flange on the +Y face; 4\u00d7 M2.5 (\u00d83.6 \u00d7 4.5 mm) into the stepper top plate (23 \u00d7 23 mm pattern); 4\u00d7 M2.5 into the Pi standoffs on the +Y inner wall of the e-bay."
+      "instructions": "Press heat-set brass inserts: 4\u00d7 M3 (\u00d84.0 \u00d7 5.5 mm deep) into the e-bay lid corner holes (v3.2: now 4.25 mm in from each outer edge so the hole is centered in the 8.5 mm flange \u2014 was 6.0 mm in v3, which left only ~0.5 mm of wall to the lid opening and risked blow-out); 4\u00d7 M3 into the new servo bracket flange on the +Y face; 4\u00d7 M2.5 (\u00d83.6 \u00d7 4.5 mm) into the stepper top plate (23 \u00d7 23 mm pattern); 4\u00d7 M2.5 into the Pi standoffs on the +Y inner wall of the e-bay."
     },
     {
-      "name": "Servo external bracket install (v3)",
+      "name": "Servo external bracket install (v3.2 \u2014 cantilevered horn)",
       "part": "Adafruit #1142 HD-1810MG metal-gear servo (40.7 \u00d7 19.7 \u00d7 42.9 mm)",
-      "instructions": "v3 puts the servo OUTSIDE the chassis on a bracket flange. (a) Slide the servo horn's output spline into the \u00d88 mm horn-axle pass-through on the +Y face at z = 50; the rear of the horn shaft is caught by the \u00d83.2 \u00d7 4 mm bushing socket on the -Y face for both-sided support. (b) Seat the servo case against the \u00d816 mm airgap standoff ring on +Y (servo body sits 2 mm proud of the chassis face — leaves a thermal airflow gap; the two ventilation slots at \u00b126 mm on either side of the horn axle complete the airflow path). (c) Bolt the servo case to the 4 M3 heat-set inserts in the bracket flange. Connect horn linkage to the dispense-end mechanism that the servo is intended to drive (e.g. a dispense gate or rocker tap)."
+      "instructions": "v3.2 NOTE: the v3 'rear bushing socket on -Y for both-sided horn support' has been REMOVED \u2014 a stock HD-1810MG horn is only 5\u201310 mm tall and could not span the ~60 mm gap to the -Y face (Edison P0). The horn now cantilevers in the \u00d88 mm pass-through, as on any standard servo install. (a) Bolt the servo case to the 4 M3 heat-set inserts in the bracket flange on the +Y face; the servo case sits 2 mm proud of the chassis via the \u00d816 mm airgap standoff ring (cooling airflow). (b) The servo horn output spline drives through the \u00d88 mm pass-through into the chassis interior. (c) Connect horn linkage to the dispense-end mechanism. If a longer load path or bending support is needed in future revisions, an external dual-bearing servo block (mounted to the +Y face) is a cleaner option than a chassis-side rear bushing."
     },
     {
       "name": "Pi Zero 2 W mount",
@@ -38,51 +31,53 @@
     {
       "name": "Adafruit Stepper Bonnet stack",
       "part": "Adafruit Stepper Motor Bonnet (~65 \u00d7 30 \u00d7 15 mm) on Pi GPIO",
-      "instructions": "Press the Bonnet onto the Pi GPIO 2 \u00d7 20 header. Bonnet drives the servo (PWM) and solenoid (MOSFET, optionally via a logic-level shifter). The Bonnet's onboard stepper driver is unused for the auger drive in v3 (see Tic 500 entry)."
+      "instructions": "Press the Bonnet onto the Pi GPIO 2 \u00d7 20 header. Bonnet drives the servo (PWM), solenoid (MOSFET), and the back-mounted ERM (PWM via logic-level). The Bonnet's onboard stepper driver is unused for the auger drive in v3 (see Tic 500 entry)."
     },
     {
       "name": "Pololu Tic 500 stepper controller (v3: USB-only, no GPIO clash)",
       "part": "Pololu Tic 500 (35.6 \u00d7 22.9 \u00d7 ~10 mm)",
-      "instructions": "v3 explicitly avoids the Bonnet GPIO contention reported in the v2 Edison review. VHB-tape (3M VHB 5952) the Tic 500 flat against the -X internal sidewall of the e-bay with its micro-USB port facing -Z (toward the bay floor cable slot). The Tic 500 talks to the Pi via micro-USB only — it does not sit on the GPIO header, so the Bonnet has the GPIO to itself. Stepper leads enter the bay through the +X wall grommet at z\u00a0=\u00a0152 mm and land directly on the Tic 500 screw terminals."
+      "instructions": "v3 explicitly avoids the Bonnet GPIO contention reported in the v2 Edison review. VHB-tape (3M VHB 5952) the Tic 500 flat against the -X internal sidewall of the e-bay with its micro-USB port facing -Z (toward the bay floor cable slot). The Tic 500 talks to the Pi via micro-USB only \u2014 it does not sit on the GPIO header, so the Bonnet has the GPIO to itself. Stepper leads enter the bay through the +X wall grommet at z\u00a0=\u00a0152 mm and land directly on the Tic 500 screw terminals."
     },
     {
       "name": "DRV8825 stepper driver carrier (alternate)",
       "part": "DRV8825 carrier (20.3 \u00d7 15.2 \u00d7 12 mm with heatsink)",
-      "instructions": "VHB-tape the DRV8825 onto the +X internal sidewall of the e-bay. Optional fallback driver if not using the Tic 500 — wire to the Bonnet's STEP/DIR breakout pins."
+      "instructions": "VHB-tape the DRV8825 onto the +X internal sidewall of the e-bay. Optional fallback driver if not using the Tic 500 \u2014 wire to the Bonnet's STEP/DIR breakout pins."
     },
     {
       "name": "E-bay lid",
-      "instructions": "Print the matching lid (70 \u00d7 80 \u00d7 2.5 mm with 4 M3 clearance holes at the corners) separately and bolt to the heat-set inserts. v3 lid opening is now 53 \u00d7 63 mm (smaller than v2) so the 8.5 mm flange comfortably accommodates the corner inserts."
+      "instructions": "Print the matching lid (70 \u00d7 80 \u00d7 2.5 mm with 4 M3 clearance holes at the corners) separately and bolt to the heat-set inserts. v3 lid opening is 53 \u00d7 63 mm so the 8.5 mm flange comfortably accommodates the corner inserts. v3.2: clearance-hole pattern moved to 4.25 mm in from each outer edge (matching the chassis-side insert pattern)."
     },
     {
-      "name": "Stepper + coupler install (top, v3)",
-      "part": "NEMA 11 11HS18-0674S stepper + ST-FC01 5\u20135 mm coupler",
-      "instructions": "v3 fixes the spindle gap: the auger now extends with a \u00d85 \u00d7 24 mm spindle reaching up from z=250 into the coupler region. The chassis has a \u00d86 mm spindle pass-through (z = 250\u2013258) below the full \u00d819 coupler chamber. (1) Drop the auger in from above so its spindle pokes through the spindle pass-through into the open coupler chamber. (2) Slide the ST-FC01 coupler into the chamber from above; the auger spindle enters one side. (3) Drop the stepper's \u00d85 D-cut shaft into the other side of the coupler. (4) Tighten the two coupler grub screws via the two \u00d83.5 mm access ports on the +X face (these line up with the ST-FC01 set screws). (5) Bolt the stepper to the top plate with 4 \u00d7 M2.5 into the heat-set inserts (23 \u00d7 23 mm pattern, \u00d822 pilot pass-through). (6) Route the 4 stepper leads down the +X vertical wire slot and into the e-bay through the \u00d85 grommet on the +X external wall of the e-bay at z\u00a0=\u00a0152 mm."
+      "name": "Stepper + coupler install (top, v3.2 \u2014 \u00d87 spindle)",
+      "part": "NEMA 11 11HS18-0674S stepper + ST-FC01 5\u20135 mm coupler (auger side may need a 7\u20135 mm coupler instead)",
+      "instructions": "v3.2 spindle change: auger spindle is now \u00d87 mm \u00d7 24 mm (was \u00d85 in v3) \u2014 fixes PLA cantilever bending stress (Edison P1). Chassis spindle pass-through bored to \u00d88 mm (z = 250\u2013258) below the full \u00d819 coupler chamber. (1) Drop the auger in from above so its \u00d87 spindle pokes through the spindle pass-through into the open coupler chamber. (2) Use a 7\u20135 mm shaft coupler (instead of the ST-FC01 5\u20135) so the larger auger spindle bore mates with the stepper's \u00d85 D-shaft. Alternatively, embed a \u00d85 steel rod axially down the spindle (pause printer at the spindle-base layer, drop in the rod, resume) and keep the ST-FC01 5\u20135. (3) Tighten the two coupler grub screws via the two \u00d83.5 mm access ports on the +X face. (4) Bolt the stepper to the top plate with 4 \u00d7 M2.5 into the heat-set inserts (23 \u00d7 23 mm pattern, \u00d822 pilot pass-through). (5) Route the 4 stepper leads down the +X vertical wire slot and into the e-bay through the \u00d85 grommet on the +X external wall of the e-bay at z\u00a0=\u00a0152 mm."
     }
   ],
   "wiring": {
-    "summary": "All four electrical leads (ERM, solenoid, servo, stepper) terminate inside the -Y e-bay. Servo + solenoid land on the Bonnet (PWM/MOSFET). Stepper lands on the Tic 500 (USB-connected, no GPIO clash).",
+    "summary": "All four electrical lead groups (ERM, solenoid, servo, stepper) terminate inside the -Y e-bay. v3.2: ERM and solenoid share the same wire-egress slot out the back of the -X boss (ERM is now glued to solenoid back face). Servo + solenoid + ERM land on the Bonnet (PWM/MOSFET). Stepper lands on the Tic 500 (USB-connected, no GPIO clash).",
     "paths": [
-      {"signal": "ERM (2 leads)",      "from": "ERM pocket (+X, z=125)",     "via": "Short +X radial egress slot \u2192 down chassis +X face \u2192 into e-bay through +X grommet or main lid opening", "to": "Bonnet PWM output (3 V via logic-level)"},
-      {"signal": "Solenoid (2 leads)", "from": "Solenoid pocket (-X boss, z=15)", "via": "Short -X radial egress slot through the boss \u2192 around bottom of chassis \u2192 into e-bay lid opening", "to": "Bonnet MOSFET output (5 V)"},
+      {"signal": "ERM (2 leads)",      "from": "Back of solenoid (-X boss outer face, z=15)",     "via": "Out the -X boss rear wire-egress slot together with solenoid leads \u2192 around bottom of chassis \u2192 into e-bay lid opening", "to": "Bonnet PWM output (3 V via logic-level) \u2014 fine continuous vibration"},
+      {"signal": "Solenoid (2 leads)", "from": "Solenoid pocket (-X boss, z=15)", "via": "Out the -X boss rear wire-egress slot \u2192 around bottom of chassis \u2192 into e-bay lid opening", "to": "Bonnet MOSFET output (5 V) \u2014 impulsive tapping"},
       {"signal": "Servo (3 leads)",    "from": "Servo back face (+Y, z=50)", "via": "Around top of chassis \u2192 over the airgap ring \u2192 into e-bay lid opening", "to": "Bonnet PWM channel (5 V)"},
       {"signal": "Stepper (4 leads)",  "from": "Stepper terminals at top plate (z=304)", "via": "Down the +X vertical wire slot \u2192 through the \u00d85 grommet on +X e-bay external wall at z=152 \u2192 directly to the Tic 500 screw terminals", "to": "Tic 500 A1/A2/B1/B2 (USB-connected to Pi, no GPIO clash with Bonnet)"}
     ]
   },
   "heat_set_inserts": {
-    "M3":   {"hole_d_mm": 4.0, "depth_mm": 5.5, "count": "4 (e-bay lid corners) + 4 (servo bracket flange on +Y)"},
+    "M3":   {"hole_d_mm": 4.0, "depth_mm": 5.5, "count": "4 (e-bay lid corners, 4.25 mm inset) + 4 (servo bracket flange on +Y)"},
     "M2.5": {"hole_d_mm": 3.6, "depth_mm": 4.5, "count": "4 (stepper plate top) + 4 (Pi mount standoffs)"}
   },
   "bore_breach_zones": {
-    "summary": "v3.1 keeps the v3 Z separation but tightens the solenoid breach to a small \u00d85 mm circular channel (was 6 \u00d7 2.5 mm rectangular slot) so much less powder can escape into the channel.",
+    "summary": "v3.2 keeps the v3.1 Ø5 round plunger channel (much smaller leak path than v3's 6 \u00d7 2.5 slot) and the same Z separation from the servo horn axle.",
     "solenoid_breach": {"axis": "x", "shape": "\u00d85 mm round channel", "z_range_mm": [12.5, 17.5]},
     "servo_horn_axle_z_mm": [46.0, 54.0],
     "gap_mm": 28.5
   },
   "solenoid_plunger_kinematics_v3_1": {
-    "summary": "Plunger fired-tip lands tangent to the auger OD with a 0.5 mm safety gap — the plunger TAPS the rotating tube; it does not crush it.",
-    "pocket_mouth_x_mm": -42.5,
+    "summary": "Plunger fired-tip lands tangent to the auger OD with a 0.5 mm safety gap \u2014 the plunger TAPS the rotating tube; it does not crush it. Unchanged in v3.2 (the back of the pocket grew by erm_disc_thk and the boss grew by the same amount, so the pocket BOTTOM and plunger reach are identical to v3.1).",
+    "pocket_mouth_x_mm": -45.2,
     "pocket_bottom_x_mm": -20.0,
+    "solenoid_back_face_x_mm": -42.5,
+    "erm_disc_x_range_mm": [-45.2, -42.5],
     "plunger_rest_tip_x_mm": -18.0,
     "plunger_fired_tip_x_mm": -13.0,
     "auger_OD_strike_x_mm": -12.5,
@@ -90,13 +85,22 @@
     "channel_d_mm": 5.0,
     "plunger_d_mm": 4.0
   },
+  "v3_2_changes": [
+    "ERM relocated from +X mid-tube embedded pocket to the BACK face of the solenoid (epoxied to solenoid rear during print pause). Vibration now couples through the steel solenoid body \u2192 plunger \u2192 bore wall instead of dissipating through PLA. ERM provides fine continuous vibration; solenoid provides coarse impulsive tapping.",
+    "Solenoid pocket length extended from 22.5 mm to 25.2 mm and the -X boss thickness grew from 7.5 mm to 10.2 mm (both +erm_disc_thk) so the back-mounted ERM disc fits behind the solenoid. Pocket bottom and plunger reach are unchanged.",
+    "Old +X mid-tube ERM pocket and its wire-egress slot DELETED.",
+    "Servo 'both-sided horn support' rear bushing socket (-Y face, \u00d83.2 \u00d7 4 mm) REMOVED \u2014 a stock HD-1810MG horn is only 5\u201310 mm tall and could not span ~60 mm to the socket (Edison P0). Horn now cantilevers in the \u00d88 pass-through.",
+    "E-bay lid heat-set inset reduced from 6.0 mm to 4.25 mm so the \u00d84 hole is centered in the 8.5 mm flange instead of sitting 0.5 mm from the lid-opening edge (Edison P1).",
+    "Auger spindle bumped from \u00d85 \u00d7 24 mm to \u00d87 \u00d7 24 mm to address PLA cantilever bending stress at the coupler interface (Edison P1: \u00d85 puts bending stress ~39 MPa, above PLA Z-direction \u02dc30 MPa yield; \u00d87 drops to \u02dc14 MPa). Chassis spindle pass-through bored to \u00d88 mm (was \u00d86).",
+    "Schema bumped to v5 for the new solenoid_back_face_x_mm and erm_disc_x_range_mm fields."
+  ],
   "v3_1_changes": [
     "Solenoid plunger reach corrected: external -X boss (7.5 mm) fully encloses the 22 mm body; \u00d85 circular plunger channel replaces the 6 \u00d7 2.5 mm rectangular through-slot; fired-tip stops 0.5 mm short of the auger OD (clean tap, no crush). See solenoid_plunger_kinematics_v3_1.",
     "Local bore wall pad (\u00d812 \u00d7 2 mm) added around the plunger channel mouth to spread impact load over more PLA.",
     "Schema bumped to v4 for the new bore_breach.solenoid_breach.shape and solenoid_plunger_kinematics_v3_1 sections."
   ],
   "v3_changes": [
-    "Auger ↔ coupler spindle gap fixed: auger now extends with \u00d85 \u00d7 24 mm spindle (auger script). Chassis has \u00d86 mm pass-through (z=250\u2013258) below the \u00d819 coupler chamber.",
+    "Auger \u2194 coupler spindle gap fixed: auger now extends with \u00d85 \u00d7 24 mm spindle (auger script). Chassis has \u00d86 mm pass-through (z=250\u2013258) below the \u00d819 coupler chamber.",
     "Servo no longer embedded in a PLA tomb. External bracket on +Y with airgap standoff ring (2 mm), 2 ventilation slots, 4 M3 heat-sets, \u00d88 mm horn-axle pass-through, and a \u00d83.2 mm rear bushing socket on -Y for both-sided horn support.",
     "E-bay lid heat-set holes moved to a thicker flange (lid opening shrunk from 63 \u00d7 75 to 53 \u00d7 63; flange grew from 3.5 mm to 8.5 mm).",
     "Solenoid pocket rotated 90\u00b0 so the 22 mm plunger axis is now along X (radial toward the bore), matching the tap-slot direction.",
@@ -104,5 +108,5 @@
     "Solenoid bore-breach moved to z=10\u201320; servo horn axle at z=46\u201354. No overlap (25.9 mm clear gap).",
     "Tic 500 GPIO clash with the Bonnet resolved by routing the Tic 500 over USB only (micro-USB port facing the bay floor cable slot)."
   ],
-  "notes": "Pause Z is in millimetres along the chassis Z axis (matches the CadQuery script). Layer index = round(z_mm / layer_height_mm) at 0.2 mm; rescale if you slice differently. The user has chosen to leave the auger as a rotating-as-one-body design (no internal helix actually metering powder); this is acknowledged as a non-functional auger in the geometric sense but is preferred over PLA-on-PLA rubbing. Auger height (auger_tube_length) remains the single parameter to adjust for build-plate Z limits (e.g. shorter on smaller printers; the H2D the user is targeting has plenty of Z)."
+  "notes": "Pause Z is in millimetres along the chassis Z axis (matches the CadQuery script). Layer index = round(z_mm / layer_height_mm) at 0.2 mm; rescale if you slice differently. The user has chosen to leave the auger as a rotating-as-one-body design (no internal helix actually metering powder); this is acknowledged as a non-functional auger in the geometric sense but is preferred over PLA-on-PLA rubbing. Auger height (auger_tube_length) remains the single parameter to adjust for build-plate Z limits. v3.2 collapses two pause-pauses (separate solenoid + ERM) into a single pause because the ERM is now physically mated to the solenoid before insertion."
 }

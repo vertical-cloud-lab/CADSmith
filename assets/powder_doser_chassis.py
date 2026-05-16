@@ -74,10 +74,19 @@ stepper_plate_thk = 4.0
 stepper_pilot_d = 22.0
 stepper_bolt_pattern = 23.0
 
-# ERM
+# ERM — v3.2: relocated to the BACK of the solenoid (epoxied to the
+# solenoid's rear face during the print pause). This co-locates ERM
+# vibration with the solenoid body so the ERM couples through the steel
+# solenoid case → plunger → bore wall, giving a much higher-fidelity
+# fine-vibration path than the previous "ERM-embedded-in-PLA-mid-tube"
+# placement (where PLA's loss factor killed the coupling). It also means
+# the ERM can be used independently for *fine* (continuous, low-amplitude)
+# vibration while the solenoid handles *coarse* (impulsive, high-amplitude)
+# tapping. The chassis-side change is: (a) delete the old +X mid-tube
+# pocket and its egress, (b) extend the solenoid pocket and the -X boss
+# rearward by erm_disc_thk so the disc fits behind the solenoid body.
 erm_pocket_d = erm_disc_d + 0.3
 erm_pocket_depth = erm_disc_thk + 0.2
-erm_pocket_z = auger_tube_length * 0.5
 
 # --- Solenoid (v3.1: plunger reach corrected so the tip taps the auger OD
 #                  without over-travelling through the auger tube wall) ---
@@ -92,13 +101,17 @@ erm_pocket_z = auger_tube_length * 0.5
 #   - geometry sized so fired-tip lands tangent to the auger OD (Ø25 / 2 =
 #     12.5 mm from bore axis), giving a genuine tap rather than a crush.
 solenoid_body_l   = 22.0            # plunger-axis dimension of body
-solenoid_pocket_x = solenoid_body_l + 0.5    # 0.5 mm slip-fit clearance
+# v3.2: pocket length now also accommodates an ERM disc glued to the
+# solenoid's back face — body (22) + ERM (2.7) + slip-fit (0.5).
+solenoid_pocket_x = solenoid_body_l + erm_disc_thk + 0.5
 solenoid_pocket_y = 19.2
 solenoid_pocket_z_dim = 9.8
 solenoid_pocket_z_center = 15.0
 # External boss on the -X face that extends the chassis outward enough to
-# fully enclose the body (no protrusion past the chassis envelope).
-solenoid_boss_thk = 7.5
+# fully enclose the body + the back-mounted ERM disc.
+# v3.2: bumped from 7.5 to 7.5 + erm_disc_thk to keep the boss flush with
+# the rear of the (now longer) pocket.
+solenoid_boss_thk = 7.5 + erm_disc_thk
 solenoid_boss_y   = solenoid_pocket_y + 6.0  # 3 mm wall around pocket
 solenoid_boss_z   = solenoid_pocket_z_dim + 6.0  # 3 mm wall above/below
 # Plunger geometry — the JF-0530B has ~2 mm rest protrusion and ~5 mm stroke.
@@ -121,9 +134,15 @@ servo_flange_spacing = 49.5
 # Horn axle pass-through: Ø8 (clears horn output spline + bushing)
 servo_horn_axle_d = 8.0
 servo_horn_axle_z = 50.0   # moved up from v2 (z=25) — no overlap with solenoid breach now
-# Back-side horn bushing socket (catches the rear pin of the horn for both-sided support)
-servo_horn_pin_d = 3.2     # small bearing/bushing pin in -Y face
-servo_horn_pin_depth = 4.0
+# v3.2: the "rear bushing socket" on the -Y face has been REMOVED. A stock
+# HD-1810MG horn is only 5–10 mm tall and cannot span the ~60 mm gap to a
+# socket on the opposite face — the v3 pin was non-physical (Edison P0).
+# The horn now cantilevers in the Ø8 pass-through hole as it would on any
+# real servo install. The servo_horn_pin_* vars below are kept defined
+# only so downstream tooling that introspects the parameter surface
+# doesn't break; they are NOT cut from the chassis.
+servo_horn_pin_d = 0.0
+servo_horn_pin_depth = 0.0
 # Air-gap standoff ring around the horn axle so the servo case sits ~2 mm
 # off the chassis face (thermal): we model this as a *raised boss* on +Y
 # at the horn-axle location, but we keep most of the +Y face flush.
@@ -160,7 +179,10 @@ pi_mount_hole_d = HEATSET_M25_D
 # v2 flange was 3.5 mm (too narrow for Ø4 inserts). v3 wants ≥8 mm flange.
 ebay_lid_opening_w = ebay_cav_x - 12.0   # 53 mm wide → flange = (70-53)/2 = 8.5 mm
 ebay_lid_opening_h = ebay_cav_z - 12.0   # 63 mm tall → flange top/bot = (80-63)/2 = 8.5 mm
-ebay_lid_inset = 6.0   # 6 mm in from outer edge (well inside the 8.5 mm flange)
+# v3.2: inset reduced from 6.0 → 4.25 mm so the Ø4 heat-set hole is
+# centered in the 8.5 mm flange (was 0.5 mm wall to the lid opening edge,
+# which would blow out on insertion — Edison P1).
+ebay_lid_inset = 4.25
 ebay_lid_hole_d = HEATSET_M3_D
 
 # Stepper wire grommet — v3: routed directly through e-bay +X external wall
@@ -172,10 +194,12 @@ grommet_z = ebay_z_max - 8.0   # near top of bay
 # Coupler chamber and spindle pass-through
 coupler_chamber_d = 19.0
 coupler_chamber_h = 26.0
-# v3: the lower 8 mm of the chamber is reduced to a Ø6 spindle pass-through
-# so the auger's new Ø5 spindle has a defined guide bushing into the
-# coupler (rather than a 19 mm cavern + free-air gap).
-spindle_pass_d = 6.0
+# v3: the lower 8 mm of the chamber is reduced to a spindle pass-through
+# so the auger's spindle has a defined guide bushing into the coupler
+# (rather than a 19 mm cavern + free-air gap). v3.2: spindle bumped from
+# Ø5 → Ø7 on the auger to address PLA bending stress (Edison P1); the
+# chassis pass-through is sized for Ø7 + 1 mm clearance.
+spindle_pass_d = 8.0
 spindle_pass_h = 8.0
 grub_port_d = 3.5
 grub_z_low  = chassis_z - coupler_chamber_h + 6.0
@@ -276,25 +300,12 @@ stepper_inserts = (
 )
 chassis = chassis.cut(stepper_inserts)
 
-# ===== ERM POCKET (+X side, mid tube) =====
-erm_outer_x = chassis_x / 2.0
-erm_pocket = (
-    cq.Workplane("YZ")
-    .workplane(offset=erm_outer_x)
-    .center(0, erm_pocket_z)
-    .circle(erm_pocket_d / 2.0)
-    .extrude(-erm_pocket_depth)
-)
-chassis = chassis.cut(erm_pocket)
-
-erm_inner_x = erm_outer_x - erm_pocket_depth
-erm_egress = (
-    cq.Workplane("XY")
-    .workplane(offset=erm_pocket_z - erm_egress_h / 2.0)
-    .center(erm_inner_x, 0)
-    .box(erm_pocket_depth + 0.1, erm_egress_w, erm_egress_h, centered=(False, True, False))
-)
-chassis = chassis.cut(erm_egress)
+# ===== ERM (v3.2: relocated to back of solenoid; no mid-tube pocket) =====
+# The old +X mid-tube ERM pocket has been removed entirely. The ERM disc
+# is now epoxied to the back face of the solenoid body during the
+# print-pause insert (see solenoid pocket below — pocket length was
+# extended by erm_disc_thk to seat the disc behind the body). ERM wires
+# share the solenoid's wire egress slot out the back of the -X boss.
 
 # ===== SOLENOID POCKET (-X side, dispense end, v3.1 reach-fixed) =====
 # Plan: external boss on -X face → recessed pocket (fully encloses body) →
@@ -371,7 +382,13 @@ chassis = chassis.cut(sol_egress)
 
 # --- Plunger geometry sanity check (printed when the script is run) ---
 # Auger OD lives at x = -auger_tube_outer_d / 2 = -12.5
-# Pocket bottom    x = sol_pocket_mouth_x + solenoid_pocket_x = -42.5 + 22.5 = -20.0
+# (v3.2: pocket length grew by erm_disc_thk to accommodate the
+#  back-mounted ERM; the boss grew by the same amount so the pocket
+#  bottom is unchanged at x = -20.0 and the plunger reach is preserved.)
+# Pocket mouth     x = -chassis_x/2 - solenoid_boss_thk = -45.2
+# Pocket bottom    x = pocket_mouth + solenoid_pocket_x = -20.0
+# Solenoid back    x = -45.2 + erm_disc_thk = -42.5   (ERM disc behind it)
+# Solenoid front   x = -45.2 + erm_disc_thk + 22.0 = -20.5  (pre-clearance)
 # Plunger rest tip x = -20.0 + 2.0  = -18.0     (rest projection)
 # Plunger fired tip x = -20.0 + 7.0 = -13.0     (rest + 5 mm stroke)
 # Auger OD strike   x = -12.5
@@ -435,16 +452,10 @@ flange_inserts = (
 )
 chassis = chassis.cut(flange_inserts)
 
-# 4) Back-side horn pin bushing socket on the -Y face (small blind hole at
-#    horn axle that gives the rear of the horn shaft a bushing seat).
-back_bushing = (
-    cq.Workplane("XZ")
-    .workplane(offset=servo_y_back)
-    .center(0, servo_horn_axle_z)
-    .circle(servo_horn_pin_d / 2.0)
-    .extrude(servo_horn_pin_depth)
-)
-chassis = chassis.cut(back_bushing)
+# 4) (v3.2) Back-side horn bushing socket REMOVED — a stock HD-1810MG horn
+#    is only 5–10 mm tall and could never reach a -Y socket ~60 mm away
+#    (Edison P0). The horn now cantilevers in the Ø8 pass-through, as on a
+#    standard servo install.
 
 # 5) Ventilation slots around the bracket flange (purely thermal — small
 #    vertical slits left and right of the airgap ring).
