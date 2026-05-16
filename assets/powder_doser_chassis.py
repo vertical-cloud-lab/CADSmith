@@ -1,0 +1,576 @@
+"""
+powder_doser_chassis.py — v3 (acts on Edison ANALYSIS-mode P0/P1 findings)
+
+User directives for this revision (paraphrased from the PR thread):
+  - Leave the auger architecture as-is (rotates as one body; user wants to
+    avoid PLA-on-PLA rubbing for now). Auger script lives in
+    powder_doser_auger.py and adds a Ø5 mm spindle on top so it actually
+    engages the coupler now.
+  - Fix the auger ↔ coupler spindle gap. (See auger script: the auger now
+    extends with a Ø5 × 24 mm spindle reaching up into the ST-FC01 bore.
+    The chassis side just needs the coupler chamber's lower bore to be a
+    proper Ø5+clearance pass-through for the spindle, not a Ø19 cavern.)
+  - Servo no longer embedded in a PLA tomb. The +Y face now has a
+    bracket-flange landing (4× M3 heat-set inserts) for an external servo
+    case, with a small *air-gap standoff lip* between the servo and the
+    chassis (thermal mitigation) and a Ø8 horn-axle pass-through. A short
+    Ø3.2 mm bushing socket on the -Y side wall catches the back of the
+    horn shaft so the horn pin is supported on both sides.
+  - E-bay lid heat-set holes were drilling into air. The lid opening is
+    now smaller so a real 8.5 mm-wide flange remains for the corner
+    inserts; the lid inset is also increased so holes are 6 mm in from
+    every edge of the *flange* (not the outer wall).
+  - Solenoid pocket rotated 90° about Y so the plunger axis is now along
+    X (radial toward the bore), matching the through-bore tap-slot
+    direction. Pocket Z extent drops from 22.2 mm to 9.8 mm.
+  - Stepper wire grommet relocated to the e-bay's external +X wall
+    (Ø5 hole through ebay_wall_thk = 2.5 mm only). The +X vertical wire
+    slot now terminates at this grommet so wires drop straight into the
+    e-bay cavity instead of dead-ending in a 3.5 mm-deep blind hole.
+  - Servo + solenoid bore-breach overlap removed: solenoid moved to
+    z_center = 15 (well below the dispense-end region), servo horn axis
+    at z = 50, so the two breach slots no longer share any Z range.
+  - Tic 500 moved off the Bonnet GPIO stack: a small VHB-mount footprint
+    is reserved on the e-bay -X internal sidewall (no obstructions),
+    documented in powder_doser_pauses.json. The Tic 500's micro-USB port
+    handles host comms so there is no GPIO clash with the Bonnet.
+
+v3 keeps the v2 parameter surface (auger_*, erm_*, stepper_*, heatset_*).
+Output solid is assigned to `result`.
+"""
+
+import cadquery as cq
+
+# ===== ADJUSTABLE PARAMETERS =====
+auger_tube_outer_d   = 25.0
+auger_tube_length    = 250.0
+auger_wall_thk       = 2.0
+auger_stair_thk      = 2.0
+auger_stair_pitch    = 10.0
+erm_disc_d           = 10.0
+erm_disc_thk         = 2.7
+stepper_w            = 28.0
+stepper_h            = 28.0
+stepper_l            = 45.0
+
+# Heat-set insert sized holes
+HEATSET_M3_D    = 4.0
+HEATSET_M3_DEP  = 5.5
+HEATSET_M25_D   = 3.6
+HEATSET_M25_DEP = 4.5
+
+# ===== Derived chassis size =====
+chassis_x = 70.0
+chassis_y = 60.0
+chassis_extra_top = 50.0
+chassis_z = auger_tube_length + chassis_extra_top  # 300 mm
+
+auger_bore_d = auger_tube_outer_d + 0.4
+
+# Stepper plate
+stepper_plate_x = stepper_w + 16.0
+stepper_plate_y = stepper_h + 16.0
+stepper_plate_thk = 4.0
+stepper_pilot_d = 22.0
+stepper_bolt_pattern = 23.0
+
+# ERM — v3.2: relocated to the BACK of the solenoid (epoxied to the
+# solenoid's rear face during the print pause). This co-locates ERM
+# vibration with the solenoid body so the ERM couples through the steel
+# solenoid case → plunger → bore wall, giving a much higher-fidelity
+# fine-vibration path than the previous "ERM-embedded-in-PLA-mid-tube"
+# placement (where PLA's loss factor killed the coupling). It also means
+# the ERM can be used independently for *fine* (continuous, low-amplitude)
+# vibration while the solenoid handles *coarse* (impulsive, high-amplitude)
+# tapping. The chassis-side change is: (a) delete the old +X mid-tube
+# pocket and its egress, (b) extend the solenoid pocket and the -X boss
+# rearward by erm_disc_thk so the disc fits behind the solenoid body.
+erm_pocket_d = erm_disc_d + 0.3
+erm_pocket_depth = erm_disc_thk + 0.2
+
+# --- Solenoid (v3.1: plunger reach corrected so the tip taps the auger OD
+#                  without over-travelling through the auger tube wall) ---
+# JF-0530B body: 9.6 × 19 × 22 mm. Plunger Ø ~4 mm, total travel ~5 mm.
+# v3 placed the 22 mm body axis along X (correct) but: (i) pocket bottom was
+# only 0.1 mm from the bore wall — no support; (ii) the slot to the bore was
+# a 12.8×6×2.5 mm rectangle that extended *all the way through the bore*,
+# meaning a fully-fired plunger would over-travel ~6.7 mm past the auger OD
+# and crush the auger tube. v3.1 fixes this with:
+#   - an external -X boss that fully contains the 22 mm body length
+#   - a Ø5 cylindrical plunger channel (Ø4 plunger + 1 mm clearance)
+#   - geometry sized so fired-tip lands tangent to the auger OD (Ø25 / 2 =
+#     12.5 mm from bore axis), giving a genuine tap rather than a crush.
+solenoid_body_l   = 22.0            # plunger-axis dimension of body
+# v3.2: pocket length now also accommodates an ERM disc glued to the
+# solenoid's back face — body (22) + ERM (2.7) + slip-fit (0.5).
+solenoid_pocket_x = solenoid_body_l + erm_disc_thk + 0.5
+solenoid_pocket_y = 19.2
+solenoid_pocket_z_dim = 9.8
+solenoid_pocket_z_center = 15.0
+# External boss on the -X face that extends the chassis outward enough to
+# fully enclose the body + the back-mounted ERM disc.
+# v3.2: bumped from 7.5 to 7.5 + erm_disc_thk to keep the boss flush with
+# the rear of the (now longer) pocket.
+solenoid_boss_thk = 7.5 + erm_disc_thk
+solenoid_boss_y   = solenoid_pocket_y + 6.0  # 3 mm wall around pocket
+solenoid_boss_z   = solenoid_pocket_z_dim + 6.0  # 3 mm wall above/below
+# Plunger geometry — the JF-0530B has ~2 mm rest protrusion and ~5 mm stroke.
+solenoid_plunger_d        = 4.0
+solenoid_plunger_channel_d = solenoid_plunger_d + 1.0  # Ø5 channel
+solenoid_plunger_rest_proj = 2.0   # mm proud of front face at rest
+solenoid_plunger_stroke    = 5.0   # mm additional travel when fired
+# Local thickening of the bore wall around the strike pad (extra material on
+# the inner side of the channel mouth to spread the impact load).
+solenoid_pad_d = 12.0
+solenoid_pad_z = 14.0
+
+# --- Servo (v3: external bracket, no embedded pocket, both-sides horn support) ---
+# Adafruit #1142 HD-1810MG: 40.7 × 19.7 × 42.9 mm
+servo_body_x = 40.7
+servo_body_y = 19.7  # depth from +Y face out into open air
+servo_body_z = 42.9
+# Bracket flange dims: matches servo's mounting ears (49.5 mm spacing, 2× M3)
+servo_flange_spacing = 49.5
+# Horn axle pass-through: Ø8 (clears horn output spline + bushing)
+servo_horn_axle_d = 8.0
+servo_horn_axle_z = 50.0   # moved up from v2 (z=25) — no overlap with solenoid breach now
+# v3.2: the "rear bushing socket" on the -Y face has been REMOVED. A stock
+# HD-1810MG horn is only 5–10 mm tall and cannot span the ~60 mm gap to a
+# socket on the opposite face — the v3 pin was non-physical (Edison P0).
+# The horn now cantilevers in the Ø8 pass-through hole as it would on any
+# real servo install. The servo_horn_pin_* vars below are kept defined
+# only so downstream tooling that introspects the parameter surface
+# doesn't break; they are NOT cut from the chassis.
+servo_horn_pin_d = 0.0
+servo_horn_pin_depth = 0.0
+# Air-gap standoff ring around the horn axle so the servo case sits ~2 mm
+# off the chassis face (thermal): we model this as a *raised boss* on +Y
+# at the horn-axle location, but we keep most of the +Y face flush.
+servo_airgap_h = 2.0
+servo_airgap_ring_d_outer = 16.0
+# Cooling slots: 4× narrow vents around the bracket flange (purely visual /
+# for airflow — small enough to print without supports).
+servo_vent_w = 2.0
+servo_vent_h = 6.0
+servo_vent_offset = 26.0   # X-distance from horn axle to each vent pair
+
+# ===== ELECTRONICS BAY (-Y side-car) =====
+ebay_outer_x       = chassis_x
+ebay_outer_y       = 35.0
+ebay_outer_z       = 80.0
+ebay_wall_thk      = 2.5
+ebay_z_min         = 80.0   # moved up slightly so the bay doesn't shadow the solenoid pocket
+ebay_z_max         = ebay_z_min + ebay_outer_z   # 160
+
+ebay_cav_x = ebay_outer_x - 2 * ebay_wall_thk    # 65 mm
+ebay_cav_y = ebay_outer_y - ebay_wall_thk         # 32.5 mm
+ebay_cav_z = ebay_outer_z - 2 * ebay_wall_thk    # 75 mm
+
+# Pi Zero 2 W mount
+pi_x_axis = 58.0
+pi_z_axis = 23.0
+pi_z_center = ebay_z_min + ebay_outer_z / 2.0
+pi_standoff_h = 4.0
+pi_standoff_d = 6.0
+pi_mount_hole_d = HEATSET_M25_D
+
+# Lid (v3: smaller opening so a real flange remains for heat-set inserts)
+# Flange width per side = (ebay_outer_x - ebay_lid_opening_w) / 2.
+# v2 flange was 3.5 mm (too narrow for Ø4 inserts). v3 wants ≥8 mm flange.
+ebay_lid_opening_w = ebay_cav_x - 12.0   # 53 mm wide → flange = (70-53)/2 = 8.5 mm
+ebay_lid_opening_h = ebay_cav_z - 12.0   # 63 mm tall → flange top/bot = (80-63)/2 = 8.5 mm
+# v3.2: inset reduced from 6.0 → 4.25 mm so the Ø4 heat-set hole is
+# centered in the 8.5 mm flange (was 0.5 mm wall to the lid opening edge,
+# which would blow out on insertion — Edison P1).
+ebay_lid_inset = 4.25
+ebay_lid_hole_d = HEATSET_M3_D
+
+# Stepper wire grommet — v3: routed directly through e-bay +X external wall
+# (2.5 mm wall) rather than the 32+ mm chassis-to-cavity span the v2 grommet
+# tried to span (and didn't actually reach).
+grommet_d = 5.0
+grommet_z = ebay_z_max - 8.0   # near top of bay
+
+# Coupler chamber and spindle pass-through
+coupler_chamber_d = 19.0
+coupler_chamber_h = 26.0
+# v3: the lower 8 mm of the chamber is reduced to a spindle pass-through
+# so the auger's spindle has a defined guide bushing into the coupler
+# (rather than a 19 mm cavern + free-air gap). v3.2: spindle bumped from
+# Ø5 → Ø7 on the auger to address PLA bending stress (Edison P1); the
+# chassis pass-through is sized for Ø7 + 1 mm clearance.
+spindle_pass_d = 8.0
+spindle_pass_h = 8.0
+grub_port_d = 3.5
+grub_z_low  = chassis_z - coupler_chamber_h + 6.0
+grub_z_high = chassis_z - 6.0
+
+# Wire egress ports
+erm_egress_w = 2.5
+erm_egress_h = 2.0
+sol_egress_w = 2.5
+sol_egress_h = 3.0
+
+# ===== OUTER CHASSIS (main spine) =====
+chassis = (
+    cq.Workplane("XY")
+    .box(chassis_x, chassis_y, chassis_z, centered=(True, True, False))
+)
+
+# Side-car electronics bay attached to -Y face
+ebay_y_outer_face = -chassis_y / 2.0 - ebay_outer_y
+ebay_block = (
+    cq.Workplane("XY")
+    .workplane(offset=ebay_z_min)
+    .center(0, ebay_y_outer_face + ebay_outer_y / 2.0)
+    .box(ebay_outer_x, ebay_outer_y, ebay_outer_z, centered=(True, True, False))
+)
+chassis = chassis.union(ebay_block)
+
+# Stepper plate
+plate_z_bottom = chassis_z
+stepper_plate = (
+    cq.Workplane("XY")
+    .workplane(offset=plate_z_bottom)
+    .box(stepper_plate_x, stepper_plate_y, stepper_plate_thk, centered=(True, True, False))
+)
+chassis = chassis.union(stepper_plate)
+plate_z_top = plate_z_bottom + stepper_plate_thk
+
+# ===== AUGER TUBE BORE =====
+auger_bore = (
+    cq.Workplane("XY")
+    .circle(auger_bore_d / 2.0)
+    .extrude(auger_tube_length)
+)
+chassis = chassis.cut(auger_bore)
+
+# ===== COUPLER CHAMBER + SPINDLE PASS-THROUGH (v3) =====
+# Spindle pass-through (Ø6) from top of auger up to bottom of full coupler bore
+spindle_pass_z_bottom = auger_tube_length
+spindle_pass_z_top = spindle_pass_z_bottom + spindle_pass_h
+spindle_pass = (
+    cq.Workplane("XY")
+    .workplane(offset=spindle_pass_z_bottom)
+    .circle(spindle_pass_d / 2.0)
+    .extrude(spindle_pass_h)
+)
+chassis = chassis.cut(spindle_pass)
+
+# Full Ø19 coupler chamber sits above the spindle pass-through
+coupler_z_bottom = spindle_pass_z_top
+coupler_z_top = chassis_z
+coupler = (
+    cq.Workplane("XY")
+    .workplane(offset=coupler_z_bottom)
+    .circle(coupler_chamber_d / 2.0)
+    .extrude(coupler_z_top - coupler_z_bottom)
+)
+chassis = chassis.cut(coupler)
+
+# Two radial grub-screw access ports on +X
+def radial_port(z_center, d):
+    return (
+        cq.Workplane("YZ")
+        .workplane(offset=chassis_x / 2.0)
+        .center(0, z_center)
+        .circle(d / 2.0)
+        .extrude(-(chassis_x / 2.0 - coupler_chamber_d / 2.0 + 0.5))
+    )
+chassis = chassis.cut(radial_port(grub_z_low, grub_port_d))
+chassis = chassis.cut(radial_port(grub_z_high, grub_port_d))
+
+# ===== STEPPER SHAFT PASS-THROUGH =====
+shaft_through = (
+    cq.Workplane("XY")
+    .workplane(offset=plate_z_bottom)
+    .circle(stepper_pilot_d / 2.0)
+    .extrude(stepper_plate_thk + 0.1)
+)
+chassis = chassis.cut(shaft_through)
+
+half = stepper_bolt_pattern / 2.0
+bolt_pts = [(half, half), (-half, half), (half, -half), (-half, -half)]
+stepper_inserts = (
+    cq.Workplane("XY")
+    .workplane(offset=plate_z_top - HEATSET_M25_DEP)
+    .pushPoints(bolt_pts)
+    .circle(HEATSET_M25_D / 2.0)
+    .extrude(HEATSET_M25_DEP + 0.1)
+)
+chassis = chassis.cut(stepper_inserts)
+
+# ===== ERM (v3.2: relocated to back of solenoid; no mid-tube pocket) =====
+# The old +X mid-tube ERM pocket has been removed entirely. The ERM disc
+# is now epoxied to the back face of the solenoid body during the
+# print-pause insert (see solenoid pocket below — pocket length was
+# extended by erm_disc_thk to seat the disc behind the body). ERM wires
+# share the solenoid's wire egress slot out the back of the -X boss.
+
+# ===== SOLENOID POCKET (-X side, dispense end, v3.1 reach-fixed) =====
+# Plan: external boss on -X face → recessed pocket (fully encloses body) →
+# Ø5 plunger channel through chassis bore wall, sized so fired plunger tip
+# lands tangent to the auger OD (Ø25 mm) rather than over-travelling through
+# the tube wall.
+sol_x_outer_base = -chassis_x / 2.0
+sol_boss_x_outer = sol_x_outer_base - solenoid_boss_thk     # external boss face
+# Effective new -X surface (within the boss footprint) used as the pocket mouth.
+sol_pocket_mouth_x = sol_boss_x_outer
+
+# 1) Build the boss as an additive block on the -X face.
+sol_boss = (
+    cq.Workplane("XY")
+    .workplane(offset=solenoid_pocket_z_center - solenoid_boss_z / 2.0)
+    .center(sol_x_outer_base - solenoid_boss_thk / 2.0, 0)
+    .box(solenoid_boss_thk, solenoid_boss_y, solenoid_boss_z, centered=(True, True, False))
+)
+chassis = chassis.union(sol_boss)
+
+# 2) Optional inner pad: thicken the bore wall locally on the inside of the
+#    channel mouth so the strike impact is spread over more material. We add
+#    a small cylindrical pad that sits on the bore wall (its OD is partly cut
+#    away by the bore in the next step).
+sol_pad = (
+    cq.Workplane("YZ")
+    .workplane(offset=-(auger_bore_d / 2.0))   # sits at bore wall on -X side
+    .center(0, solenoid_pocket_z_center)
+    .circle(solenoid_pad_d / 2.0)
+    .extrude(-2.0)   # 2 mm pad into the bore wall (chassis material side)
+)
+chassis = chassis.union(sol_pad)
+# Re-cut the bore so the pad ID matches the bore (no powder lip).
+chassis = chassis.cut(auger_bore)
+
+# 3) Pocket — fully contains the 22.0 mm body (+0.5 mm slip-fit clearance).
+sol_pocket = (
+    cq.Workplane("XY")
+    .workplane(offset=solenoid_pocket_z_center - solenoid_pocket_z_dim / 2.0)
+    .center(sol_pocket_mouth_x + solenoid_pocket_x / 2.0, 0)
+    .box(solenoid_pocket_x, solenoid_pocket_y, solenoid_pocket_z_dim, centered=(True, True, False))
+)
+chassis = chassis.cut(sol_pocket)
+
+# 4) Plunger channel — round Ø5 hole from pocket bottom through the chassis
+#    bore wall so the plunger can travel radially. Channel terminates AT the
+#    bore (it opens into the bore cavity); the plunger fires through it.
+#    With pocket bottom at x = sol_pocket_mouth_x + solenoid_pocket_x and a
+#    Ø-(auger_bore_d/2) bore wall at x = -auger_bore_d/2, the channel length
+#    is bore_wall_x - pocket_bottom_x.
+sol_channel_start_x = sol_pocket_mouth_x + solenoid_pocket_x
+sol_channel_end_x   = -auger_bore_d / 2.0 + 0.1   # extend 0.1 mm into bore
+sol_channel_len     = sol_channel_end_x - sol_channel_start_x
+sol_channel = (
+    cq.Workplane("YZ")
+    .workplane(offset=sol_channel_start_x)
+    .center(0, solenoid_pocket_z_center)
+    .circle(solenoid_plunger_channel_d / 2.0)
+    .extrude(sol_channel_len)
+)
+chassis = chassis.cut(sol_channel)
+
+# 5) Wire egress — small slot out the new boss back face (-X face of the boss)
+#    so the solenoid leads exit to the e-bay routing path. Cuts radially from
+#    the boss outer wall into the pocket interior. Box extends in +X from the
+#    boss outer face by the boss thickness, intersecting the pocket.
+sol_egress = (
+    cq.Workplane("XY")
+    .workplane(offset=solenoid_pocket_z_center - sol_egress_h / 2.0)
+    .center(sol_pocket_mouth_x, 0)
+    .box(solenoid_boss_thk + 0.5, sol_egress_w, sol_egress_h, centered=(False, True, False))
+)
+chassis = chassis.cut(sol_egress)
+
+# --- Plunger geometry sanity check (printed when the script is run) ---
+# Auger OD lives at x = -auger_tube_outer_d / 2 = -12.5
+# (v3.2: pocket length grew by erm_disc_thk to accommodate the
+#  back-mounted ERM; the boss grew by the same amount so the pocket
+#  bottom is unchanged at x = -20.0 and the plunger reach is preserved.)
+# Pocket mouth     x = -chassis_x/2 - solenoid_boss_thk = -45.2
+# Pocket bottom    x = pocket_mouth + solenoid_pocket_x = -20.0
+# Solenoid back    x = -45.2 + erm_disc_thk = -42.5   (ERM disc behind it)
+# Solenoid front   x = -45.2 + erm_disc_thk + 22.0 = -20.5  (pre-clearance)
+# Plunger rest tip x = -20.0 + 2.0  = -18.0     (rest projection)
+# Plunger fired tip x = -20.0 + 7.0 = -13.0     (rest + 5 mm stroke)
+# Auger OD strike   x = -12.5
+# Tip-to-auger gap at full fire: -12.5 - (-13.0) = 0.5 mm   ← clean tap
+# (positive => tip stops short of the auger; tunable via solenoid_plunger_*
+# parameters above. Channel diameter 5 mm so the Ø4 plunger has 0.5 mm wall
+# clearance on each side.)
+
+# ===== SERVO BRACKET (+Y face, v3 — external mount, no embedded pocket) =====
+# The v2 deep PLA-tomb pocket is gone. v3 puts the servo OUTSIDE the
+# chassis on a bracket flange and supports the horn pin on BOTH sides.
+servo_y_face = chassis_y / 2.0
+servo_y_back = -chassis_y / 2.0
+
+# 1) Horn-axle pass-through (Ø8) all the way from +Y face to -Y face so the
+#    horn shaft is supported on both sides.
+horn_axle = (
+    cq.Workplane("XZ")
+    .workplane(offset=servo_y_face)
+    .center(0, servo_horn_axle_z)
+    .circle(servo_horn_axle_d / 2.0)
+    .extrude(-chassis_y)
+)
+chassis = chassis.cut(horn_axle)
+
+# 2) Air-gap standoff ring around the horn axle (raised boss on +Y face,
+#    2 mm tall, Ø16 outer) so the servo case sits 2 mm off the chassis for
+#    cooling airflow.
+airgap_ring = (
+    cq.Workplane("XZ")
+    .workplane(offset=servo_y_face)
+    .center(0, servo_horn_axle_z)
+    .circle(servo_airgap_ring_d_outer / 2.0)
+    .extrude(servo_airgap_h)
+)
+chassis = chassis.union(airgap_ring)
+# Re-cut the horn axle so the ring is also pierced
+horn_axle_in_ring = (
+    cq.Workplane("XZ")
+    .workplane(offset=servo_y_face + servo_airgap_h + 0.1)
+    .center(0, servo_horn_axle_z)
+    .circle(servo_horn_axle_d / 2.0)
+    .extrude(-(servo_airgap_h + 0.2))
+)
+chassis = chassis.cut(horn_axle_in_ring)
+
+# 3) Servo bracket flange: 4× M3 heat-set inserts in a rectangular pattern
+#    matching the servo's mounting ears (one pair at ±half_spacing X, top/bot).
+flange_pts = [
+    ( servo_flange_spacing / 2.0,  servo_horn_axle_z + servo_body_z / 2.0 - 3.0),
+    (-servo_flange_spacing / 2.0,  servo_horn_axle_z + servo_body_z / 2.0 - 3.0),
+    ( servo_flange_spacing / 2.0,  servo_horn_axle_z - servo_body_z / 2.0 + 3.0),
+    (-servo_flange_spacing / 2.0,  servo_horn_axle_z - servo_body_z / 2.0 + 3.0),
+]
+flange_inserts = (
+    cq.Workplane("XZ")
+    .workplane(offset=servo_y_face + HEATSET_M3_DEP)
+    .pushPoints(flange_pts)
+    .circle(HEATSET_M3_D / 2.0)
+    .extrude(-HEATSET_M3_DEP - 0.1)
+)
+chassis = chassis.cut(flange_inserts)
+
+# 4) (v3.2) Back-side horn bushing socket REMOVED — a stock HD-1810MG horn
+#    is only 5–10 mm tall and could never reach a -Y socket ~60 mm away
+#    (Edison P0). The horn now cantilevers in the Ø8 pass-through, as on a
+#    standard servo install.
+
+# 5) Ventilation slots around the bracket flange (purely thermal — small
+#    vertical slits left and right of the airgap ring).
+for sgn in (-1, +1):
+    vent = (
+        cq.Workplane("XZ")
+        .workplane(offset=servo_y_face)
+        .center(sgn * servo_vent_offset, servo_horn_axle_z)
+        .rect(servo_vent_w, servo_vent_h)
+        .extrude(-(chassis_y - 4.0))
+    )
+    chassis = chassis.cut(vent)
+
+# ===== ELECTRONICS BAY CAVITY =====
+ebay_cav_y_center = ebay_y_outer_face + ebay_wall_thk + ebay_cav_y / 2.0
+ebay_cav_z_min = ebay_z_min + ebay_wall_thk
+ebay_cavity = (
+    cq.Workplane("XY")
+    .workplane(offset=ebay_cav_z_min)
+    .center(0, ebay_cav_y_center)
+    .box(ebay_cav_x, ebay_cav_y, ebay_cav_z, centered=(True, True, False))
+)
+chassis = chassis.cut(ebay_cavity)
+
+# Lid opening on -Y face (v3: smaller so we keep a real 8.5 mm flange)
+ebay_lid_opening = (
+    cq.Workplane("XZ")
+    .workplane(offset=ebay_y_outer_face)
+    .center(0, ebay_z_min + ebay_outer_z / 2.0)
+    .rect(ebay_lid_opening_w, ebay_lid_opening_h)
+    .extrude(ebay_wall_thk + 0.1)
+)
+chassis = chassis.cut(ebay_lid_opening)
+
+# Pi standoffs + inserts on +Y inner wall of e-bay
+pi_inner_wall_y = -chassis_y / 2.0
+pi_pts = [
+    ( pi_x_axis / 2.0,  pi_z_center + pi_z_axis / 2.0),
+    (-pi_x_axis / 2.0,  pi_z_center + pi_z_axis / 2.0),
+    ( pi_x_axis / 2.0,  pi_z_center - pi_z_axis / 2.0),
+    (-pi_x_axis / 2.0,  pi_z_center - pi_z_axis / 2.0),
+]
+pi_standoffs = (
+    cq.Workplane("XZ")
+    .workplane(offset=pi_inner_wall_y)
+    .pushPoints(pi_pts)
+    .circle(pi_standoff_d / 2.0)
+    .extrude(-pi_standoff_h)
+)
+chassis = chassis.union(pi_standoffs)
+pi_holes = (
+    cq.Workplane("XZ")
+    .workplane(offset=pi_inner_wall_y - pi_standoff_h)
+    .pushPoints(pi_pts)
+    .circle(HEATSET_M25_D / 2.0)
+    .extrude(HEATSET_M25_DEP + 0.1)
+)
+chassis = chassis.cut(pi_holes)
+
+# Pi connector / SD egress slot in the -Z floor of the e-bay
+pi_cable_slot_w = 50.0
+pi_cable_slot_d = ebay_outer_y - ebay_wall_thk
+pi_cable_slot = (
+    cq.Workplane("XY")
+    .workplane(offset=ebay_z_min - 0.1)
+    .center(0, ebay_y_outer_face + ebay_wall_thk + pi_cable_slot_d / 2.0)
+    .box(pi_cable_slot_w, pi_cable_slot_d, ebay_wall_thk + 0.2,
+         centered=(True, True, False))
+)
+chassis = chassis.cut(pi_cable_slot)
+
+# Lid heat-set insert holes — v3: 6 mm in from the *outer edge*, comfortably
+# inside the 8.5 mm flange that now surrounds the lid opening.
+lid_hole_pts = [
+    ( ebay_outer_x / 2.0 - ebay_lid_inset,  ebay_z_min + ebay_lid_inset),
+    (-ebay_outer_x / 2.0 + ebay_lid_inset,  ebay_z_min + ebay_lid_inset),
+    ( ebay_outer_x / 2.0 - ebay_lid_inset,  ebay_z_max - ebay_lid_inset),
+    (-ebay_outer_x / 2.0 + ebay_lid_inset,  ebay_z_max - ebay_lid_inset),
+]
+lid_inserts = (
+    cq.Workplane("XZ")
+    .workplane(offset=ebay_y_outer_face + HEATSET_M3_DEP)
+    .pushPoints(lid_hole_pts)
+    .circle(HEATSET_M3_D / 2.0)
+    .extrude(-HEATSET_M3_DEP - 0.1)
+)
+chassis = chassis.cut(lid_inserts)
+
+# Stepper wire grommet — v3: through the e-bay +X *external* wall directly
+# into the cavity (only ebay_wall_thk = 2.5 mm of solid material to traverse,
+# so the wires actually make it through).
+grommet = (
+    cq.Workplane("YZ")
+    .workplane(offset=chassis_x / 2.0)
+    .center(ebay_cav_y_center, grommet_z)
+    .circle(grommet_d / 2.0)
+    .extrude(-(ebay_wall_thk + 0.5))
+)
+chassis = chassis.cut(grommet)
+
+# ===== STEPPER WIRE ROUTING SLOT (+X face, vertical) =====
+# v3: extends from the stepper plate down to the grommet so wires drop
+# straight in. (v2 wire slot stopped at grommet_z too but the grommet
+# was non-functional.)
+stepper_wire_slot_w = 4.0
+stepper_wire_slot_d = 3.0
+wire_slot_z_bottom = grommet_z - 5.0
+wire_slot_z_top = chassis_z
+wire_slot_height = wire_slot_z_top - wire_slot_z_bottom
+wire_slot = (
+    cq.Workplane("XY")
+    .workplane(offset=wire_slot_z_bottom)
+    .center(chassis_x / 2.0 - stepper_wire_slot_d / 2.0, 0)
+    .box(stepper_wire_slot_d, stepper_wire_slot_w, wire_slot_height, centered=(True, True, False))
+)
+chassis = chassis.cut(wire_slot)
+
+result = chassis

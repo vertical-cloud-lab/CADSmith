@@ -1,0 +1,68 @@
+{
+  "document_url": "https://cad.onshape.com/documents/8c6e676e2cbaef98da211264/w/fb9771abca9c3e2888a839e1",
+  "document_id": "8c6e676e2cbaef98da211264",
+  "workspace_id": "fb9771abca9c3e2888a839e1",
+  "design_version": "v3",
+  "uploads": [
+    {
+      "part": "chassis",
+      "path": "assets/powder_doser_parts/powder_doser_chassis.step",
+      "status": 200
+    },
+    {
+      "part": "auger",
+      "path": "assets/powder_doser_parts/powder_doser_auger.step",
+      "status": 200
+    },
+    {
+      "part": "stepper",
+      "path": "assets/powder_doser_parts/powder_doser_stepper.step",
+      "status": 200
+    },
+    {
+      "part": "coupler",
+      "path": "assets/powder_doser_parts/powder_doser_coupler.step",
+      "status": 200
+    },
+    {
+      "part": "erm",
+      "path": "assets/powder_doser_parts/powder_doser_erm.step",
+      "status": 200
+    },
+    {
+      "part": "solenoid",
+      "path": "assets/powder_doser_parts/powder_doser_solenoid.step",
+      "status": 200
+    },
+    {
+      "part": "servo",
+      "path": "assets/powder_doser_parts/powder_doser_servo.step",
+      "status": 200
+    },
+    {
+      "part": "pi",
+      "path": "assets/powder_doser_parts/powder_doser_pi.step",
+      "status": 200
+    },
+    {
+      "part": "bonnet",
+      "path": "assets/powder_doser_parts/powder_doser_bonnet.step",
+      "status": 200
+    },
+    {
+      "part": "tic500",
+      "path": "assets/powder_doser_parts/powder_doser_tic500.step",
+      "status": 200
+    },
+    {
+      "part": "drv8825",
+      "path": "assets/powder_doser_parts/powder_doser_drv8825.step",
+      "status": 200
+    },
+    {
+      "part": "full_assembly",
+      "path": "assets/powder_doser_assembly.step",
+      "status": 200
+    }
+  ]
+}
