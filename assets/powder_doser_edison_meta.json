@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "agent": "edison-scientific-analysis",
+  "job_name": "ANALYSIS",
+  "query_chars": 34371,
+  "answer_chars": 8684,
+  "notebook_cells": 19,
+  "wall_time_s": 519.0
+}
