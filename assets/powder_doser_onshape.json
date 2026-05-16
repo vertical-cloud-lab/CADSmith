@@ -1,11 +1,18 @@
 {
-  "document_id": "759fa38a34fbec11bde13f9b",
-  "workspace_id": "cd557d4ee923fdbd0fb34a83",
-  "url": "https://cad.onshape.com/documents/759fa38a34fbec11bde13f9b/w/cd557d4ee923fdbd0fb34a83",
+  "document_id": "86f9133ce49439484fc4b7e3",
+  "workspace_id": "4bb034ec219e57c7b33aaaa9",
+  "url": "https://cad.onshape.com/documents/86f9133ce49439484fc4b7e3/w/4bb034ec219e57c7b33aaaa9",
+  "design_version": "v2",
   "uploads": [
     {
       "file": "powder_doser_auger.step",
       "name": "auger",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_bonnet.step",
+      "name": "bonnet",
       "status": 200,
       "ok": true
     },
@@ -18,6 +25,12 @@
     {
       "file": "powder_doser_coupler.step",
       "name": "coupler",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_drv8825.step",
+      "name": "drv8825",
       "status": 200,
       "ok": true
     },
@@ -48,6 +61,12 @@
     {
       "file": "powder_doser_stepper.step",
       "name": "stepper",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "file": "powder_doser_tic500.step",
+      "name": "tic500",
       "status": 200,
       "ok": true
     },

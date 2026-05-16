@@ -1,6 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "part": "powder_doser_chassis",
+  "design_version": "v2",
   "print_orientation": "vertical, dispense end (Z=0) on the build plate",
   "layer_height_mm": 0.2,
   "pauses": [
@@ -9,32 +10,68 @@
       "part": "Adafruit #1201 vibrating motor disc (\u00d810 \u00d7 2.7 mm, 3 V)",
       "z_mm": 125.0,
       "layer": 625,
-      "instructions": "Pause printer at this Z. The +X radial pocket is now open; epoxy the ERM coin into the \u00d810.3 \u00d7 2.9 mm pocket with leads exiting through the 1.5 \u00d7 2 mm wire channel toward the +X face. Resume to encapsulate the disc."
+      "instructions": "Pause printer at this Z. The +X radial pocket (\u00d810.3 \u00d7 2.9 mm) is now open along with the short Ø2.5 \u00d7 2 mm radial wire-egress slot directly out the +X face beside the pocket. Epoxy the ERM coin into the pocket with leads exiting through the egress slot. Route leads down/around to the e-bay grommet (z\u00a0=\u00a0~117 mm, -Y face). Resume to encapsulate the disc."
     },
     {
       "name": "Solenoid insertion",
       "part": "Adafruit #412 JF-0530B 5 V mini push-pull solenoid (9.6 \u00d7 19 \u00d7 22 mm)",
       "z_mm": 41.1,
       "layer": 206,
-      "instructions": "Pause printer at this Z. Insert the JF-0530B body into the -X pocket (plunger pointing toward the auger bore through the 2.5 \u00d7 6 mm slot). Route leads through the 2 \u00d7 2 mm wire channel. Resume to lock the solenoid in place."
+      "instructions": "Pause printer at this Z. Insert the JF-0530B body into the -X pocket (plunger pointing toward the auger bore through the 2.5 \u00d7 6 mm slot). Route leads through the short radial 2.5 \u00d7 3 mm wire-egress slot out the -X face beside the pocket. Resume to lock the solenoid in place."
     }
   ],
   "install_after_print": [
     {
+      "name": "Heat-set inserts",
+      "instructions": "Press M3 brass heat-set inserts into the lid corner holes (\u00d84.0 \u00d7 5.5 mm deep, 4\u00d7 around the e-bay opening), the servo flange holes (2\u00d7 \u00d8 4.0 \u00d7 5.5 mm on the +Y face), and the +X coupler grub-screw access ports if you choose to plug them with grub-screw heads. Press M2.5 inserts into the stepper plate (4\u00d7 \u00d83.6 \u00d7 4.5 mm on a 23 \u00d7 23 mm pattern on the top plate) and into the 4 Pi standoff posts inside the e-bay."
+    },
+    {
       "name": "Metal-gear servo install",
       "part": "Adafruit #1142 HD-1810MG (40.7 \u00d7 19.7 \u00d7 42.9 mm)",
-      "instructions": "Slide the servo into the +Y through-pocket and secure with two M3 screws through the chassis flange holes."
+      "instructions": "Slide the servo into the +Y pocket (now blind — stops 1 mm short of the auger bore; only the 6 \u00d7 8 mm horn-side slot punches through to the bore). Bolt with 2\u00d7 M3 into the inserted flange holes."
     },
     {
       "name": "Pi Zero 2 W mount",
-      "part": "Pi Zero 2 W on the -Y face landing",
-      "instructions": "Bolt the Pi Zero 2 W onto the -Y bay using four M2.5 screws (58 \u00d7 23 mm pattern). Connect ERM/solenoid/servo leads through the wire channels and to the Bonnet."
+      "part": "Pi Zero 2 W on the +Y inner wall of the e-bay",
+      "instructions": "Bolt the Pi Zero 2 W flat onto the 4 standoffs on the +Y inner wall of the bay (58 \u00d7 23 mm pattern, M2.5 into heat-sets). Orient the board so the mini-HDMI / micro-USB OTG / micro-USB power connector edge faces the -Z bay-floor cable slot (cables exit downward toward the desk)."
+    },
+    {
+      "name": "Adafruit Stepper Bonnet stack",
+      "part": "Adafruit Stepper Motor Bonnet (~65 \u00d7 30 \u00d7 15 mm) on Pi GPIO",
+      "instructions": "Press the Bonnet onto the Pi GPIO 2 \u00d7 20 header. The Bonnet's screw terminals face -Y (toward the lid) so motor + sensor leads land in the bay cavity ahead of them."
+    },
+    {
+      "name": "Pololu Tic 500 stepper controller",
+      "part": "Pololu Tic 500 (35.6 \u00d7 22.9 \u00d7 ~10 mm)",
+      "instructions": "VHB-tape (3M VHB 5952) the Tic 500 flat against the -X internal sidewall of the e-bay, board facing into the cavity, screw terminals facing -Y. Connects to the Bonnet via I2C/USB."
+    },
+    {
+      "name": "DRV8825 stepper driver carrier (alternate)",
+      "part": "DRV8825 carrier (20.3 \u00d7 15.2 \u00d7 12 mm with heatsink)",
+      "instructions": "VHB-tape the DRV8825 onto the +X internal sidewall of the e-bay, opposite the Tic 500. Used as a fallback for the Bonnet's onboard drivers if the Bonnet is reassigned to the servo/solenoid only."
+    },
+    {
+      "name": "E-bay lid",
+      "instructions": "Print the matching lid (70 \u00d7 80 \u00d7 2.5 mm with 4 M3 clearance holes at the corners) separately and bolt to the heat-set inserts at the corners of the -Y opening."
     },
     {
       "name": "Stepper + coupler install (top)",
       "part": "NEMA 11 11HS18-0674S stepper + ST-FC01 5\u20135 mm coupler",
-      "instructions": "Slide the ST-FC01 coupler into the \u00d819 \u00d7 26 mm chamber below the stepper plate. Drop the auger M3 spindle into one side of the coupler, the stepper's \u00d85 D-cut shaft into the other. Bolt the stepper to the top plate (four M2.5 on a 23 \u00d7 23 mm pattern, \u00d822 pilot pass-through)."
+      "instructions": "Slide the ST-FC01 coupler into the \u00d819 \u00d7 26 mm chamber. Drop the auger M3 spindle into one side, the stepper's \u00d85 D-cut into the other. Tighten the two coupler grub screws via the two \u00d83.5 mm access ports on the +X face (these line up with the ST-FC01 set screws). Bolt the stepper to the top plate with 4 \u00d7 M2.5 into the heat-set inserts (23 \u00d7 23 mm pattern, \u00d822 pilot pass-through). Route the 4 stepper leads down the +X vertical wire slot and into the e-bay through the \u00d85 grommet near z \u2248 122 mm."
     }
   ],
-  "notes": "Pause Z is in millimetres along the chassis Z axis (matches the CadQuery script). Layer index = round(z_mm / layer_height_mm) at 0.2 mm; rescale if you slice differently."
+  "wiring": {
+    "summary": "All four electrical leads (ERM, solenoid, servo, stepper) terminate inside the -Y e-bay at the Adafruit Stepper Bonnet (Pi GPIO) or the Pololu Tic 500, depending on signal type.",
+    "paths": [
+      {"signal": "ERM (2 leads)",      "from": "ERM pocket (+X, z=125)",      "via": "Short +X radial egress slot \u2192 down chassis -Y face \u2192 into e-bay through main lid opening (or optional grommet at z\u00a0=\u00a0117)", "to": "Bonnet PWM output (3 V)"},
+      {"signal": "Solenoid (2 leads)", "from": "Solenoid pocket (-X, z=30)",   "via": "Short -X radial egress slot \u2192 around bottom of chassis \u2192 into e-bay lid opening", "to": "Bonnet MOSFET output (5 V)"},
+      {"signal": "Servo (3 leads)",    "from": "Servo back face (+Y, z=25)",   "via": "Around top of chassis \u2192 into e-bay lid opening", "to": "Bonnet PWM channel (5 V)"},
+      {"signal": "Stepper (4 leads)",  "from": "Stepper terminals at top plate (z=304)", "via": "Down the +X vertical wire slot \u2192 through the \u00d85 grommet at z=122 \u2192 directly to driver", "to": "Tic 500 (or Bonnet onboard) A1/A2/B1/B2 outputs (12 V)"}
+    ]
+  },
+  "heat_set_inserts": {
+    "M3": {"hole_d_mm": 4.0, "depth_mm": 5.5, "count": "4 (e-bay lid corners) + 2 (servo flange)"},
+    "M2.5": {"hole_d_mm": 3.6, "depth_mm": 4.5, "count": "4 (stepper plate top) + 4 (Pi mount standoffs)"}
+  },
+  "notes": "Pause Z is in millimetres along the chassis Z axis (matches the CadQuery script). Layer index = round(z_mm / layer_height_mm) at 0.2 mm; rescale if you slice differently. v2 design fixes (vs v1): Pi reoriented for connector egress (a); servo pocket no longer punches through the bore (b); short radial wire-egress slots for ERM/solenoid (c); proper Pi+Bonnet+Tic500+DRV8825 e-bay sidecar (d); all mounting holes sized for heat-set brass inserts (e); two grub-screw access ports for the ST-FC01 coupler (f)."
 }
