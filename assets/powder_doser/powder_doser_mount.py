@@ -11,10 +11,10 @@ Coordinate system
 Two-part assembly
 -----------------
 1. ``mounting_plate`` — the doser body bolts onto its top face. A U-slot
-   opens out the front (+X face → wait, see HINGE_X below) so no plate
-   material crosses the dispense column. Two clevis ears extend up and down
-   straddling the plate at y = ±EAR_Y, with the hinge hole bored on the
-   hinge axis through z = 0.
+   opens out the +X edge of the plate so no plate material crosses the
+   dispense column. Two clevis ears extend up and down straddling the
+   plate at y = ±EAR_Y, with the hinge hole bored on the hinge axis
+   through z = 0.
 
 2. ``base_plate`` — sits on the bench on four legs. A tall mating tab
    (single tongue that fits between the two mounting-plate ears) rises from
@@ -89,6 +89,11 @@ EAR_X = 28.0         # length along X
 EAR_Z_TOP = +10.0    # ear top above plate top (gives meat above hinge hole)
 EAR_Z_BOT = -28.0    # ear bottom below plate bottom
 
+# Small shim subtracted from fillet radii so OCCT does not refuse the
+# operation when the requested radius equals the available edge length
+# exactly (which happens for the corner-rounding fillets below).
+FILLET_SHIM = 0.1
+
 
 def make_mounting_plate() -> cq.Workplane:
     # Main slab, top surface at z = 0.
@@ -130,7 +135,7 @@ def make_mounting_plate() -> cq.Workplane:
             .box(EAR_X, EAR_T, ear_h)
         )
         # Round the top of the ear (the part above the plate).
-        ear = ear.edges("|Y and >Z").fillet(min(EAR_X, ear_h) / 4.0 - 0.1)
+        ear = ear.edges("|Y and >Z").fillet(min(EAR_X, ear_h) / 4.0 - FILLET_SHIM)
         plate = plate.union(ear)
 
     # Hinge holes: bore Y-axis cylinders through each ear only (not through
@@ -215,7 +220,7 @@ def make_base_plate() -> cq.Workplane:
         .box(TAB_X, TAB_T, tab_h)
     )
     # Round the top of the tab (so ears can rotate clear).
-    tab = tab.edges("|Y and >Z").fillet(min(TAB_T, TAB_X) / 2.0 - 0.1)
+    tab = tab.edges("|Y and >Z").fillet(min(TAB_T, TAB_X) / 2.0 - FILLET_SHIM)
     # Hinge pin hole through Y at z = 0, x = HINGE_X (explicit primitive).
     hinge_cutter = (
         cq.Workplane("XZ")
