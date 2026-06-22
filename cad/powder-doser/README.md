@@ -37,6 +37,14 @@ xvfb-run -a python scripts/run_powder_doser.py # all parts + assembly
 | `render.png` | Three-view Judge render (isometric / high-angle rear / front profile). |
 | `result.json` | Full pipeline log: plan, every iteration, validation feedback. |
 
+For the assembly, an extra `iso/` folder holds **full-assembly renders at
+several isometric angles** (four corners plus a top-down and a low-front view),
+plus a tiled `assembly_iso_contact_sheet.png`. Regenerate them with:
+
+```bash
+xvfb-run -a python scripts/render_assembly_isos.py
+```
+
 `part.stl` and the per-iteration scratch (`_work/`) are intentionally
 **not committed** (meshes are regenerable from the STEP / `model.py`, and one
 tessellated thread mesh exceeded 80 MB). Re-export an STL with:
