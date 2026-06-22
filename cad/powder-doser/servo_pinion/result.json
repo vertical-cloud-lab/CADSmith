@@ -1,0 +1,175 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nSERVO PINION (one per MG996R tilt servo; 2:1 step-down to a 40T hinge gear).\n\nSpur gear: 20 teeth, module 0.9083, 20 deg pressure angle, face width about\n8.0; pitch diameter 18.17, tip diameter 20.2, root diameter about 15.9. Axis\nvertical (Z). Central bore diameter 6.0 for the MG996R 25-tooth output spline,\nwith a single chordal flat (flat chord 5.0 mm across the 6.0 mm bore) to key\nit. A central M3 countersink on the top face for the spline retaining horn\nscrew (counterbore for an M3 head over a 3.4 mm through hole).\n",
+  "design_plan": {
+    "description": "Servo pinion gear for MG996R servo with 20-tooth spur gear, central splined bore with chordal flat keying, and M3 countersunk retaining screw hole",
+    "components": [
+      "spur_gear_body_20T_module_0.9083",
+      "central_bore_6mm_with_chordal_flat",
+      "m3_countersink_top_face",
+      "m3_clearance_through_hole"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 20.2,
+        "ylen": 20.2,
+        "zlen": 8.0
+      },
+      "key_dimensions": {
+        "gear_module": 0.9083,
+        "gear_teeth": 20,
+        "pressure_angle_deg": 20,
+        "pitch_diameter": 18.17,
+        "tip_diameter": 20.2,
+        "root_diameter": 15.9,
+        "face_width": 8.0,
+        "bore_diameter": 6.0,
+        "chordal_flat_width": 5.0,
+        "m3_clearance_hole_dia": 3.4,
+        "m3_head_counterbore_dia": 6.0,
+        "m3_head_counterbore_depth": 3.5
+      }
+    },
+    "constraints": {
+      "volume_estimate": 1800,
+      "num_holes": 1,
+      "hole_diameter": 3.4,
+      "symmetry": "rotational symmetry about Z axis for gear teeth; bore keyed with single chordal flat breaking symmetry"
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 8,
+      "bbox_iou_threshold": 0.88
+    },
+    "notes": "Generate involute spur gear profile with 20 teeth at module 0.9083. The central bore is 6.0 mm diameter with a chordal flat created by cutting a chord 5.0 mm wide across the bore (this keys to the MG996R 25-tooth spline). The flat should be positioned consistently (e.g., aligned with +X). Top face has M3 countersink: counterbore ~6.0 mm dia for M3 socket head, depth ~3.5 mm, with 3.4 mm clearance hole through remaining thickness. Ensure gear tooth profile is FDM-printable with minimum 2 mm feature thickness at tooth roots. Gear axis is vertical (Z-up)."
+  },
+  "converged": true,
+  "total_iterations": 1,
+  "total_time_ms": 53032.58204460144,
+  "total_llm_calls": 3,
+  "final_geometry": {
+    "volume": 1726.0265214225615,
+    "center_of_mass": [
+      -0.16903501092784737,
+      -1.9033724683450936e-15,
+      3.9672371638753843
+    ],
+    "bounding_box": {
+      "xmin": -10.1,
+      "xmax": 10.1,
+      "xlen": 20.2,
+      "ymin": -10.1,
+      "ymax": 10.1,
+      "ylen": 20.2,
+      "zmin": 0.0,
+      "zmax": 8.0,
+      "zlen": 8.0
+    },
+    "is_valid": true,
+    "num_faces": 96,
+    "num_edges": 282,
+    "num_vertices": 188
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/servo_pinion/_work/servo_pinion_iter0.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/servo_pinion/_work/servo_pinion_iter0.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1969.8636531829834
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 1726.0265214225615,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 1726.0 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 20.2,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 20.20 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 20.2,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 20.20 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 8.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 8.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 96,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 96"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 282,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 282"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 188,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 188"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-0.17, -0.00, 3.97)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The servo pinion meets all specified requirements: 1) GEAR GEOMETRY: Bounding box shows 20.2mm x 20.2mm x 8.0mm, matching the specified tip diameter of 20.2mm and face width of 8.0mm exactly. The 20-tooth spur gear profile is clearly visible in all three rendered views with correct tooth count and proportions. 2) CENTRAL BORE: The 6.0mm bore with chordal flat for the MG996R spline is visible in the center view (high-angle rear), showing the D-shaped profile created by the 5.0mm flat chord. 3) M3 COUNTERSINK: The counterbored hole for the horn screw is visible in the top-down view, centered on the gear axis. 4) VOLUME: At ~1726mm\u00b3, the volume is physically plausible for a small spur gear with hollow bore (solid cylinder of same dimensions would be ~2566mm\u00b3, the ~33% reduction accounts for the bore, flat cut, and countersink). 5) FDM PRINTABILITY: The gear teeth and features appear to meet the \u22652mm minimum wall thickness requirement. The simplified involute tooth profile approach produces a manufacturable gear suitable for the 2:1 step-down to the 40T hinge gear."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

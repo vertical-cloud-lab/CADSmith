@@ -1,0 +1,131 @@
+{
+  "base_model": "claude-opus-4-5",
+  "judge_model": "claude-opus-4-5",
+  "token_usage": {
+    "input_tokens": 363287,
+    "output_tokens": 94790,
+    "calls": 70
+  },
+  "parts": [
+    {
+      "part": "auger_storage_full",
+      "converged": true,
+      "iterations": 4,
+      "llm_calls": 11,
+      "wall_seconds": 413.2,
+      "is_valid": true,
+      "volume_mm3": 57586.613415174674,
+      "skipped": false
+    },
+    {
+      "part": "auger_storage_short",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 3,
+      "wall_seconds": 85.8,
+      "is_valid": true,
+      "volume_mm3": 18197.669119466245,
+      "skipped": false
+    },
+    {
+      "part": "auger_threaded",
+      "converged": true,
+      "iterations": 2,
+      "llm_calls": 6,
+      "wall_seconds": 267.6,
+      "is_valid": true,
+      "volume_mm3": 54773.06281128872,
+      "skipped": false
+    },
+    {
+      "part": "auger_cap",
+      "converged": false,
+      "iterations": 4,
+      "llm_calls": 10,
+      "wall_seconds": 237.1,
+      "is_valid": true,
+      "volume_mm3": 24332.507663252196,
+      "skipped": false
+    },
+    {
+      "part": "stepper_pinion",
+      "converged": true,
+      "iterations": 2,
+      "llm_calls": 5,
+      "wall_seconds": 91.6,
+      "is_valid": true,
+      "volume_mm3": 2000.8856503154607,
+      "skipped": false
+    },
+    {
+      "part": "servo_pinion",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 3,
+      "wall_seconds": 53.0,
+      "is_valid": true,
+      "volume_mm3": 1726.0265214225615,
+      "skipped": false
+    },
+    {
+      "part": "mounting_plate",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 3,
+      "wall_seconds": 31.2,
+      "is_valid": true,
+      "volume_mm3": 77458.09913354703,
+      "skipped": false
+    },
+    {
+      "part": "baseplate",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 3,
+      "wall_seconds": 32.1,
+      "is_valid": true,
+      "volume_mm3": 67700.34694932791,
+      "skipped": false
+    },
+    {
+      "part": "auger_bracket",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 3,
+      "wall_seconds": 45.9,
+      "is_valid": true,
+      "volume_mm3": 23913.599391612075,
+      "skipped": false
+    },
+    {
+      "part": "tap_collar",
+      "converged": true,
+      "iterations": 4,
+      "llm_calls": 9,
+      "wall_seconds": 146.9,
+      "is_valid": true,
+      "volume_mm3": 9841.494272442334,
+      "skipped": false
+    },
+    {
+      "part": "tap_collar_mount_plate",
+      "converged": true,
+      "iterations": 1,
+      "llm_calls": 4,
+      "wall_seconds": 57.9,
+      "is_valid": true,
+      "volume_mm3": 15093.47373389155,
+      "skipped": false
+    },
+    {
+      "part": "powder_doser_assembly",
+      "converged": true,
+      "iterations": 4,
+      "llm_calls": 10,
+      "wall_seconds": 265.4,
+      "is_valid": true,
+      "volume_mm3": 332937.38162479753,
+      "skipped": false
+    }
+  ]
+}

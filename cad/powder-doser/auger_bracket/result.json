@@ -1,0 +1,177 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nAUGER BRACKET \u2014 split shaft-collar clamp that supports the spinning auger on\nthe mounting plate (front and rear use the same part).\n\nA rectangular base flange 60.0 (X) x 12.0 (Y) x 14.0 (Z) lying on the plate,\nwith two M3 clearance holes (3.4 mm) through it at X = +/-24 (on the Y/Z\ncentre of the flange). Centred above it, a collar ring: outer diameter 33.5,\nbore diameter 25.5 (running fit over the 25 mm auger OD), with the bore axis\nhorizontal along Y at Z = 29.25 above the flange bottom. The collar is split\nby a vertical clamp slot 2.0 mm wide cut from the top down to the bore on the\n+X side, with a pair of M3 clamp ears/holes (3.4 mm) straddling the slot so\ntightening sets a running fit (do not seize the shaft).\n",
+  "design_plan": {
+    "description": "Auger Bracket - split shaft-collar clamp for supporting spinning auger on mounting plate, FDM-printable with clamp mechanism",
+    "components": [
+      "rectangular_base_flange",
+      "collar_ring_with_bore",
+      "vertical_clamp_slot",
+      "clamp_ears_with_holes",
+      "base_mounting_holes"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 60.0,
+        "ylen": 33.5,
+        "zlen": 46.0
+      },
+      "key_dimensions": {
+        "base_flange_x": 60.0,
+        "base_flange_y": 12.0,
+        "base_flange_z": 14.0,
+        "collar_outer_diameter": 33.5,
+        "collar_bore_diameter": 25.5,
+        "collar_bore_axis_z_height": 29.25,
+        "m3_clearance_hole_dia": 3.4,
+        "base_hole_x_offset": 24.0,
+        "clamp_slot_width": 2.0,
+        "collar_wall_thickness": 4.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 22500,
+      "num_holes": 4,
+      "hole_diameter": 3.4,
+      "symmetry": "near-symmetric about YZ plane except for clamp slot on +X side",
+      "min_wall_thickness": 2.0,
+      "fdm_nozzle": 0.4,
+      "fdm_layer_height": 0.2
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 8,
+      "bbox_iou_threshold": 0.85
+    },
+    "notes": "The collar ring sits centered above the base flange with bore axis horizontal along Y at Z=29.25 from flange bottom. The collar extends from below the bore centerline down to merge with the base flange, creating a pedestal support. The clamp slot is cut vertically from the top of the collar down to the bore on the +X side. Clamp ears with M3 holes straddle this slot to allow tightening. Base flange M3 holes are centered in Y and Z of the flange at X=+/-24. The collar top reaches approximately Z=29.25 + 16.75 = 46mm (bore center + half outer diameter). Ensure smooth transition between base flange and collar pedestal."
+  },
+  "converged": true,
+  "total_iterations": 1,
+  "total_time_ms": 45915.11845588684,
+  "total_llm_calls": 3,
+  "final_geometry": {
+    "volume": 23913.599391612075,
+    "center_of_mass": [
+      1.2957470966905396,
+      8.081912762766183e-17,
+      21.2487753457459
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": -16.75,
+      "ymax": 16.75,
+      "ylen": 33.5,
+      "zmin": 0.0,
+      "zmax": 52.0,
+      "zlen": 52.0
+    },
+    "is_valid": true,
+    "num_faces": 29,
+    "num_edges": 78,
+    "num_vertices": 50
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_bracket/_work/auger_bracket_iter0.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_bracket/_work/auger_bracket_iter0.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1934.9291324615479
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 23913.599391612075,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 23913.6 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 60.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 60.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 33.5,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 33.50 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 52.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 52.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 29,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 29"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 78,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 78"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 50,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 50"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (1.30, 0.00, 21.25)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The auger bracket correctly implements: (1) Base flange 60.0 x 12.0 x 14.0 mm with two M3 clearance holes (3.4 mm) at X = \u00b124 mm, visible in the rendered views. (2) Collar ring with outer diameter 33.5 mm and bore 25.5 mm for running fit over 25 mm auger OD, bore axis horizontal along Y at Z = 29.25 mm above flange bottom - the bounding box Y extent of 33.5 mm confirms the collar diameter. (3) Vertical clamp slot 2.0 mm wide cut from top down to bore on +X side, clearly visible in center and right views. (4) Pair of M3 clamp ears with 3.4 mm holes straddling the slot for clamping action, visible in all three views. The volume of ~23,914 mm\u00b3 is physically plausible. All wall thicknesses appear to meet the >= 2 mm FDM requirement. The Z height of 52 mm aligns with collar top plus ear height extension. Part is manifold and printable."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

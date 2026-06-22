@@ -1,0 +1,301 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nArchimedes auger \u2014 THREADED sealable variant (open filling end, screw-top).\n\nOuter tube: outer diameter 25.0, wall 2.0, bore inner diameter 21.0, length\n250.0, axis vertical (Z). The filling (top) end is a smooth open cylinder (no\n4-slot cover). Bottom funnel/cap height 12.0 tapering to a central exit hole\ndiameter 3.0, with the same bottom-third single-start internal screw (shaft\ndiameter 8.0, pitch 10.0, fin thickness 2.0) and open upper reservoir.\n\nAdd a single-start EXTERNAL thread on the top 25.4 mm (1 inch) of the tube:\npitch 4.0 mm/turn, depth 1.0, crest (major) radius 12.5 (flush with the 25 mm\nOD), root (minor) radius 11.5, tooth half-angle 58 deg, right-handed. The\nthread must be strictly external \u2014 crests never exceed the 25 mm OD and roots\ncut inward only; do NOT thread the inside of the tube. Keep the 48T drive gear\nband (module 1.0, tip dia 50.0, face width 10.0, annular, bore open) centred\n83.33 mm from the bottom end.\n",
+  "design_plan": {
+    "description": "Archimedes auger threaded sealable variant - outer tube with external screw-top thread, bottom funnel with internal auger screw, and integral 48T drive gear. Single manifold FDM-printable part for powder dosing.",
+    "components": [
+      "main_cylindrical_tube_OD25_ID21_length250",
+      "external_thread_top_25.4mm_pitch4_depth1",
+      "bottom_funnel_cap_height12_exit_hole_dia3",
+      "internal_single_start_screw_bottom_third_shaft8_pitch10_fin2",
+      "annular_48T_gear_module1_centered_83.33mm_from_bottom"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 50.0,
+        "ylen": 50.0,
+        "zlen": 250.0
+      },
+      "key_dimensions": {
+        "tube_outer_diameter": 25.0,
+        "tube_wall_thickness": 2.0,
+        "tube_inner_diameter": 21.0,
+        "tube_length": 250.0,
+        "external_thread_length": 25.4,
+        "external_thread_pitch": 4.0,
+        "external_thread_depth": 1.0,
+        "external_thread_major_radius": 12.5,
+        "external_thread_minor_radius": 11.5,
+        "external_thread_half_angle_deg": 58,
+        "funnel_height": 12.0,
+        "funnel_exit_hole_diameter": 3.0,
+        "internal_screw_shaft_diameter": 8.0,
+        "internal_screw_pitch": 10.0,
+        "internal_screw_fin_thickness": 2.0,
+        "internal_screw_region_fraction": 0.333,
+        "gear_tooth_count": 48,
+        "gear_module": 1.0,
+        "gear_tip_diameter": 50.0,
+        "gear_face_width": 10.0,
+        "gear_center_from_bottom": 83.33,
+        "gear_bore_diameter": 25.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 45000,
+      "num_holes": 1,
+      "hole_diameter": 3.0,
+      "symmetry": "cylindrical about Z-axis",
+      "min_wall_thickness": 2.0,
+      "fdm_nozzle": 0.4,
+      "fdm_layer_height": 0.2,
+      "thread_handedness": "right-handed",
+      "thread_type_top": "external_only",
+      "thread_type_bottom": "internal_single_start_screw",
+      "gear_pressure_angle_deg": 20,
+      "gear_type": "annular_external"
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 8,
+      "bbox_iou_threshold": 0.88
+    },
+    "notes": "Critical: External thread on top 25.4mm must NOT exceed 25mm OD - crests at 25mm (radius 12.5), roots cut inward to radius 11.5. Thread is external only, do not modify inner bore. The 48T gear is an annular ring centered 83.33mm from bottom, with open bore matching tube OD. Internal auger screw in bottom third only (approx 83mm from bottom), with central shaft dia 8mm. Funnel tapers from ID21 to exit hole dia 3.0 over 12mm height. Top end is smooth open cylinder (no slots or cover). Use triangular thread profile with 58-deg half-angle for the external thread."
+  },
+  "converged": true,
+  "total_iterations": 2,
+  "total_time_ms": 267568.99547576904,
+  "total_llm_calls": 6,
+  "final_geometry": {
+    "volume": 54773.06281128872,
+    "center_of_mass": [
+      -0.00022954588307411538,
+      -0.0008566768979864171,
+      99.53512519680618
+    ],
+    "bounding_box": {
+      "xmin": -25.0,
+      "xmax": 25.000000000000004,
+      "xlen": 50.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": -1e-07,
+      "zmax": 250.0,
+      "zlen": 250.0000001
+    },
+    "is_valid": true,
+    "num_faces": 916,
+    "num_edges": 2066,
+    "num_vertices": 1156
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_threaded/_work/auger_threaded_iter1.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_threaded/_work/auger_threaded_iter1.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1820.6613063812256
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 1755.5219748259783,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 1755.5 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 23.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 23.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 23.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 23.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 25.400000000000006,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 25.40 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 4,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 4"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 6,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 6"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 4,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 4"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-0.00, 0.00, 237.30)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "Critical failure: The generated geometry is catastrophically incomplete. The bounding box shows only a 25.4mm tall segment (Z: 224.6 to 250.0) instead of the required 250mm full tube length. The volume of ~1756 mm\u00b3 is far too small for a 250mm tube with OD 25mm and wall 2mm (expected ~30,000+ mm\u00b3). The code is incomplete - it ends mid-function definition without ever finishing the thread tooth creation or assembling the final part. The rendered images show only a simple hollow cylinder segment, missing: (1) the full 250mm tube length, (2) the bottom funnel with 12mm height tapering to 3mm exit hole, (3) the internal single-start screw in the bottom third, (4) the external thread on the top 25.4mm, and (5) the 48T drive gear band at 83.33mm from bottom. RECOMMENDED FIX: The code needs to be completed properly. Build the geometry in stages: (1) Create the main hollow tube (OD 25, ID 21, length 250mm), (2) Add the bottom funnel cap with boolean operations, (3) Add the internal auger screw using a helical sweep or approximation, (4) Create the external thread using a simplified helical tooth approach, (5) Add the annular gear ring. Ensure each component is properly unioned/cut to form the final solid."
+          }
+        ],
+        "summary": "1 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical failure: The generated geometry is catastrophically incomplete. The bounding box shows only a 25.4mm tall segment (Z: 224.6 to 250.0) instead of the required 250mm full tube length. The volume of ~1756 mm\u00b3 is far too small for a 250mm tube with OD 25mm and wall 2mm (expected ~30,000+ mm\u00b3). The code is incomplete - it ends mid-function definition without ever finishing the thread tooth creation or assembling the final part. The rendered images show only a simple hollow cylinder segment, missing: (1) the full 250mm tube length, (2) the bottom funnel with 12mm height tapering to 3mm exit hole, (3) the internal single-start screw in the bottom third, (4) the external thread on the top 25.4mm, and (5) the 48T drive gear band at 83.33mm from bottom. RECOMMENDED FIX: The code needs to be completed properly. Build the geometry in stages: (1) Create the main hollow tube (OD 25, ID 21, length 250mm), (2) Add the bottom funnel cap with boolean operations, (3) Add the internal auger screw using a helical sweep or approximation, (4) Create the external thread using a simplified helical tooth approach, (5) Add the annular gear ring. Ensure each component is properly unioned/cut to form the final solid.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nArchimedes auger \u2014 THREADED sealable variant (open filling end, screw-top).\n\nOuter tube: outer diameter 25.0, wall 2.0, bore inner diameter 21.0, length\n250.0, axis vertical (Z). The filling (top) end is a smooth open cylinder (no\n4-slot cover). Bottom funnel/cap height 12.0 tapering to a central exit hole\ndiameter 3.0, with the same bottom-third single-start internal screw (shaft\ndiameter 8.0, pitch 10.0, fin thickness 2.0) and open upper reservoir.\n\nAdd a single-start EXTERNAL thread on the top 25.4 mm (1 inch) of the tube:\npitch 4.0 mm/turn, depth 1.0, crest (major) radius 12.5 (flush with the 25 mm\nOD), root (minor) radius 11.5, tooth half-angle 58 deg, right-handed. The\nthread must be strictly external \u2014 crests never exceed the 25 mm OD and roots\ncut inward only; do NOT thread the inside of the tube. Keep the 48T drive gear\nband (module 1.0, tip dia 50.0, face width 10.0, annular, bore open) centred\n83.33 mm from the bottom end.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical failure: The generated geometry is catastrophically incomplete. The bounding box shows only a 25.4mm tall segment (Z: 224.6 to 250.0) instead of the required 250mm full tube length. The volume of ~1756 mm\u00b3 is far too small for a 250mm tube with OD 25mm and wall 2mm (expected ~30,000+ mm\u00b3). The code is incomplete - it ends mid-function definition without ever finishing the thread tooth creation or assembling the final part. The rendered images show only a simple hollow cylinder segment, missing: (1) the full 250mm tube length, (2) the bottom funnel with 12mm height tapering to 3mm exit hole, (3) the internal single-start screw in the bottom third, (4) the external thread on the top 25.4mm, and (5) the 48T drive gear band at 83.33mm from bottom. RECOMMENDED FIX: The code needs to be completed properly. Build the geometry in stages: (1) Create the main hollow tube (OD 25, ID 21, length 250mm), (2) Add the bottom funnel cap with boolean operations, (3) Add the internal auger screw using a helical sweep or approximation, (4) Create the external thread using a simplified helical tooth approach, (5) Add the annular gear ring. Ensure each component is properly unioned/cut to form the final solid.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nArchimedes auger \u2014 THREADED sealable variant (open filling end, screw-top).\n\nOuter tube: outer diameter 25.0, wall 2.0, bore inner diameter 21.0, length\n250.0, axis vertical (Z). The filling (top) end is a smooth open cylinder (no\n4-slot cover). Bottom funnel/cap height 12.0 tapering to a central exit hole\ndiameter 3.0, with the same bottom-third single-start internal screw (shaft\ndiameter 8.0, pitch 10.0, fin thickness 2.0) and open upper reservoir.\n\nAdd a single-start EXTERNAL thread on the top 25.4 mm (1 inch) of the tube:\npitch 4.0 mm/turn, depth 1.0, crest (major) radius 12.5 (flush with the 25 mm\nOD), root (minor) radius 11.5, tooth half-angle 58 deg, right-handed. The\nthread must be strictly external \u2014 crests never exceed the 25 mm OD and roots\ncut inward only; do NOT thread the inside of the tube. Keep the 48T drive gear\nband (module 1.0, tip dia 50.0, face width 10.0, annular, bore open) centred\n83.33 mm from the bottom end.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical failure: The generated geometry is catastrophically incomplete. The bounding box shows only a 25.4mm tall segment (Z: 224.6 to 250.0) instead of the required 250mm full tube length. The volume of ~1756 mm\u00b3 is far too small for a 250mm tube with OD 25mm and wall 2mm (expected ~30,000+ mm\u00b3). The code is incomplete - it ends mid-function definition without ever finishing the thread tooth creation or assembling the final part. The rendered images show only a simple hollow cylinder segment, missing: (1) the full 250mm tube length, (2) the bottom funnel with 12mm height tapering to 3mm exit hole, (3) the internal single-start screw in the bottom third, (4) the external thread on the top 25.4mm, and (5) the 48T drive gear band at 83.33mm from bottom. RECOMMENDED FIX: The code needs to be completed properly. Build the geometry in stages: (1) Create the main hollow tube (OD 25, ID 21, length 250mm), (2) Add the bottom funnel cap with boolean operations, (3) Add the internal auger screw using a helical sweep or approximation, (4) Create the external thread using a simplified helical tooth approach, (5) Add the annular gear ring. Ensure each component is properly unioned/cut to form the final solid.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nArchimedes auger \u2014 THREADED sealable variant (open filling end, screw-top).\n\nOuter tube: outer diameter 25.0, wall 2.0, bore inner diameter 21.0, length\n250.0, axis vertical (Z). The filling (top) end is a smooth open cylinder (no\n4-slot cover). Bottom funnel/cap height 12.0 tapering to a central exit hole\ndiameter 3.0, with the same bottom-third single-start internal screw (shaft\ndiameter 8.0, pitch 10.0, fin thickness 2.0) and open upper reservoir.\n\nAdd a single-start EXTERNAL thread on the top 25.4 mm (1 inch) of the tube:\npitch 4.0 mm/turn, depth 1.0, crest (major) radius 12.5 (flush with the 25 mm\nOD), root (minor) radius 11.5, tooth half-angle 58 deg, right-handed. The\nthread must be strictly external \u2014 crests never exceed the 25 mm OD and roots\ncut inward only; do NOT thread the inside of the tube. Keep the 48T drive gear\nband (module 1.0, tip dia 50.0, face width 10.0, annular, bore open) centred\n83.33 mm from the bottom end.\n",
+      "refiner_output": "import cadquery as cq\nimport math\n\n# =============================================================================\n# Archimedes Auger - Threaded Sealable Variant\n# Outer tube with external screw-top thread, bottom funnel with internal auger,\n# and integral 48T drive gear\n# =============================================================================\n\n# --- Main Tube Parameters ---\ntube_od = 25.0\ntube_wall = 2.0\ntube_id = 21.0\ntube_length = 250.0\n\n# --- External Thread Parameters (top) ---\next_thread_length = 25.4\next_thread_pitch = 4.0\next_thread_depth = 1.0\next_thread_major_r = 12.5  # flush with 25mm OD\next_thread_minor_r = 11.5  # roots cut inward\next_thread_half_angle = 58  # degrees\n\n# --- Bottom Funnel Parameters ---\nfunnel_height = 12.0\nfunnel_exit_dia = 3.0\n\n# --- Internal Screw Parameters (bottom third) ---\nint_screw_shaft_dia = 8.0\nint_screw_pitch = 10.0\nint_screw_fin_thickness = 2.0\nint_screw_region_length = tube_length / 3.0  # bottom third ~83.33mm\n\n# --- Gear Parameters ---\ngear_teeth = 48\ngear_module = 1.0\ngear_tip_dia = 50.0\ngear_face_width = 10.0\ngear_center_from_bottom = 83.33\ngear_pressure_angle = 20  # degrees\n\n# =============================================================================\n# Step 1: Create Main Hollow Tube (full length)\n# =============================================================================\nmain_tube = (\n    cq.Workplane(\"XY\")\n    .circle(tube_od / 2)\n    .circle(tube_id / 2)\n    .extrude(tube_length)\n)\n\n# =============================================================================\n# Step 2: Create Bottom Funnel Cap\n# =============================================================================\n# Funnel goes from z=0 to z=funnel_height (12mm)\n# Tapers from tube_id (21mm) at top to exit_hole_dia (3mm) at bottom\n# This is a solid cone with a hole through it\n\n# Create the funnel as a solid tapered section\nfunnel_outer = (\n    cq.Workplane(\"XY\")\n    .circle(tube_od / 2)\n    .workplane(offset=funnel_height)\n    .circle(tube_od / 2)\n    .loft()\n)\n\n# Create the tapered inner cavity (cone shape)\nfunnel_inner = (\n    cq.Workplane(\"XY\")\n    .circle(funnel_exit_dia / 2)\n    .workplane(offset=funnel_height)\n    .circle(tube_id / 2)\n    .loft()\n)\n\n# Create funnel cap solid\nfunnel_cap = funnel_outer.cut(funnel_inner)\n\n# Union with main tube (funnel is at the bottom, tube extends above)\n# The main tube already starts at z=0, so we need to fill in the funnel region\n# Actually, the main tube is hollow all the way - we need to add solid material\n# in the funnel region and cut out the tapered cavity\n\n# Create a solid plug for the funnel region\nfunnel_plug = (\n    cq.Workplane(\"XY\")\n    .circle(tube_id / 2)\n    .extrude(funnel_height)\n)\n\n# Add the plug to fill the bottom of the tube\nmain_tube = main_tube.union(funnel_plug)\n\n# Cut the tapered funnel cavity\nmain_tube = main_tube.cut(funnel_inner)\n\n# =============================================================================\n# Step 3: Create Internal Single-Start Screw (bottom third)\n# =============================================================================\n# Internal screw: shaft diameter 8.0, pitch 10.0, fin thickness 2.0\n# Goes from z=funnel_height to z=int_screw_region_length\n# The screw is inside the tube, helical fin from shaft to inner wall\n\nscrew_start_z = funnel_height\nscrew_end_z = int_screw_region_length\nscrew_length = screw_end_z - screw_start_z\n\n# Central shaft\ncentral_shaft = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=screw_start_z)\n    .circle(int_screw_shaft_dia / 2)\n    .extrude(screw_length)\n)\n\nmain_tube = main_tube.union(central_shaft)\n\n# Create helical fin using segmented approach\n# Fin goes from shaft radius to tube inner radius\nshaft_r = int_screw_shaft_dia / 2\ninner_wall_r = tube_id / 2\nfin_radial_extent = inner_wall_r - shaft_r\n\nnum_turns = screw_length / int_screw_pitch\nsegments_per_turn = 36\ntotal_segments = int(num_turns * segments_per_turn)\n\n# Create fin segments\nfor i in range(total_segments):\n    t = i / segments_per_turn  # turn number\n    z_base = screw_start_z + t * int_screw_pitch\n    \n    if z_base + int_screw_fin_thickness > screw_end_z:\n        break\n    \n    angle = t * 360  # degrees\n    angle_rad = math.radians(angle)\n    \n    # Create a small radial fin segment\n    # Position at current angle, extending radially\n    \n    # Segment angular span\n    segment_angle = 360 / segments_per_turn\n    \n    # Create a wedge-shaped segment\n    fin_segment = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=z_base)\n        .moveTo(0, 0)\n        .radiusArc((shaft_r * math.cos(angle_rad + math.radians(segment_angle)), \n                    shaft_r * math.sin(angle_rad + math.radians(segment_angle))), shaft_r)\n        .lineTo(inner_wall_r * math.cos(angle_rad + math.radians(segment_angle/2)),\n                inner_wall_r * math.sin(angle_rad + math.radians(segment_angle/2)))\n        .lineTo(shaft_r * math.cos(angle_rad), shaft_r * math.sin(angle_rad))\n        .close()\n        .extrude(int_screw_fin_thickness)\n    )\n    \n    main_tube = main_tube.union(fin_segment)\n\n# =============================================================================\n# Step 4: Create External Thread on Top 25.4mm\n# =============================================================================\n# Thread: pitch 4.0, depth 1.0, major_r 12.5, minor_r 11.5\n# Right-handed, external only (crests at OD 25, roots cut inward)\n\nthread_start_z = tube_length - ext_thread_length\nthread_num_turns = ext_thread_length / ext_thread_pitch\n\n# First, reduce the tube OD in the thread zone to the minor radius\n# Then add thread teeth\n\n# Cut the tube OD down to minor radius in thread zone\nthread_zone_cut = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=thread_start_z)\n    .circle(tube_od / 2)\n    .circle(ext_thread_minor_r)\n    .extrude(ext_thread_length)\n)\n\nmain_tube = main_tube.cut(thread_zone_cut)\n\n# Now add thread teeth as helical ridges\n# Thread tooth profile: triangular, half-angle 58 deg\ntooth_height = ext_thread_depth  # radial: 1.0mm\ntooth_half_width = tooth_height * math.tan(math.radians(ext_thread_half_angle))\ntooth_width = min(2 * tooth_half_width, ext_thread_pitch * 0.7)\n\nthread_segments_per_turn = 48\nthread_total_segments = int(thread_num_turns * thread_segments_per_turn)\n\nfor i in range(thread_total_segments):\n    t = i / thread_segments_per_turn  # turn number\n    z_center = thread_start_z + t * ext_thread_pitch\n    \n    if z_center + tooth_width/2 > tube_length:\n        break\n    if z_center - tooth_width/2 < thread_start_z:\n        continue\n    \n    angle = t * 360  # degrees (right-handed)\n    angle_rad = math.radians(angle)\n    next_angle_rad = math.radians(angle + 360/thread_segments_per_turn)\n    \n    # Create a small tooth segment\n    # Triangular profile in radial direction\n    mid_angle = (angle_rad + next_angle_rad) / 2\n    \n    # Create tooth as extruded triangle pointing outward\n    tooth_segment = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=z_center - tooth_width/2)\n        .moveTo(ext_thread_minor_r * math.cos(angle_rad), \n                ext_thread_minor_r * math.sin(angle_rad))\n        .lineTo(ext_thread_minor_r * math.cos(next_angle_rad),\n                ext_thread_minor_r * math.sin(next_angle_rad))\n        .lineTo(ext_thread_major_r * math.cos(mid_angle),\n                ext_thread_major_r * math.sin(mid_angle))\n        .close()\n        .extrude(tooth_width)\n    )\n    \n    main_tube = main_tube.union(tooth_segment)\n\n# =============================================================================\n# Step 5: Create 48T Annular Gear\n# =============================================================================\n# Gear: 48 teeth, module 1.0, tip dia 50.0, face width 10.0\n# Centered at 83.33mm from bottom, annular with bore = tube OD\n\ngear_z_bottom = gear_center_from_bottom - gear_face_width / 2\ngear_z_top = gear_center_from_bottom + gear_face_width / 2\n\n# Gear dimensions\npitch_diameter = gear_teeth * gear_module  # 48mm\naddendum = gear_module  # 1.0mm\ndedendum = 1.25 * gear_module  # 1.25mm\ngear_root_dia = pitch_diameter - 2 * dedendum  # 48 - 2.5 = 45.5mm\ngear_outer_dia = gear_tip_dia  # 50.0mm (given)\n\n# Create gear blank (annular ring)\ngear_blank = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=gear_z_bottom)\n    .circle(gear_outer_dia / 2)\n    .circle(tube_od / 2)  # bore matches tube OD\n    .extrude(gear_face_width)\n)\n\nmain_tube = main_tube.union(gear_blank)\n\n# Cut gear teeth (simplified involute approximation)\n# For FDM printing, use trapezoidal tooth profile\n\ntooth_angle = 360 / gear_teeth  # 7.5 degrees per tooth\ntooth_tip_width = math.pi * gear_module * 0.4  # approximate\ntooth_root_width = math.pi * gear_module * 0.6\n\n# Cut the gaps between teeth\nfor i in range(gear_teeth):\n    angle = i * tooth_angle\n    angle_rad = math.radians(angle)\n    \n    # Create a gap (space between teeth)\n    gap_angle = tooth_angle * 0.5  # gap is about half the tooth pitch\n    gap_start = angle_rad - math.radians(gap_angle / 2)\n    gap_end = angle_rad + math.radians(gap_angle / 2)\n    gap_mid = angle_rad\n    \n    # Tooth gap profile - trapezoidal cut from tip to root\n    outer_r = gear_outer_dia / 2\n    root_r = gear_root_dia / 2\n    \n    # Create gap as a wedge\n    gap_cut = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=gear_z_bottom - 0.1)\n        .moveTo(root_r * math.cos(gap_start), root_r * math.sin(gap_start))\n        .lineTo(outer_r * math.cos(gap_start), outer_r * math.sin(gap_start))\n        .lineTo(outer_r * math.cos(gap_end), outer_r * math.sin(gap_end))\n        .lineTo(root_r * math.cos(gap_end), root_r * math.sin(gap_end))\n        .close()\n        .extrude(gear_face_width + 0.2)\n    )\n    \n    main_tube = main_tube.cut(gap_cut)\n\n# =============================================================================\n# Final Result\n# =============================================================================\nresult = main_tube"
+    },
+    {
+      "iteration": 1,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 43230.921030044556
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 54773.06281128872,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 54773.1 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 50.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 50.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 50.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 50.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 250.0000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 250.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 916,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 916"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 2066,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 2066"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 1156,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 1156"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-0.00, -0.00, 99.54)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The geometry now satisfies the requirements: (1) Main tube: bounding box Z-length = 250mm \u2713, XY span = 50mm for the gear (tip dia 50mm) \u2713, OD 25mm tube with ID 21mm (wall 2mm) \u2713. (2) Bottom funnel: visible in all three views as a tapered section at the bottom, height 12mm tapering to 3mm exit hole \u2713. (3) Internal screw: central shaft (8mm dia) with helical fins visible in the isometric and center views occupying the bottom third (~83mm) \u2713. (4) External thread: visible at the top of the tube in all views, 25.4mm length with simplified helical teeth, crests at major radius 12.5mm (flush with 25mm OD), roots cut to 11.5mm \u2713. (5) 48T annular gear: clearly visible as a toothed ring centered at 83.33mm from bottom, tip diameter 50mm, face width 10mm \u2713. The volume of ~54,773 mm\u00b3 is plausible for this complex assembly. The part is manifold (is_valid: true) and suitable for FDM printing with the simplified thread/screw features maintaining \u22652mm fin thickness."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [
+        {
+          "attempt": 1,
+          "error_type": "TimeoutError",
+          "error": "Execution timed out after 60 seconds",
+          "fix_code": "import cadquery as cq\nimport math\n\n# =============================================================================\n# Archimedes Auger - Threaded Sealable Variant\n# Simplified version to avoid timeout - uses fewer segments\n# =============================================================================\n\n# --- Main Tube Parameters ---\ntube_od = 25.0\ntube_wall = 2.0\ntube_id = 21.0\ntube_length = 250.0\n\n# --- External Thread Parameters (top) ---\next_thread_length = 25.4\next_thread_pitch = 4.0\next_thread_depth = 1.0\next_thread_major_r = 12.5\next_thread_minor_r = 11.5\n\n# --- Bottom Funnel Parameters ---\nfunnel_height = 12.0\nfunnel_exit_dia = 3.0\n\n# --- Internal Screw Parameters (bottom third) ---\nint_screw_shaft_dia = 8.0\nint_screw_pitch = 10.0\nint_screw_fin_thickness = 2.0\nint_screw_region_length = tube_length / 3.0\n\n# --- Gear Parameters ---\ngear_teeth = 48\ngear_module = 1.0\ngear_tip_dia = 50.0\ngear_face_width = 10.0\ngear_center_from_bottom = 83.33\n\n# =============================================================================\n# Step 1: Create Main Hollow Tube\n# =============================================================================\nmain_tube = (\n    cq.Workplane(\"XY\")\n    .circle(tube_od / 2)\n    .circle(tube_id / 2)\n    .extrude(tube_length)\n)\n\n# =============================================================================\n# Step 2: Create Bottom Funnel\n# =============================================================================\n# Fill bottom with solid plug, then cut tapered funnel cavity\nfunnel_plug = (\n    cq.Workplane(\"XY\")\n    .circle(tube_id / 2)\n    .extrude(funnel_height)\n)\nmain_tube = main_tube.union(funnel_plug)\n\n# Cut tapered funnel cavity\nfunnel_inner = (\n    cq.Workplane(\"XY\")\n    .circle(funnel_exit_dia / 2)\n    .workplane(offset=funnel_height)\n    .circle(tube_id / 2)\n    .loft()\n)\nmain_tube = main_tube.cut(funnel_inner)\n\n# =============================================================================\n# Step 3: Create Internal Screw (simplified helical fin)\n# =============================================================================\nscrew_start_z = funnel_height\nscrew_end_z = int_screw_region_length\nscrew_length = screw_end_z - screw_start_z\n\n# Central shaft\ncentral_shaft = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=screw_start_z)\n    .circle(int_screw_shaft_dia / 2)\n    .extrude(screw_length)\n)\nmain_tube = main_tube.union(central_shaft)\n\n# Simplified helical fin - use fewer, larger segments\nshaft_r = int_screw_shaft_dia / 2\ninner_wall_r = tube_id / 2\n\nnum_turns = screw_length / int_screw_pitch\nsegments_per_turn = 8  # Reduced from 36 to avoid timeout\ntotal_segments = int(num_turns * segments_per_turn)\n\nfin_segments = []\nfor i in range(total_segments):\n    t = i / segments_per_turn\n    z_base = screw_start_z + t * int_screw_pitch\n    \n    if z_base + int_screw_fin_thickness > screw_end_z:\n        break\n    \n    angle = t * 360\n    angle_rad = math.radians(angle)\n    segment_angle_rad = math.radians(360 / segments_per_turn)\n    \n    # Create wedge segment\n    p1 = (shaft_r * math.cos(angle_rad), shaft_r * math.sin(angle_rad))\n    p2 = (shaft_r * math.cos(angle_rad + segment_angle_rad), \n          shaft_r * math.sin(angle_rad + segment_angle_rad))\n    p3 = (inner_wall_r * math.cos(angle_rad + segment_angle_rad/2),\n          inner_wall_r * math.sin(angle_rad + segment_angle_rad/2))\n    \n    fin_segment = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=z_base)\n        .moveTo(p1[0], p1[1])\n        .lineTo(p3[0], p3[1])\n        .lineTo(p2[0], p2[1])\n        .close()\n        .extrude(int_screw_fin_thickness)\n    )\n    fin_segments.append(fin_segment)\n\n# Union all fin segments at once\nfor seg in fin_segments:\n    main_tube = main_tube.union(seg)\n\n# =============================================================================\n# Step 4: Create External Thread (simplified)\n# =============================================================================\nthread_start_z = tube_length - ext_thread_length\n\n# Cut tube OD down to minor radius in thread zone\nthread_zone_cut = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=thread_start_z)\n    .circle(tube_od / 2)\n    .circle(ext_thread_minor_r)\n    .extrude(ext_thread_length)\n)\nmain_tube = main_tube.cut(thread_zone_cut)\n\n# Add thread teeth - simplified with fewer segments\nthread_num_turns = ext_thread_length / ext_thread_pitch\nthread_segments_per_turn = 12  # Reduced from 48\nthread_total_segments = int(thread_num_turns * thread_segments_per_turn)\ntooth_width = ext_thread_pitch * 0.4\n\nthread_segments = []\nfor i in range(thread_total_segments):\n    t = i / thread_segments_per_turn\n    z_center = thread_start_z + t * ext_thread_pitch\n    \n    if z_center + tooth_width/2 > tube_length or z_center - tooth_width/2 < thread_start_z:\n        continue\n    \n    angle = t * 360\n    angle_rad = math.radians(angle)\n    segment_angle_rad = math.radians(360 / thread_segments_per_turn)\n    mid_angle = angle_rad + segment_angle_rad / 2\n    \n    p1 = (ext_thread_minor_r * math.cos(angle_rad), \n          ext_thread_minor_r * math.sin(angle_rad))\n    p2 = (ext_thread_minor_r * math.cos(angle_rad + segment_angle_rad),\n          ext_thread_minor_r * math.sin(angle_rad + segment_angle_rad))\n    p3 = (ext_thread_major_r * math.cos(mid_angle),\n          ext_thread_major_r * math.sin(mid_angle))\n    \n    tooth_segment = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=z_center - tooth_width/2)\n        .moveTo(p1[0], p1[1])\n        .lineTo(p2[0], p2[1])\n        .lineTo(p3[0], p3[1])\n        .close()\n        .extrude(tooth_width)\n    )\n    thread_segments.append(tooth_segment)\n\nfor seg in thread_segments:\n    main_tube = main_tube.union(seg)\n\n# =============================================================================\n# Step 5: Create 48T Annular Gear\n# =============================================================================\ngear_z_bottom = gear_center_from_bottom - gear_face_width / 2\n\npitch_diameter = gear_teeth * gear_module\ndedendum = 1.25 * gear_module\ngear_root_dia = pitch_diameter - 2 * dedendum\ngear_outer_dia = gear_tip_dia\n\n# Create gear blank\ngear_blank = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=gear_z_bottom)\n    .circle(gear_outer_dia / 2)\n    .circle(tube_od / 2)\n    .extrude(gear_face_width)\n)\nmain_tube = main_tube.union(gear_blank)\n\n# Cut gear teeth gaps\ntooth_angle = 360 / gear_teeth\nouter_r = gear_outer_dia / 2\nroot_r = gear_root_dia / 2\n\ngear_cuts = []\nfor i in range(gear_teeth):\n    angle = i * tooth_angle\n    gap_half_angle = math.radians(tooth_angle * 0.25)\n    angle_rad = math.radians(angle)\n    \n    gap_start = angle_rad - gap_half_angle\n    gap_end = angle_rad + gap_half_angle\n    \n    p1 = (root_r * math.cos(gap_start), root_r * math.sin(gap_start))\n    p2 = (outer_r * math.cos(gap_start), outer_r * math.sin(gap_start))\n    p3 = (outer_r * math.cos(gap_end), outer_r * math.sin(gap_end))\n    p4 = (root_r * math.cos(gap_end), root_r * math.sin(gap_end))\n    \n    gap_cut = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=gear_z_bottom - 0.1)\n        .moveTo(p1[0], p1[1])\n        .lineTo(p2[0], p2[1])\n        .lineTo(p3[0], p3[1])\n        .lineTo(p4[0], p4[1])\n        .close()\n        .extrude(gear_face_width + 0.2)\n    )\n    gear_cuts.append(gap_cut)\n\nfor cut in gear_cuts:\n    main_tube = main_tube.cut(cut)\n\n# =============================================================================\n# Final Result\n# =============================================================================\nresult = main_tube"
+        }
+      ],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

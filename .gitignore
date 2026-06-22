@@ -18,6 +18,12 @@ results/
 # Generated CAD outputs
 outputs/
 
+# Powder doser: keep final deliverables, drop heavy per-iteration scratch
+cad/powder-doser/**/_work/
+# Mesh exports are regenerable from STEP / model.py and can be very large
+# (e.g. tessellated printed threads), so keep STEP as the authoritative output.
+cad/powder-doser/**/part.stl
+
 # Python
 __pycache__/
 *.pyc

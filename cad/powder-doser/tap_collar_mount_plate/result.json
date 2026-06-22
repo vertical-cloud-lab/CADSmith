@@ -1,0 +1,189 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP-COLLAR MOUNT PLATE \u2014 bracket-style plate that holds the tap collar's\nangular position via a rotation hardstop.\n\nA vertical bracket plate in the XZ plane, thickness 6.0, about 50 wide (X) x\n40 tall (Z), with a base foot flange (60 X x 12 Y x 6 Z) at the bottom for\nbolting to the mounting plate using two M3 clearance holes (3.4 mm) at\nX = +/-24. Above the foot, the upright plate has a central clearance opening\n(diameter 34) for the auger/collar to pass, and a hardstop bump \u2014 a small\nrectangular boss ~10 wide x 8 tall x 6 deep projecting toward the collar \u2014 set\nto one side of the opening so the tap collar's hardstop ear butts against it\nand is prevented from spinning with the auger.\n",
+  "design_plan": {
+    "description": "Tap-collar mount plate - a vertical bracket plate in XZ plane with base foot flange for mounting, central clearance opening for auger/collar passage, and a hardstop bump to prevent tap collar rotation",
+    "components": [
+      "vertical_bracket_plate",
+      "base_foot_flange",
+      "central_clearance_hole",
+      "mounting_holes_m3",
+      "hardstop_bump"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 60.0,
+        "ylen": 12.0,
+        "zlen": 46.0
+      },
+      "key_dimensions": {
+        "bracket_plate_width": 50.0,
+        "bracket_plate_height": 40.0,
+        "bracket_plate_thickness": 6.0,
+        "foot_flange_width": 60.0,
+        "foot_flange_depth": 12.0,
+        "foot_flange_height": 6.0,
+        "central_clearance_diameter": 34.0,
+        "m3_clearance_hole_diameter": 3.4,
+        "m3_hole_spacing_x": 48.0,
+        "m3_hole_x_positions": 24.0,
+        "hardstop_bump_width": 10.0,
+        "hardstop_bump_height": 8.0,
+        "hardstop_bump_depth": 6.0,
+        "central_hole_center_z": 26.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 11500,
+      "num_holes": 3,
+      "hole_diameter": [
+        3.4,
+        3.4,
+        34.0
+      ],
+      "symmetry": "partial symmetry about YZ plane except for hardstop bump offset to one side"
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 5,
+      "bbox_iou_threshold": 0.9
+    },
+    "notes": "Part orientation: vertical plate lies in XZ plane with thickness along Y. Base foot flange extends in Y direction at Z=0 to Z=6. Vertical plate rises from Z=6 to Z=46. Central clearance hole (34mm dia) centered at X=0, positioned vertically so auger can pass through - center approximately at Z=26 (middle of upright section). Two M3 clearance holes in foot flange at X=+/-24, centered in Y at Y=6. Hardstop bump projects from the vertical plate face toward +Y direction (toward collar), positioned to one side of the central opening - offset in X direction. Ensure minimum 2mm wall thickness throughout for FDM printing. The hardstop bump should be positioned so the tap collar's hardstop ear contacts it when the collar tries to rotate."
+  },
+  "converged": true,
+  "total_iterations": 1,
+  "total_time_ms": 57898.87499809265,
+  "total_llm_calls": 4,
+  "final_geometry": {
+    "volume": 15093.47373389155,
+    "center_of_mass": [
+      0.763243783578626,
+      3.468121610878562,
+      21.89330913797946
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": 0.0,
+      "ymax": 12.0,
+      "ylen": 12.0,
+      "zmin": -4.1637991171010006e-15,
+      "zmax": 46.0,
+      "zlen": 46.00000000000001
+    },
+    "is_valid": true,
+    "num_faces": 24,
+    "num_edges": 64,
+    "num_vertices": 42
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar_mount_plate/_work/tap_collar_mount_plate_iter0.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar_mount_plate/_work/tap_collar_mount_plate_iter0.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1850.8670330047607
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 15093.47373389155,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 15093.5 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 60.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 60.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 12.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 12.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 46.00000000000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 46.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 24,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 24"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 64,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 64"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 42,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 42"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (0.76, 3.47, 21.89)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The generated part correctly implements: (1) Vertical bracket plate approximately 50mm wide x 40mm tall x 6mm thick in the XZ plane, rising from Z=6 to Z=46. (2) Base foot flange 60mm X x 12mm Y x 6mm Z at the bottom, confirmed by bounding box (60mm X, 12mm Y). (3) Central clearance opening of 34mm diameter visible in the isometric and high-angle views, properly positioned for auger/collar passage. (4) Two M3 clearance holes (3.4mm) in the foot flange at X=\u00b124mm, visible as through-holes in the rendered views. (5) Hardstop bump (~10mm x 8mm x 6mm) projecting from the front face, positioned to one side of the central opening - visible in all three views. The total height of 46mm matches foot_flange_height (6mm) + bracket_plate_height (40mm). Volume of ~15,093 mm\u00b3 is reasonable for the solid geometry minus the clearance hole and mounting holes. All features meet the \u22652mm FDM-printable wall thickness requirement."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [
+        {
+          "attempt": 1,
+          "error_type": "SyntaxError",
+          "error": "Traceback (most recent call last):\n  File \"/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar_mount_plate/_work/tap_collar_mount_plate_iter0_runner.py\", line 12, in <module>\n    exec(open(\"/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar_mount_plate/_work/tap_collar_mount_plate_iter0_script.py\").read(), _autofab_user_globals)\n  File \"<string>\", line 117\n    4. Do NOT call cq.exporters \u2014 the system handles export.\n                                ^\nSyntaxError: invalid character '\u2014' (U+2014)\n",
+          "fix_code": "import cadquery as cq\n\n# =============================================================================\n# Tap-Collar Mount Plate\n# Vertical bracket plate with base foot flange, central clearance opening,\n# and hardstop bump to prevent tap collar rotation\n# =============================================================================\n\n# --- Parametric Dimensions ---\n# Bracket plate (vertical, in XZ plane)\nbracket_plate_width = 50.0      # X direction\nbracket_plate_height = 40.0     # Z direction (above foot)\nbracket_plate_thickness = 6.0   # Y direction\n\n# Base foot flange\nfoot_flange_width = 60.0        # X direction\nfoot_flange_depth = 12.0        # Y direction\nfoot_flange_height = 6.0        # Z direction\n\n# Central clearance hole for auger/collar passage\ncentral_clearance_diameter = 34.0\n# Center of hole in Z: middle of the upright section\ncentral_hole_center_z = foot_flange_height + bracket_plate_height / 2.0  # Z = 26\n\n# M3 clearance holes in foot flange\nm3_clearance_dia = 3.4\nm3_hole_x_pos = 24.0            # X = +/- 24\nm3_hole_y_pos = foot_flange_depth / 2.0  # centered in Y at Y = 6\n\n# Hardstop bump (projects toward +Y from bracket plate face)\nhardstop_width = 10.0           # X direction\nhardstop_height = 8.0           # Z direction\nhardstop_depth = 6.0            # Y direction (projection)\n# Position hardstop to one side of the central opening\n# Place it at the edge of the clearance hole, offset in +X direction\nhardstop_x_offset = central_clearance_diameter / 2.0 + hardstop_width / 2.0 + 2.0  # ~25mm from center\n\n# --- Build the Base Foot Flange ---\n# Foot flange sits at Z=0 to Z=foot_flange_height\n# Centered in X, extends in +Y from origin\nfoot_flange = (\n    cq.Workplane(\"XY\")\n    .box(foot_flange_width, foot_flange_depth, foot_flange_height,\n         centered=(True, False, False))\n)\n\n# --- Build the Vertical Bracket Plate ---\n# Plate in XZ plane, centered in X, at Y=0 to Y=bracket_plate_thickness\n# Rises from Z=foot_flange_height to Z=foot_flange_height + bracket_plate_height\nvertical_plate = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=foot_flange_height)  # Start at top of foot flange\n    .box(bracket_plate_width, bracket_plate_thickness, bracket_plate_height,\n         centered=(True, False, False))\n)\n\n# --- Union foot flange and vertical plate ---\nresult = foot_flange.union(vertical_plate)\n\n# --- Cut the Central Clearance Hole ---\n# Hole goes through the vertical plate in Y direction\n# Center at X=0, Z=central_hole_center_z\n# Select the front face of the vertical plate and cut hole\nresult = (\n    result\n    .faces(\">Y\")  # Front face of vertical plate\n    .workplane()\n    .center(0, central_hole_center_z - (foot_flange_height + bracket_plate_height / 2.0))\n    .hole(central_clearance_diameter, depth=bracket_plate_thickness + 1)\n)\n\n# --- Cut M3 Mounting Holes in Foot Flange ---\n# Two holes at X = +/-24, centered in Y, through Z\n# Use pushPoints for reliable hole placement\nresult = (\n    result\n    .faces(\"<Z\")  # Bottom face of foot flange\n    .workplane()\n    .pushPoints([(-m3_hole_x_pos, -m3_hole_y_pos + foot_flange_depth / 2.0),\n                 (m3_hole_x_pos, -m3_hole_y_pos + foot_flange_depth / 2.0)])\n    .hole(m3_clearance_dia, depth=foot_flange_height + 1)\n)\n\n# --- Add Hardstop Bump ---\n# Small rectangular boss projecting from the front (+Y) face of the vertical plate\n# Positioned to one side of the central opening so collar's ear butts against it\n# Place at X = hardstop_x_offset, Z centered around the hole center level\nhardstop_center_z = central_hole_center_z\n\nhardstop_bump = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=hardstop_center_z - hardstop_height / 2.0)\n    .center(hardstop_x_offset, bracket_plate_thickness)  # Position in XY\n    .box(hardstop_width, hardstop_depth, hardstop_height,\n         centered=(True, False, False))\n)\n\n# Union the hardstop bump to the main body\nresult = result.union(hardstop_bump)"
+        }
+      ],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

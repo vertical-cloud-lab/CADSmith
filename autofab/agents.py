@@ -14,6 +14,45 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ---------------------------------------------------------------------------
+# Model configuration
+# ---------------------------------------------------------------------------
+#
+# The base model drives the code-generating agents (Planner, Coder, Error
+# Refiner, Refiner). The judge model drives the Validator (LLM-as-a-Judge),
+# which is kept independent (and at least as strong) to avoid self-confirmation
+# bias. Both can be overridden via environment variables so a run can, e.g.,
+# use Claude Opus as the base model end-to-end.
+#
+#   AUTOFAB_BASE_MODEL   — Planner / Coder / Error Refiner / Refiner
+#   AUTOFAB_JUDGE_MODEL  — Validator judge (defaults to the base model when it
+#                          is already an Opus-class model, otherwise Opus)
+
+DEFAULT_BASE_MODEL = "claude-sonnet-4-5-20250929"
+DEFAULT_JUDGE_MODEL = "claude-opus-4-5"
+
+
+def get_base_model() -> str:
+    """Return the model used by the code-generating agents."""
+    return os.getenv("AUTOFAB_BASE_MODEL", DEFAULT_BASE_MODEL)
+
+
+def get_judge_model() -> str:
+    """Return the model used by the Validator judge.
+
+    If AUTOFAB_JUDGE_MODEL is unset, fall back to the base model when it is
+    already an Opus-class model (so an all-Opus run keeps a single model),
+    otherwise use the default Opus judge.
+    """
+    explicit = os.getenv("AUTOFAB_JUDGE_MODEL")
+    if explicit:
+        return explicit
+    base = get_base_model()
+    if "opus" in base.lower():
+        return base
+    return DEFAULT_JUDGE_MODEL
+
+
+# ---------------------------------------------------------------------------
 # Token usage tracking
 # ---------------------------------------------------------------------------
 
@@ -36,8 +75,10 @@ def _get_client() -> anthropic.Anthropic:
     return anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 
-def _call_claude(system: str, user: str, model: str = "claude-sonnet-4-5-20250929", max_tokens: int = 4096) -> str:
+def _call_claude(system: str, user: str, model: Optional[str] = None, max_tokens: int = 4096) -> str:
     """Call Claude and return the text response. Tracks token usage."""
+    if model is None:
+        model = get_base_model()
     client = _get_client()
     response = client.messages.create(
         model=model,
@@ -368,7 +409,7 @@ def evaluate_geometry(
     # Call Opus with vision-capable message format
     client = _get_client()
     response = client.messages.create(
-        model="claude-opus-4-20250514",
+        model=get_judge_model(),
         max_tokens=4096,
         system=VALIDATOR_SYSTEM,
         messages=[{"role": "user", "content": message_content}],
