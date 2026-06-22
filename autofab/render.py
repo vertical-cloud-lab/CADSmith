@@ -226,7 +226,10 @@ def render_colored_iso_views(
     items = list(items)
     angles = list(angles)
     if not items:
-        raise ValueError("render_colored_iso_views requires at least one item")
+        raise ValueError(
+            "render_colored_iso_views requires at least one "
+            "(stl_path, (r, g, b)) tuple in items"
+        )
     os.makedirs(out_dir, exist_ok=True)
 
     # Build a reusable normals pipeline + colour for every solid, and track the
