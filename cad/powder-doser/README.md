@@ -37,9 +37,13 @@ xvfb-run -a python scripts/run_powder_doser.py # all parts + assembly
 | `render.png` | Three-view Judge render (isometric / high-angle rear / front profile). |
 | `result.json` | Full pipeline log: plan, every iteration, validation feedback. |
 
-For the assembly, an extra `iso/` folder holds **full-assembly renders at
-several isometric angles** (four corners plus a top-down and a low-front view),
-plus a tiled `assembly_iso_contact_sheet.png`. Regenerate them with:
+For the assembly, an extra `iso/` folder holds **multi-colour full-assembly
+renders swept through a full isometric rotation** — `assembly_iso_az000.png`
+through `assembly_iso_az315.png` (45° azimuth steps at a ~30° isometric
+elevation), plus a tiled `assembly_iso_contact_sheet.png`. Each component is
+coloured by role (brass auger, grey plates/brackets, black motor & servo
+bodies, green pinions), matching the reference assembly renders. Regenerate
+them with:
 
 ```bash
 xvfb-run -a python scripts/render_assembly_isos.py
