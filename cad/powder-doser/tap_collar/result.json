@@ -1,0 +1,478 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+  "design_plan": {
+    "description": "Tap Collar - A split collar that floats freely on the 25mm auger tube to provide vibration and hammer-tap action for preventing powder bridging. Features a vibration motor pad, solenoid plunger bore with mounting holes, and a hardstop ear to prevent rotation.",
+    "components": [
+      "main_collar_body",
+      "clamp_slot",
+      "vibration_motor_pad_recess",
+      "solenoid_plunger_bore",
+      "solenoid_mounting_holes",
+      "hardstop_ear"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 23.25,
+        "ylen": 17.0,
+        "zlen": 37.25
+      },
+      "key_dimensions": {
+        "collar_outer_diameter": 33.5,
+        "collar_bore_diameter": 25.5,
+        "collar_depth": 17.0,
+        "clamp_slot_width": 2.0,
+        "vibration_motor_pad_diameter": 10.0,
+        "vibration_motor_pad_depth": 1.0,
+        "solenoid_plunger_bore_diameter": 7.5,
+        "solenoid_mounting_hole_diameter": 3.4,
+        "solenoid_pattern_across": 18.2,
+        "solenoid_pattern_along": 16.0,
+        "hardstop_ear_width": 10.0,
+        "hardstop_ear_height": 8.0,
+        "hardstop_ear_thickness": 6.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 8500,
+      "num_holes": 3,
+      "hole_diameter": null,
+      "symmetry": "None - asymmetric features on multiple faces"
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 5,
+      "bbox_iou_threshold": 0.9
+    },
+    "notes": "Collar axis is horizontal along Y. The clamp slot should pass through one side of the collar wall (not a full split) to allow slight flex for running fit. Vibration motor pad is on -X face (flat recess). Solenoid bore on +Z face must pass through to the collar bore region. The two M3 clearance holes are positioned diagonally opposite around the plunger bore on an 18.2mm x 16.0mm rectangular pattern. Hardstop ear projects radially outward from +X side. All features must maintain minimum 2mm wall thickness for FDM printability. The bore must be 25.5mm to provide running clearance over the 25.0mm auger OD - this collar must never clamp the tube."
+  },
+  "converged": true,
+  "total_iterations": 4,
+  "total_time_ms": 146872.50638008118,
+  "total_llm_calls": 9,
+  "final_geometry": {
+    "volume": 9841.494272442334,
+    "center_of_mass": [
+      6.358930996577271,
+      -4.562702127827513,
+      6.225165821395149
+    ],
+    "bounding_box": {
+      "xmin": -13.799999999999999,
+      "xmax": 22.75,
+      "xlen": 36.55,
+      "ymin": -25.2500001,
+      "ymax": 12.7,
+      "ylen": 37.9500001,
+      "zmin": -16.7500001,
+      "zmax": 21.75,
+      "zlen": 38.5000001
+    },
+    "is_valid": true,
+    "num_faces": 26,
+    "num_edges": 72,
+    "num_vertices": 48
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar/_work/tap_collar_iter3.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/tap_collar/_work/tap_collar_iter3.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1861.738920211792
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "INVALID solid \u2014 not watertight, may not be manufacturable"
+          },
+          {
+            "metric": "volume",
+            "actual": 3770.822349467576,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 3770.8 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 39.5,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 39.50 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 37.2,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 37.20 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 38.5,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 38.50 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 23,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 23"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 57,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 57"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 38,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 38"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (2.51, -28.37, -15.29)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "Critical issues identified: 1) INVALID GEOMETRY: The kernel reports is_valid=false, meaning the solid has self-intersections or non-manifold edges - this will fail to print. 2) INCORRECT CENTER OF MASS: The center_of_mass Y=-28.37 and Z=-15.29 indicate the part is severely offset from origin, which shouldn't happen for a collar centered at origin. 3) WRONG AXIS ORIENTATION: Looking at the renders, the collar bore appears to be along Y but the clamp slot cut appears to have gone wrong - the slot should be a thin radial cut through the collar wall, not a massive box cut that appears to have corrupted the geometry. 4) CLAMP SLOT IMPLEMENTATION ERROR: The code creates a box for the clamp slot positioned at offset=-collar_radius-1 which places it incorrectly. The slot should be a thin 2mm wide cut through the collar wall at one circumferential location, extending from bore to OD. 5) BOUNDING BOX ANALYSIS: Y dimension is 37.2mm but collar depth should be 17mm with a boss adding some height - this is more than double expected, suggesting geometry errors. Recommended fix: Reconstruct the collar using proper axis alignment (Y-axis bore). For the clamp slot, use a thin box positioned at a specific angular location (e.g., bottom -Z side) that cuts radially through the wall thickness only, with dimensions: 2mm wide (circumferential), collar_depth long (axial), and (collar_OD-collar_bore)/2 deep (radial). Ensure all boolean operations maintain valid geometry."
+          }
+        ],
+        "summary": "2 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 Critical issues identified: 1) INVALID GEOMETRY: The kernel reports is_valid=false, meaning the solid has self-intersections or non-manifold edges - this will fail to print. 2) INCORRECT CENTER OF MASS: The center_of_mass Y=-28.37 and Z=-15.29 indicate the part is severely offset from origin, which shouldn't happen for a collar centered at origin. 3) WRONG AXIS ORIENTATION: Looking at the renders, the collar bore appears to be along Y but the clamp slot cut appears to have gone wrong - the slot should be a thin radial cut through the collar wall, not a massive box cut that appears to have corrupted the geometry. 4) CLAMP SLOT IMPLEMENTATION ERROR: The code creates a box for the clamp slot positioned at offset=-collar_radius-1 which places it incorrectly. The slot should be a thin 2mm wide cut through the collar wall at one circumferential location, extending from bore to OD. 5) BOUNDING BOX ANALYSIS: Y dimension is 37.2mm but collar depth should be 17mm with a boss adding some height - this is more than double expected, suggesting geometry errors. Recommended fix: Reconstruct the collar using proper axis alignment (Y-axis bore). For the clamp slot, use a thin box positioned at a specific angular location (e.g., bottom -Z side) that cuts radially through the wall thickness only, with dimensions: 2mm wide (circumferential), collar_depth long (axial), and (collar_OD-collar_bore)/2 deep (radial). Ensure all boolean operations maintain valid geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 Critical issues identified: 1) INVALID GEOMETRY: The kernel reports is_valid=false, meaning the solid has self-intersections or non-manifold edges - this will fail to print. 2) INCORRECT CENTER OF MASS: The center_of_mass Y=-28.37 and Z=-15.29 indicate the part is severely offset from origin, which shouldn't happen for a collar centered at origin. 3) WRONG AXIS ORIENTATION: Looking at the renders, the collar bore appears to be along Y but the clamp slot cut appears to have gone wrong - the slot should be a thin radial cut through the collar wall, not a massive box cut that appears to have corrupted the geometry. 4) CLAMP SLOT IMPLEMENTATION ERROR: The code creates a box for the clamp slot positioned at offset=-collar_radius-1 which places it incorrectly. The slot should be a thin 2mm wide cut through the collar wall at one circumferential location, extending from bore to OD. 5) BOUNDING BOX ANALYSIS: Y dimension is 37.2mm but collar depth should be 17mm with a boss adding some height - this is more than double expected, suggesting geometry errors. Recommended fix: Reconstruct the collar using proper axis alignment (Y-axis bore). For the clamp slot, use a thin box positioned at a specific angular location (e.g., bottom -Z side) that cuts radially through the wall thickness only, with dimensions: 2mm wide (circumferential), collar_depth long (axial), and (collar_OD-collar_bore)/2 deep (radial). Ensure all boolean operations maintain valid geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 Critical issues identified: 1) INVALID GEOMETRY: The kernel reports is_valid=false, meaning the solid has self-intersections or non-manifold edges - this will fail to print. 2) INCORRECT CENTER OF MASS: The center_of_mass Y=-28.37 and Z=-15.29 indicate the part is severely offset from origin, which shouldn't happen for a collar centered at origin. 3) WRONG AXIS ORIENTATION: Looking at the renders, the collar bore appears to be along Y but the clamp slot cut appears to have gone wrong - the slot should be a thin radial cut through the collar wall, not a massive box cut that appears to have corrupted the geometry. 4) CLAMP SLOT IMPLEMENTATION ERROR: The code creates a box for the clamp slot positioned at offset=-collar_radius-1 which places it incorrectly. The slot should be a thin 2mm wide cut through the collar wall at one circumferential location, extending from bore to OD. 5) BOUNDING BOX ANALYSIS: Y dimension is 37.2mm but collar depth should be 17mm with a boss adding some height - this is more than double expected, suggesting geometry errors. Recommended fix: Reconstruct the collar using proper axis alignment (Y-axis bore). For the clamp slot, use a thin box positioned at a specific angular location (e.g., bottom -Z side) that cuts radially through the wall thickness only, with dimensions: 2mm wide (circumferential), collar_depth long (axial), and (collar_OD-collar_bore)/2 deep (radial). Ensure all boolean operations maintain valid geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "refiner_output": "import cadquery as cq\n\n# Tap Collar Parameters\n# Main collar body\ncollar_od = 33.5  # outer diameter\ncollar_bore = 25.5  # bore diameter (running fit over 25mm auger)\ncollar_depth = 17.0  # depth along bore axis (Y)\n\n# Clamp slot\nclamp_slot_width = 2.0  # width of the split slot\n\n# Vibration motor pad (on -X face)\nvib_pad_dia = 10.0\nvib_pad_depth = 1.0\n\n# Solenoid features (on +Z face)\nplunger_bore_dia = 7.5\nm3_clearance = 3.4\nsolenoid_pattern_across = 18.2  # X direction\nsolenoid_pattern_along = 16.0  # Y direction\n\n# Hardstop ear (on +X side)\near_width = 10.0  # along Y\near_height = 8.0  # along Z\near_thickness = 6.0  # radial projection in X\n\n# Calculate collar radius\ncollar_radius = collar_od / 2\nbore_radius = collar_bore / 2\n\n# Step 1: Create main collar body as a cylinder along Y axis\n# Using revolve approach for better control\nmain_collar = (\n    cq.Workplane(\"XZ\")  # workplane perpendicular to Y axis\n    .center(0, 0)\n    .circle(collar_radius)\n    .circle(bore_radius)  # create annular profile (tube)\n    .extrude(collar_depth)\n    .translate((0, -collar_depth / 2, 0))  # center on Y\n)\n\n# Step 2: Create clamp slot - a thin radial cut through the collar wall at -Z side\n# The slot should be 2mm wide (in X direction at bottom), cutting from bore to OD\n# Position at bottom of collar (-Z side)\nwall_thickness = collar_radius - bore_radius\n\nclamp_slot = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=-collar_radius)  # at bottom Z level\n    .box(clamp_slot_width, collar_depth + 2, wall_thickness + 2, centered=(True, True, False))\n)\n\nmain_collar = main_collar.cut(clamp_slot)\n\n# Step 3: Create vibration motor pad recess on -X face\n# Flat circular recess on the cylindrical surface at -X\n# We'll create a cylinder oriented along X and subtract it\nvib_pad = (\n    cq.Workplane(\"YZ\")\n    .workplane(offset=-collar_radius + vib_pad_depth)  # position so it cuts into -X surface\n    .circle(vib_pad_dia / 2)\n    .extrude(-vib_pad_depth - 1)  # extrude in -X direction to cut\n)\n\nmain_collar = main_collar.cut(vib_pad)\n\n# Step 4: Create solenoid boss on +Z face\n# Boss sits on top of the collar cylinder\nboss_height = 5.0\nboss_width = solenoid_pattern_across + m3_clearance + 6  # width to accommodate holes\nboss_length = solenoid_pattern_along + m3_clearance + 6  # length along Y\n\nsolenoid_boss = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=collar_radius)  # top of collar\n    .box(boss_width, boss_length, boss_height, centered=(True, True, False))\n)\n\nmain_collar = main_collar.union(solenoid_boss)\n\n# Step 5: Cut solenoid plunger bore (7.5mm) through boss to collar bore region\n# This hole goes from top of boss down through to intersect with the collar bore\nplunger_depth = boss_height + (collar_radius - bore_radius) + 2  # through boss and collar wall into bore\n\nmain_collar = (\n    main_collar\n    .faces(\">Z\")\n    .workplane()\n    .hole(plunger_bore_dia, depth=plunger_depth)\n)\n\n# Step 6: Cut two M3 clearance holes diagonally opposite\n# Pattern: 18.2mm across (X) x 16.0mm along (Y)\nhole_positions = [\n    (solenoid_pattern_across / 2, solenoid_pattern_along / 2),\n    (-solenoid_pattern_across / 2, -solenoid_pattern_along / 2)\n]\n\nmain_collar = (\n    main_collar\n    .faces(\">Z\")\n    .workplane()\n    .pushPoints(hole_positions)\n    .hole(m3_clearance, depth=boss_height + collar_radius)\n)\n\n# Step 7: Create hardstop ear on +X side\n# Small rectangular tab projecting radially from +X side at mid-height\nhardstop_ear = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=-ear_height / 2)  # center vertically on collar axis\n    .center(collar_radius, 0)  # position at +X surface of collar\n    .box(ear_thickness, ear_width, ear_height, centered=(False, True, False))\n)\n\nmain_collar = main_collar.union(hardstop_ear)\n\n# Final result\nresult = main_collar"
+    },
+    {
+      "iteration": 1,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 1842.3237800598145
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "INVALID solid \u2014 not watertight, may not be manufacturable"
+          },
+          {
+            "metric": "volume",
+            "actual": 3268.82860628436,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 3268.8 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 39.5,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 39.50 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 38.2,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 38.20 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 38.5,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 38.50 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 19,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 19"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 45,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 45"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 30,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 30"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (2.90, -32.75, -20.61)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "INVALID GEOMETRY PERSISTS (is_valid=false). The kernel reports the solid is not manifold/watertight - this is a critical failure that must be fixed first. ANALYSIS OF ISSUES: 1) CENTER OF MASS ANOMALY: Y=-32.75 and Z=-20.6 are severely offset from origin, indicating geometry corruption from boolean operations. 2) CLAMP SLOT STILL BROKEN: The code positions clamp_slot at offset=-collar_radius which is Z=-16.75, but then creates a box that extends incorrectly. The slot cut appears to be corrupting the geometry. 3) BOUNDING BOX CHECK: Ylen=38.2mm is more than double the collar_depth of 17mm - this suggests the translate operation and subsequent cuts are creating spurious geometry. 4) FROM RENDERS: The isometric view (LEFT) shows a collar with the hardstop ear visible on +X and what appears to be the boss on top. The center view shows the top face with the boss visible. The right view shows the collar profile with the boss protruding. However, the clamp slot is not clearly visible as a clean through-cut. ESCALATED RECOMMENDATION: The previous approach using .translate() to center and box-based clamp slot is failing. Try a fundamentally different construction: (A) Create the collar cylinder directly centered at origin using Workplane('XZ').center(0,0).cylinder(collar_depth, collar_radius, centered=(True,True,True)) then shell or cut the bore. (B) For the clamp slot, instead of a box cut, use a workplane on the collar face and sketch a thin rectangular profile that you extrude radially inward - or use a slot() feature if available. (C) Build the boss as a separate solid positioned correctly, then union. (D) Verify each boolean step produces is_valid=true before proceeding."
+          }
+        ],
+        "summary": "2 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 INVALID GEOMETRY PERSISTS (is_valid=false). The kernel reports the solid is not manifold/watertight - this is a critical failure that must be fixed first. ANALYSIS OF ISSUES: 1) CENTER OF MASS ANOMALY: Y=-32.75 and Z=-20.6 are severely offset from origin, indicating geometry corruption from boolean operations. 2) CLAMP SLOT STILL BROKEN: The code positions clamp_slot at offset=-collar_radius which is Z=-16.75, but then creates a box that extends incorrectly. The slot cut appears to be corrupting the geometry. 3) BOUNDING BOX CHECK: Ylen=38.2mm is more than double the collar_depth of 17mm - this suggests the translate operation and subsequent cuts are creating spurious geometry. 4) FROM RENDERS: The isometric view (LEFT) shows a collar with the hardstop ear visible on +X and what appears to be the boss on top. The center view shows the top face with the boss visible. The right view shows the collar profile with the boss protruding. However, the clamp slot is not clearly visible as a clean through-cut. ESCALATED RECOMMENDATION: The previous approach using .translate() to center and box-based clamp slot is failing. Try a fundamentally different construction: (A) Create the collar cylinder directly centered at origin using Workplane('XZ').center(0,0).cylinder(collar_depth, collar_radius, centered=(True,True,True)) then shell or cut the bore. (B) For the clamp slot, instead of a box cut, use a workplane on the collar face and sketch a thin rectangular profile that you extrude radially inward - or use a slot() feature if available. (C) Build the boss as a separate solid positioned correctly, then union. (D) Verify each boolean step produces is_valid=true before proceeding.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 INVALID GEOMETRY PERSISTS (is_valid=false). The kernel reports the solid is not manifold/watertight - this is a critical failure that must be fixed first. ANALYSIS OF ISSUES: 1) CENTER OF MASS ANOMALY: Y=-32.75 and Z=-20.6 are severely offset from origin, indicating geometry corruption from boolean operations. 2) CLAMP SLOT STILL BROKEN: The code positions clamp_slot at offset=-collar_radius which is Z=-16.75, but then creates a box that extends incorrectly. The slot cut appears to be corrupting the geometry. 3) BOUNDING BOX CHECK: Ylen=38.2mm is more than double the collar_depth of 17mm - this suggests the translate operation and subsequent cuts are creating spurious geometry. 4) FROM RENDERS: The isometric view (LEFT) shows a collar with the hardstop ear visible on +X and what appears to be the boss on top. The center view shows the top face with the boss visible. The right view shows the collar profile with the boss protruding. However, the clamp slot is not clearly visible as a clean through-cut. ESCALATED RECOMMENDATION: The previous approach using .translate() to center and box-based clamp slot is failing. Try a fundamentally different construction: (A) Create the collar cylinder directly centered at origin using Workplane('XZ').center(0,0).cylinder(collar_depth, collar_radius, centered=(True,True,True)) then shell or cut the bore. (B) For the clamp slot, instead of a box cut, use a workplane on the collar face and sketch a thin rectangular profile that you extrude radially inward - or use a slot() feature if available. (C) Build the boss as a separate solid positioned correctly, then union. (D) Verify each boolean step produces is_valid=true before proceeding.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - solid_valid: actual=0, target=1 \u2014 INVALID solid \u2014 not watertight, may not be manufacturable\n  - llm_judge: actual=0, target=1 \u2014 INVALID GEOMETRY PERSISTS (is_valid=false). The kernel reports the solid is not manifold/watertight - this is a critical failure that must be fixed first. ANALYSIS OF ISSUES: 1) CENTER OF MASS ANOMALY: Y=-32.75 and Z=-20.6 are severely offset from origin, indicating geometry corruption from boolean operations. 2) CLAMP SLOT STILL BROKEN: The code positions clamp_slot at offset=-collar_radius which is Z=-16.75, but then creates a box that extends incorrectly. The slot cut appears to be corrupting the geometry. 3) BOUNDING BOX CHECK: Ylen=38.2mm is more than double the collar_depth of 17mm - this suggests the translate operation and subsequent cuts are creating spurious geometry. 4) FROM RENDERS: The isometric view (LEFT) shows a collar with the hardstop ear visible on +X and what appears to be the boss on top. The center view shows the top face with the boss visible. The right view shows the collar profile with the boss protruding. However, the clamp slot is not clearly visible as a clean through-cut. ESCALATED RECOMMENDATION: The previous approach using .translate() to center and box-based clamp slot is failing. Try a fundamentally different construction: (A) Create the collar cylinder directly centered at origin using Workplane('XZ').center(0,0).cylinder(collar_depth, collar_radius, centered=(True,True,True)) then shell or cut the bore. (B) For the clamp slot, instead of a box cut, use a workplane on the collar face and sketch a thin rectangular profile that you extrude radially inward - or use a slot() feature if available. (C) Build the boss as a separate solid positioned correctly, then union. (D) Verify each boolean step produces is_valid=true before proceeding.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "refiner_output": "import cadquery as cq\n\n# Tap Collar Parameters\ncollar_od = 33.5  # outer diameter\ncollar_bore = 25.5  # bore diameter (running fit over 25mm auger)\ncollar_depth = 17.0  # depth along bore axis (Y)\n\ncollar_radius = collar_od / 2\nbore_radius = collar_bore / 2\n\n# Clamp slot\nclamp_slot_width = 2.0\n\n# Vibration motor pad (on -X face)\nvib_pad_dia = 10.0\nvib_pad_depth = 1.0\n\n# Solenoid features (on +Z face)\nplunger_bore_dia = 7.5\nm3_clearance = 3.4\nsolenoid_pattern_across = 18.2  # X direction\nsolenoid_pattern_along = 16.0  # Y direction\n\n# Hardstop ear (on +X side)\near_width = 10.0  # along Y\near_height = 8.0  # along Z\near_thickness = 6.0  # radial projection in X\n\n# Boss dimensions\nboss_height = 5.0\nboss_width = solenoid_pattern_across + m3_clearance + 6\nboss_length = solenoid_pattern_along + m3_clearance + 6\n\n# Step 1: Create main collar body as a tube along Y axis\n# Build on XZ plane, extrude along Y, centered\nmain_collar = (\n    cq.Workplane(\"XZ\")\n    .circle(collar_radius)\n    .circle(bore_radius)\n    .extrude(collar_depth, both=False)\n)\n\n# Center the collar on origin (move back by half depth)\nmain_collar = main_collar.translate((0, -collar_depth / 2, 0))\n\n# Step 2: Create clamp slot - cut through the bottom (-Z side) of the collar wall\n# A thin radial slot from OD to bore at the bottom\nslot_depth = collar_radius - bore_radius + 1  # ensure it cuts through the wall\nclamp_slot = (\n    cq.Workplane(\"XY\")\n    .box(clamp_slot_width, collar_depth + 2, slot_depth, centered=(True, True, False))\n    .translate((0, 0, -collar_radius - 0.5))  # position at bottom, cutting upward\n)\n\nmain_collar = main_collar.cut(clamp_slot)\n\n# Step 3: Create solenoid boss on +Z face\n# Position the boss on top of the collar\nsolenoid_boss = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=collar_radius)\n    .box(boss_width, boss_length, boss_height, centered=(True, True, False))\n)\n\nmain_collar = main_collar.union(solenoid_boss)\n\n# Step 4: Create hardstop ear on +X side\n# Small rectangular tab projecting radially from +X side\nhardstop_ear = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=-ear_height / 2)\n    .center(collar_radius, 0)\n    .box(ear_thickness, ear_width, ear_height, centered=(False, True, False))\n)\n\nmain_collar = main_collar.union(hardstop_ear)\n\n# Step 5: Cut vibration motor pad recess on -X face\n# A flat circular recess oriented along X axis\nvib_pad_cutter = (\n    cq.Workplane(\"YZ\")\n    .workplane(offset=-collar_radius)\n    .circle(vib_pad_dia / 2)\n    .extrude(vib_pad_depth)\n)\n\nmain_collar = main_collar.cut(vib_pad_cutter)\n\n# Step 6: Cut solenoid plunger bore through boss and into collar bore region\n# Calculate depth: through boss + through collar wall to reach bore\nplunger_cut_depth = boss_height + (collar_radius - bore_radius) + 2\n\nplunger_hole = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=collar_radius + boss_height)\n    .circle(plunger_bore_dia / 2)\n    .extrude(-plunger_cut_depth)\n)\n\nmain_collar = main_collar.cut(plunger_hole)\n\n# Step 7: Cut two M3 clearance holes diagonally opposite\n# Pattern: 18.2mm across (X) x 16.0mm along (Y)\nhole_positions = [\n    (solenoid_pattern_across / 2, solenoid_pattern_along / 2),\n    (-solenoid_pattern_across / 2, -solenoid_pattern_along / 2)\n]\n\nm3_hole_depth = boss_height + collar_radius + 2  # through everything\n\nfor pos in hole_positions:\n    m3_hole = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=collar_radius + boss_height)\n        .center(pos[0], pos[1])\n        .circle(m3_clearance / 2)\n        .extrude(-m3_hole_depth)\n    )\n    main_collar = main_collar.cut(m3_hole)\n\n# Final result\nresult = main_collar"
+    },
+    {
+      "iteration": 2,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 1915.1065349578857
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": -3630.741967882945,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: -3630.7 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 39.5000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 39.50 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 38.2000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 38.20 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 38.5000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 38.50 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 27,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 27"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 60,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 60"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 40,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 40"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-2.61, 0.00, 20.28)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "CRITICAL FAILURE: NEGATIVE VOLUME (-3630.74 mm\u00b3). This indicates completely corrupted geometry - the solid has inverted normals or self-intersecting faces, making it non-manufacturable. This is the THIRD iteration with invalid geometry. ESCALATED ANALYSIS: 1) NEGATIVE VOLUME is catastrophic - the boolean operations are creating inside-out geometry. 2) CENTER OF MASS at Z=20.28 while bounding box spans Z=-16.75 to Z=21.75 suggests the 'solid' mass is concentrated in the boss region, with the collar body being hollow/inverted. 3) BOUNDING BOX: Ylen=38.2mm when collar_depth=17mm indicates geometry is still severely wrong - Y should span approximately collar_depth plus boss_length (~17+boss_length). 4) FROM RENDERS: The isometric (LEFT) shows a split collar with slot, ear, and what appears to be a mounting boss. The center view shows the cylindrical collar from above with the rectangular boss. The right view shows the profile. The slot appears present, but the geometry is mathematically invalid. FUNDAMENTALLY DIFFERENT APPROACH REQUIRED - Previous iterations failed using concentric circles + translate + box cuts. Try: (A) Use .cylinder() method directly: cq.Workplane('YZ').cylinder(collar_depth, collar_radius, centered=True) to create outer cylinder with Y as axis. (B) Cut the bore using a separate cylinder boolean. (C) For the clamp slot, create it BEFORE other features using a thin extruded rectangle positioned at the -Z side of the collar, cutting through the wall radially. (D) Build boss, ear, and make all cuts as separate sequential operations, checking geometry validity conceptually at each step. (E) Avoid .translate() operations that may corrupt the solid - instead, position features correctly from the start using workplane offsets."
+          }
+        ],
+        "summary": "1 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 CRITICAL FAILURE: NEGATIVE VOLUME (-3630.74 mm\u00b3). This indicates completely corrupted geometry - the solid has inverted normals or self-intersecting faces, making it non-manufacturable. This is the THIRD iteration with invalid geometry. ESCALATED ANALYSIS: 1) NEGATIVE VOLUME is catastrophic - the boolean operations are creating inside-out geometry. 2) CENTER OF MASS at Z=20.28 while bounding box spans Z=-16.75 to Z=21.75 suggests the 'solid' mass is concentrated in the boss region, with the collar body being hollow/inverted. 3) BOUNDING BOX: Ylen=38.2mm when collar_depth=17mm indicates geometry is still severely wrong - Y should span approximately collar_depth plus boss_length (~17+boss_length). 4) FROM RENDERS: The isometric (LEFT) shows a split collar with slot, ear, and what appears to be a mounting boss. The center view shows the cylindrical collar from above with the rectangular boss. The right view shows the profile. The slot appears present, but the geometry is mathematically invalid. FUNDAMENTALLY DIFFERENT APPROACH REQUIRED - Previous iterations failed using concentric circles + translate + box cuts. Try: (A) Use .cylinder() method directly: cq.Workplane('YZ').cylinder(collar_depth, collar_radius, centered=True) to create outer cylinder with Y as axis. (B) Cut the bore using a separate cylinder boolean. (C) For the clamp slot, create it BEFORE other features using a thin extruded rectangle positioned at the -Z side of the collar, cutting through the wall radially. (D) Build boss, ear, and make all cuts as separate sequential operations, checking geometry validity conceptually at each step. (E) Avoid .translate() operations that may corrupt the solid - instead, position features correctly from the start using workplane offsets.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 CRITICAL FAILURE: NEGATIVE VOLUME (-3630.74 mm\u00b3). This indicates completely corrupted geometry - the solid has inverted normals or self-intersecting faces, making it non-manufacturable. This is the THIRD iteration with invalid geometry. ESCALATED ANALYSIS: 1) NEGATIVE VOLUME is catastrophic - the boolean operations are creating inside-out geometry. 2) CENTER OF MASS at Z=20.28 while bounding box spans Z=-16.75 to Z=21.75 suggests the 'solid' mass is concentrated in the boss region, with the collar body being hollow/inverted. 3) BOUNDING BOX: Ylen=38.2mm when collar_depth=17mm indicates geometry is still severely wrong - Y should span approximately collar_depth plus boss_length (~17+boss_length). 4) FROM RENDERS: The isometric (LEFT) shows a split collar with slot, ear, and what appears to be a mounting boss. The center view shows the cylindrical collar from above with the rectangular boss. The right view shows the profile. The slot appears present, but the geometry is mathematically invalid. FUNDAMENTALLY DIFFERENT APPROACH REQUIRED - Previous iterations failed using concentric circles + translate + box cuts. Try: (A) Use .cylinder() method directly: cq.Workplane('YZ').cylinder(collar_depth, collar_radius, centered=True) to create outer cylinder with Y as axis. (B) Cut the bore using a separate cylinder boolean. (C) For the clamp slot, create it BEFORE other features using a thin extruded rectangle positioned at the -Z side of the collar, cutting through the wall radially. (D) Build boss, ear, and make all cuts as separate sequential operations, checking geometry validity conceptually at each step. (E) Avoid .translate() operations that may corrupt the solid - instead, position features correctly from the start using workplane offsets.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 CRITICAL FAILURE: NEGATIVE VOLUME (-3630.74 mm\u00b3). This indicates completely corrupted geometry - the solid has inverted normals or self-intersecting faces, making it non-manufacturable. This is the THIRD iteration with invalid geometry. ESCALATED ANALYSIS: 1) NEGATIVE VOLUME is catastrophic - the boolean operations are creating inside-out geometry. 2) CENTER OF MASS at Z=20.28 while bounding box spans Z=-16.75 to Z=21.75 suggests the 'solid' mass is concentrated in the boss region, with the collar body being hollow/inverted. 3) BOUNDING BOX: Ylen=38.2mm when collar_depth=17mm indicates geometry is still severely wrong - Y should span approximately collar_depth plus boss_length (~17+boss_length). 4) FROM RENDERS: The isometric (LEFT) shows a split collar with slot, ear, and what appears to be a mounting boss. The center view shows the cylindrical collar from above with the rectangular boss. The right view shows the profile. The slot appears present, but the geometry is mathematically invalid. FUNDAMENTALLY DIFFERENT APPROACH REQUIRED - Previous iterations failed using concentric circles + translate + box cuts. Try: (A) Use .cylinder() method directly: cq.Workplane('YZ').cylinder(collar_depth, collar_radius, centered=True) to create outer cylinder with Y as axis. (B) Cut the bore using a separate cylinder boolean. (C) For the clamp slot, create it BEFORE other features using a thin extruded rectangle positioned at the -Z side of the collar, cutting through the wall radially. (D) Build boss, ear, and make all cuts as separate sequential operations, checking geometry validity conceptually at each step. (E) Avoid .translate() operations that may corrupt the solid - instead, position features correctly from the start using workplane offsets.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nTAP COLLAR \u2014 independent split collar that vibrates and hammer-taps the auger\ntube to stop powder bridging. It must spin-float on the tube, never clamp it.\n\nCollar body: outer diameter 33.5, bore diameter 25.5 (free running fit over\nthe 25 mm auger OD), collar depth 17.0 along the bore axis (Y). Axis\nhorizontal along Y. A 2.0 mm clamp slot through one side (sets a running fit\nonly). On the -X face, a shallow coin-vibration-motor pad: a flat recess\ndiameter 10.0 x 1.0 mm deep. On the +Z face, a solenoid boss with a 7.5 mm\nplunger clearance bore through to the collar bore region, flanked by two M3\nclearance holes (3.4 mm) diagonally opposite on an 18.2 mm (across) x 16.0 mm\n(along) pattern. On the +X side, a hardstop ear (a small rectangular tab ~10\nwide x 8 tall x 6 thick projecting radially) that engages the mount-plate\nstop so the collar cannot rotate with the auger.\n",
+      "refiner_output": "import cadquery as cq\n\n# Tap Collar Parameters\ncollar_od = 33.5  # outer diameter\ncollar_bore = 25.5  # bore diameter (running fit over 25mm auger)\ncollar_depth = 17.0  # depth along bore axis (Y)\n\ncollar_radius = collar_od / 2\nbore_radius = collar_bore / 2\n\n# Clamp slot\nclamp_slot_width = 2.0\n\n# Vibration motor pad (on -X face)\nvib_pad_dia = 10.0\nvib_pad_depth = 1.0\n\n# Solenoid features (on +Z face)\nplunger_bore_dia = 7.5\nm3_clearance = 3.4\nsolenoid_pattern_across = 18.2  # X direction\nsolenoid_pattern_along = 16.0  # Y direction\n\n# Hardstop ear (on +X side)\near_width = 10.0  # along Y\near_height = 8.0  # along Z\near_thickness = 6.0  # radial projection in X\n\n# Boss dimensions\nboss_height = 5.0\nboss_width = solenoid_pattern_across + m3_clearance + 6\nboss_length = solenoid_pattern_along + m3_clearance + 6\n\n# Step 1: Create main collar body as a solid cylinder along Y axis\n# Use YZ workplane so extrusion goes along Y\nouter_cylinder = (\n    cq.Workplane(\"YZ\")\n    .circle(collar_radius)\n    .extrude(collar_depth)\n    .translate((0, -collar_depth / 2, 0))\n)\n\n# Step 2: Create bore cylinder to cut\nbore_cylinder = (\n    cq.Workplane(\"YZ\")\n    .circle(bore_radius)\n    .extrude(collar_depth + 2)\n    .translate((0, -collar_depth / 2 - 1, 0))\n)\n\n# Cut the bore to create the tube\nmain_collar = outer_cylinder.cut(bore_cylinder)\n\n# Step 3: Create clamp slot - cut through the bottom (-Z side) of the collar wall\n# A thin radial slot from outside to bore at the bottom\nwall_thickness = collar_radius - bore_radius\nslot_cutter = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=-collar_radius - 1)\n    .box(clamp_slot_width, collar_depth + 2, wall_thickness + 2, centered=(True, True, False))\n)\n\nmain_collar = main_collar.cut(slot_cutter)\n\n# Step 4: Create solenoid boss on +Z face\n# Position the boss on top of the collar\nsolenoid_boss = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=collar_radius)\n    .box(boss_width, boss_length, boss_height, centered=(True, True, False))\n)\n\nmain_collar = main_collar.union(solenoid_boss)\n\n# Step 5: Create hardstop ear on +X side\n# Small rectangular tab projecting radially from +X side\nhardstop_ear = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=-ear_height / 2)\n    .center(collar_radius, 0)\n    .box(ear_thickness, ear_width, ear_height, centered=(False, True, False))\n)\n\nmain_collar = main_collar.union(hardstop_ear)\n\n# Step 6: Cut vibration motor pad recess on -X face\n# A flat circular recess oriented inward from -X face\nvib_pad_cutter = (\n    cq.Workplane(\"YZ\")\n    .workplane(offset=-collar_radius - 0.01)\n    .circle(vib_pad_dia / 2)\n    .extrude(vib_pad_depth + 0.01)\n)\n\nmain_collar = main_collar.cut(vib_pad_cutter)\n\n# Step 7: Cut solenoid plunger bore through boss and into collar bore region\n# Calculate depth: through boss + through collar wall to reach bore\nplunger_cut_depth = boss_height + (collar_radius - bore_radius) + 1\n\nplunger_hole = (\n    cq.Workplane(\"XY\")\n    .workplane(offset=collar_radius + boss_height + 0.01)\n    .circle(plunger_bore_dia / 2)\n    .extrude(-plunger_cut_depth - 0.01)\n)\n\nmain_collar = main_collar.cut(plunger_hole)\n\n# Step 8: Cut two M3 clearance holes diagonally opposite\n# Pattern: 18.2mm across (X) x 16.0mm along (Y)\nhole_positions = [\n    (solenoid_pattern_across / 2, solenoid_pattern_along / 2),\n    (-solenoid_pattern_across / 2, -solenoid_pattern_along / 2)\n]\n\nm3_hole_depth = boss_height + collar_radius + 1  # through everything\n\nfor pos in hole_positions:\n    m3_hole = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=collar_radius + boss_height + 0.01)\n        .center(pos[0], pos[1])\n        .circle(m3_clearance / 2)\n        .extrude(-m3_hole_depth - 0.01)\n    )\n    main_collar = main_collar.cut(m3_hole)\n\n# Final result\nresult = main_collar"
+    },
+    {
+      "iteration": 3,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 1941.544532775879
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 9841.494272442334,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 9841.5 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 36.55,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 36.55 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 37.9500001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 37.95 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 38.5000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 38.50 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 26,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 26"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 72,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 72"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 48,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 48"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (6.36, -4.56, 6.23)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The geometry is now valid (is_valid=true) with positive volume (9841.49 mm\u00b3). VERIFICATION OF FEATURES: 1) COLLAR BODY: Bounding box Ylen=37.95mm accounts for collar_depth=17mm plus boss_length (~22mm for the pattern spacing plus margins) - acceptable. The cylindrical collar with bore is clearly visible in all three rendered views. 2) CLAMP SLOT: Visible in the isometric view (LEFT) as a thin split on the collar - the 2mm slot is present allowing the running fit. 3) VIBRATION MOTOR PAD: The shallow circular recess on the -X face is implemented (vib_pad_dia=10mm, depth=1mm). 4) SOLENOID BOSS: Clearly visible on +Z face in all views - rectangular boss with the 7.5mm plunger bore through to collar bore region is evident in the center view. 5) M3 CLEARANCE HOLES: Two 3.4mm holes are visible in the center view, positioned diagonally on the 18.2mm x 16.0mm pattern. 6) HARDSTOP EAR: The rectangular tab projecting from +X side is clearly visible in the isometric and front profile views (~10mm wide x 8mm tall x 6mm thick). 7) BORE: The 25.5mm bore through the collar is visible in the right profile view showing the hollow cylindrical structure. All FDM-printable constraints (min 2mm walls) are satisfied - the wall thickness is (33.5-25.5)/2 = 4mm. The part is manifold and ready for manufacturing."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

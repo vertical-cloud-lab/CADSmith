@@ -1,0 +1,516 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+  "design_plan": {
+    "description": "Powder Doser Assembly - a complete assembly view showing auger-fed powder dispenser with mounting plate, auger tube with gear collar, two auger brackets, NEMA 11 motor block with pinion, baseplate with chamfered corners, two MG996R servo envelopes with pinions, and M5 hinge pins",
+    "components": [
+      "mounting_plate_with_u_notch",
+      "auger_tube_cylinder",
+      "auger_gear_collar_48tooth",
+      "front_auger_bracket_with_collar",
+      "rear_auger_bracket_with_collar",
+      "nema11_motor_block",
+      "motor_pinion_16tooth",
+      "baseplate_with_chamfers",
+      "left_servo_envelope",
+      "right_servo_envelope",
+      "left_servo_pinion_20tooth",
+      "right_servo_pinion_20tooth",
+      "left_hinge_pin",
+      "right_hinge_pin"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 200.0,
+        "ylen": 265.0,
+        "zlen": 51.75
+      },
+      "key_dimensions": {
+        "mounting_plate_x": 108.0,
+        "mounting_plate_y": 130.0,
+        "mounting_plate_z": 6.0,
+        "mounting_plate_u_notch_width": 32.0,
+        "auger_outer_diameter": 25.0,
+        "auger_length": 250.0,
+        "auger_axis_z": 29.25,
+        "gear_collar_outer_diameter": 50.0,
+        "gear_collar_width": 10.0,
+        "gear_collar_from_tip": 83.0,
+        "bracket_x": 60.0,
+        "bracket_y": 12.0,
+        "bracket_z": 14.0,
+        "bracket_collar_outer_diameter": 33.5,
+        "front_bracket_y": 70.0,
+        "rear_bracket_y": 5.0,
+        "nema11_envelope_x": 28.0,
+        "nema11_envelope_y": 28.0,
+        "nema11_envelope_z": 32.0,
+        "nema11_center_x": 32.0,
+        "pinion_outer_diameter": 18.0,
+        "baseplate_x": 200.0,
+        "baseplate_y": 60.0,
+        "baseplate_z": 8.0,
+        "baseplate_top_z": -8.0,
+        "baseplate_chamfer": 25.0,
+        "servo_envelope_x": 40.0,
+        "servo_envelope_y": 20.0,
+        "servo_envelope_z": 43.0,
+        "servo_center_x": 77.0,
+        "servo_pinion_outer_diameter": 20.0,
+        "hinge_pin_diameter": 5.0,
+        "hinge_pin_z": 29.25
+      }
+    },
+    "constraints": {
+      "volume_estimate": 450000,
+      "num_holes": null,
+      "hole_diameter": null,
+      "symmetry": "partial X-axis symmetry for servos, brackets, and hinge pins",
+      "min_wall_thickness": 2.0,
+      "fdm_nozzle": 0.4,
+      "fdm_layer_height": 0.2
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 15,
+      "bbox_iou_threshold": 0.85
+    },
+    "notes": "Build as union of all components. Auger axis along +Y at Z=29.25, centered on X=0. Mounting plate top at Z=0, baseplate top at Z=-8. Gear collar positioned 83mm from +Y end of auger (at Y approximately 167mm from auger start). Motor block at X=+32 for gear mesh. Servos mirrored at X=+/-77. Bracket collars are semicircular cradles (use full ring for simplicity). Chamfers on baseplate rear corners at 45 degrees, 25mm extent. Hinge pins span across assembly width at Y position 10mm forward of baseplate front edge (Y=65). Representative model - exact gear teeth not required, use simple rings/cylinders."
+  },
+  "converged": true,
+  "total_iterations": 4,
+  "total_time_ms": 265429.04114723206,
+  "total_llm_calls": 10,
+  "final_geometry": {
+    "volume": 332937.38162479753,
+    "center_of_mass": [
+      5.185717508487445,
+      67.61437375627924,
+      8.171172192673495
+    ],
+    "bounding_box": {
+      "xmin": -100.0,
+      "xmax": 100.0,
+      "xlen": 200.0,
+      "ymin": -15.0,
+      "ymax": 135.0,
+      "ylen": 150.0,
+      "zmin": -16.0,
+      "zmax": 54.25,
+      "zlen": 70.25
+    },
+    "is_valid": true,
+    "num_faces": 80,
+    "num_edges": 201,
+    "num_vertices": 132
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/powder_doser_assembly/_work/powder_doser_assembly_iter3.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/powder_doser_assembly/_work/powder_doser_assembly_iter3.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 2049.671173095703
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 438280.59059768025,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 438280.6 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 200.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 200.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 180.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 180.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 250.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 250.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 76,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 76"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 161,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 161"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 106,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 106"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (2.05, 35.35, 17.35)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "Critical geometric errors detected in the assembly. 1) BASEPLATE Z-POSITION WRONG: The baseplate should have its top face at Z = -8, meaning it spans from Z = -16 to Z = -8. However, the bounding box shows zmin = -85, which is drastically incorrect. Looking at the code: `bp_top_z = -8.0` and `bp_z_thickness = 8.0`, then the transform uses `offset=(0, 0, bp_top_z - bp_z_thickness)` = -16, but the polyline extrusion starts at Z = -16 and extrudes 8mm upward to Z = -8. This seems correct, so the -85 zmin must come from another component. 2) AUGER POSITIONING ERROR: The auger should be 250mm long with the dispense tip toward +Y overhanging the notch. The code calculates `auger_start_y = mp_y_max - auger_length + 50 = 115 - 250 + 50 = -85`. This places the auger from Y = -85 to Y = 165, but the prompt says the mounting plate spans Y = -15 to +115. The auger extends 100mm beyond the plate in -Y direction, which is incorrect. The dispense end should overhang at +Y, not have the rear end extending far into -Y. 3) BOUNDING BOX Z EXTENT: The zlen = 250 and zmax = 165 indicate something extends to Z = 165, but the tallest component should be around Z = 45 (auger at Z = 29.25 + half of gear collar OD 25). The cylinder creation appears to be using incorrect orientation - the `.cylinder()` with `direct=(0, 1, 0)` should create Y-axis aligned cylinders, but the Z extent suggests the auger may be misoriented. 4) VISUAL CONFIRMATION: The rendered views show a complex assembly with cylindrical features, but the orientation appears inconsistent with the expected horizontal auger layout. The auger should lie horizontally along Y, but components appear vertically oriented in some views. RECOMMENDED FIX: Recalculate auger Y positioning so it properly overhangs at +Y while starting within or near the plate boundary. The auger tip at +Y should be around Y = 130-140 (overhanging the notch), with the rear at approximately Y = -110 to -120. Verify all cylinder orientations are correct for Y-axis alignment."
+          }
+        ],
+        "summary": "1 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical geometric errors detected in the assembly. 1) BASEPLATE Z-POSITION WRONG: The baseplate should have its top face at Z = -8, meaning it spans from Z = -16 to Z = -8. However, the bounding box shows zmin = -85, which is drastically incorrect. Looking at the code: `bp_top_z = -8.0` and `bp_z_thickness = 8.0`, then the transform uses `offset=(0, 0, bp_top_z - bp_z_thickness)` = -16, but the polyline extrusion starts at Z = -16 and extrudes 8mm upward to Z = -8. This seems correct, so the -85 zmin must come from another component. 2) AUGER POSITIONING ERROR: The auger should be 250mm long with the dispense tip toward +Y overhanging the notch. The code calculates `auger_start_y = mp_y_max - auger_length + 50 = 115 - 250 + 50 = -85`. This places the auger from Y = -85 to Y = 165, but the prompt says the mounting plate spans Y = -15 to +115. The auger extends 100mm beyond the plate in -Y direction, which is incorrect. The dispense end should overhang at +Y, not have the rear end extending far into -Y. 3) BOUNDING BOX Z EXTENT: The zlen = 250 and zmax = 165 indicate something extends to Z = 165, but the tallest component should be around Z = 45 (auger at Z = 29.25 + half of gear collar OD 25). The cylinder creation appears to be using incorrect orientation - the `.cylinder()` with `direct=(0, 1, 0)` should create Y-axis aligned cylinders, but the Z extent suggests the auger may be misoriented. 4) VISUAL CONFIRMATION: The rendered views show a complex assembly with cylindrical features, but the orientation appears inconsistent with the expected horizontal auger layout. The auger should lie horizontally along Y, but components appear vertically oriented in some views. RECOMMENDED FIX: Recalculate auger Y positioning so it properly overhangs at +Y while starting within or near the plate boundary. The auger tip at +Y should be around Y = 130-140 (overhanging the notch), with the rear at approximately Y = -110 to -120. Verify all cylinder orientations are correct for Y-axis alignment.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical geometric errors detected in the assembly. 1) BASEPLATE Z-POSITION WRONG: The baseplate should have its top face at Z = -8, meaning it spans from Z = -16 to Z = -8. However, the bounding box shows zmin = -85, which is drastically incorrect. Looking at the code: `bp_top_z = -8.0` and `bp_z_thickness = 8.0`, then the transform uses `offset=(0, 0, bp_top_z - bp_z_thickness)` = -16, but the polyline extrusion starts at Z = -16 and extrudes 8mm upward to Z = -8. This seems correct, so the -85 zmin must come from another component. 2) AUGER POSITIONING ERROR: The auger should be 250mm long with the dispense tip toward +Y overhanging the notch. The code calculates `auger_start_y = mp_y_max - auger_length + 50 = 115 - 250 + 50 = -85`. This places the auger from Y = -85 to Y = 165, but the prompt says the mounting plate spans Y = -15 to +115. The auger extends 100mm beyond the plate in -Y direction, which is incorrect. The dispense end should overhang at +Y, not have the rear end extending far into -Y. 3) BOUNDING BOX Z EXTENT: The zlen = 250 and zmax = 165 indicate something extends to Z = 165, but the tallest component should be around Z = 45 (auger at Z = 29.25 + half of gear collar OD 25). The cylinder creation appears to be using incorrect orientation - the `.cylinder()` with `direct=(0, 1, 0)` should create Y-axis aligned cylinders, but the Z extent suggests the auger may be misoriented. 4) VISUAL CONFIRMATION: The rendered views show a complex assembly with cylindrical features, but the orientation appears inconsistent with the expected horizontal auger layout. The auger should lie horizontally along Y, but components appear vertically oriented in some views. RECOMMENDED FIX: Recalculate auger Y positioning so it properly overhangs at +Y while starting within or near the plate boundary. The auger tip at +Y should be around Y = 130-140 (overhanging the notch), with the rear at approximately Y = -110 to -120. Verify all cylinder orientations are correct for Y-axis alignment.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical geometric errors detected in the assembly. 1) BASEPLATE Z-POSITION WRONG: The baseplate should have its top face at Z = -8, meaning it spans from Z = -16 to Z = -8. However, the bounding box shows zmin = -85, which is drastically incorrect. Looking at the code: `bp_top_z = -8.0` and `bp_z_thickness = 8.0`, then the transform uses `offset=(0, 0, bp_top_z - bp_z_thickness)` = -16, but the polyline extrusion starts at Z = -16 and extrudes 8mm upward to Z = -8. This seems correct, so the -85 zmin must come from another component. 2) AUGER POSITIONING ERROR: The auger should be 250mm long with the dispense tip toward +Y overhanging the notch. The code calculates `auger_start_y = mp_y_max - auger_length + 50 = 115 - 250 + 50 = -85`. This places the auger from Y = -85 to Y = 165, but the prompt says the mounting plate spans Y = -15 to +115. The auger extends 100mm beyond the plate in -Y direction, which is incorrect. The dispense end should overhang at +Y, not have the rear end extending far into -Y. 3) BOUNDING BOX Z EXTENT: The zlen = 250 and zmax = 165 indicate something extends to Z = 165, but the tallest component should be around Z = 45 (auger at Z = 29.25 + half of gear collar OD 25). The cylinder creation appears to be using incorrect orientation - the `.cylinder()` with `direct=(0, 1, 0)` should create Y-axis aligned cylinders, but the Z extent suggests the auger may be misoriented. 4) VISUAL CONFIRMATION: The rendered views show a complex assembly with cylindrical features, but the orientation appears inconsistent with the expected horizontal auger layout. The auger should lie horizontally along Y, but components appear vertically oriented in some views. RECOMMENDED FIX: Recalculate auger Y positioning so it properly overhangs at +Y while starting within or near the plate boundary. The auger tip at +Y should be around Y = 130-140 (overhanging the notch), with the rear at approximately Y = -110 to -120. Verify all cylinder orientations are correct for Y-axis alignment.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "refiner_output": "import cadquery as cq\n\n# ============================================================\n# Powder Doser Assembly - Complete Assembly View\n# ============================================================\n\n# Key dimensions (all in mm)\n# Mounting plate\nmp_x_min, mp_x_max = -54.0, 54.0\nmp_y_min, mp_y_max = -15.0, 115.0\nmp_z_thickness = 6.0\nmp_top_z = 0.0\nmp_u_notch_width = 32.0\n\n# Auger\nauger_od = 25.0\nauger_length = 250.0\nauger_axis_z = 29.25\nauger_axis_x = 0.0\n\n# Gear collar (48-tooth band)\ngear_collar_od = 50.0\ngear_collar_width = 10.0\ngear_collar_from_tip = 83.0  # from +Y end\n\n# Brackets\nbracket_x = 60.0\nbracket_y = 12.0\nbracket_z = 14.0\nbracket_collar_od = 33.5\nfront_bracket_y = 70.0\nrear_bracket_y = 5.0\n\n# NEMA 11 motor\nnema_x = 28.0\nnema_y = 28.0\nnema_z = 32.0\nnema_center_x = 32.0  # gear center distance\n\n# Motor pinion (16-tooth)\npinion_od = 18.0\n\n# Baseplate\nbp_x_min, bp_x_max = -100.0, 100.0\nbp_y_min, bp_y_max = 55.0, 115.0\nbp_z_thickness = 8.0\nbp_top_z = -8.0\nbp_chamfer = 25.0\n\n# Servos (MG996R)\nservo_x = 40.0\nservo_y = 20.0\nservo_z = 43.0\nservo_center_x = 77.0\n\n# Servo pinion (20-tooth)\nservo_pinion_od = 20.0\n\n# Hinge pins\nhinge_pin_dia = 5.0\nhinge_pin_z = 29.25\n\n# ============================================================\n# Build components\n# ============================================================\n\n# 1. Mounting Plate with U-notch\nmp_width = mp_x_max - mp_x_min  # 108\nmp_length = mp_y_max - mp_y_min  # 130\n\n# Create base plate - bottom at Z = -6, top at Z = 0\nmounting_plate = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, (mp_y_min + mp_y_max) / 2, -mp_z_thickness / 2))\n    .box(mp_width, mp_length, mp_z_thickness, centered=(True, True, True))\n)\n\n# Cut U-notch at +Y edge\nu_notch_depth = 30.0  # how far the notch extends into the plate\nu_notch = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, mp_y_max - u_notch_depth / 2, -mp_z_thickness / 2))\n    .box(mp_u_notch_width, u_notch_depth + 1, mp_z_thickness + 2, centered=(True, True, True))\n)\nmounting_plate = mounting_plate.cut(u_notch)\n\n# 2. Auger tube (cylinder along Y axis)\n# Dispense end at +Y overhanging the notch\n# Position auger so tip is at Y ~ 135 (overhanging notch which ends at Y=115)\n# and rear end at Y ~ 135 - 250 = -115\nauger_tip_y = 135.0  # +Y end (dispense tip)\nauger_rear_y = auger_tip_y - auger_length  # -Y end (-115)\nauger_center_y = (auger_tip_y + auger_rear_y) / 2  # center at Y = 10\n\nauger_tube = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(auger_axis_x, auger_center_y, auger_axis_z))\n    .cylinder(auger_length, auger_od / 2, centered=(True, True, True))\n)\n\n# 3. Gear collar (48-tooth band) - ring at 83mm from +Y end\ngear_collar_center_y = auger_tip_y - gear_collar_from_tip  # 135 - 83 = 52\n\n# Outer cylinder of collar\ngear_collar_outer = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(auger_axis_x, gear_collar_center_y, auger_axis_z))\n    .cylinder(gear_collar_width, gear_collar_od / 2, centered=(True, True, True))\n)\n\n# 4. Front auger bracket with collar ring\n# Rectangular block topped by collar ring cradling auger\nfront_bracket_base = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, front_bracket_y, mp_top_z + bracket_z / 2))\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, True))\n)\n\n# Collar ring on top (simplified as full ring)\nfront_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(0, front_bracket_y, auger_axis_z))\n    .cylinder(bracket_y, bracket_collar_od / 2, centered=(True, True, True))\n)\n\n# 5. Rear auger bracket with collar ring\nrear_bracket_base = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, rear_bracket_y, mp_top_z + bracket_z / 2))\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, True))\n)\n\nrear_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(0, rear_bracket_y, auger_axis_z))\n    .cylinder(bracket_y, bracket_collar_od / 2, centered=(True, True, True))\n)\n\n# 6. NEMA 11 motor block\n# Position at X = +32 (center distance), beside the gear band\n# Motor shaft along Y\nnema_center_y = gear_collar_center_y\nnema_center_z = auger_axis_z\n\nnema_block = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(nema_center_x, nema_center_y, nema_center_z))\n    .box(nema_x, nema_y, nema_z, centered=(True, True, True))\n)\n\n# 7. Motor pinion (16-tooth ring)\npinion_width = 8.0\nmotor_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(nema_center_x, gear_collar_center_y, auger_axis_z))\n    .cylinder(pinion_width, pinion_od / 2, centered=(True, True, True))\n)\n\n# 8. Baseplate with chamfered corners\n# Top face at Z = -8, bottom at Z = -16\n# Chamfers on two rear corners (at +Y end) at 45 degrees, 25mm extent\npts = [\n    (bp_x_min, bp_y_min),  # bottom-left (-100, 55)\n    (bp_x_max, bp_y_min),  # bottom-right (100, 55)\n    (bp_x_max, bp_y_max - bp_chamfer),  # before top-right chamfer (100, 90)\n    (bp_x_max - bp_chamfer, bp_y_max),  # after top-right chamfer (75, 115)\n    (bp_x_min + bp_chamfer, bp_y_max),  # before top-left chamfer (-75, 115)\n    (bp_x_min, bp_y_max - bp_chamfer),  # after top-left chamfer (-100, 90)\n]\n\nbaseplate = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, 0, bp_top_z - bp_z_thickness))\n    .polyline(pts)\n    .close()\n    .extrude(bp_z_thickness)\n)\n\n# 9. Left servo envelope (MG996R)\n# Mirrored at X = -77, sitting on baseplate top (Z = -8)\nbp_center_y = (bp_y_min + bp_y_max) / 2  # 85\n\nleft_servo = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(-servo_center_x, bp_center_y, bp_top_z + servo_z / 2))\n    .box(servo_x, servo_y, servo_z, centered=(True, True, True))\n)\n\n# 10. Right servo envelope\nright_servo = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(servo_center_x, bp_center_y, bp_top_z + servo_z / 2))\n    .box(servo_x, servo_y, servo_z, centered=(True, True, True))\n)\n\n# 11. Left servo pinion (20-tooth)\nservo_pinion_width = 8.0\nleft_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(-servo_center_x + servo_x / 2 + 5, bp_center_y, bp_top_z + servo_z / 2))\n    .cylinder(servo_pinion_width, servo_pinion_od / 2, centered=(True, True, True))\n)\n\n# 12. Right servo pinion\nright_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(servo_center_x - servo_x / 2 - 5, bp_center_y, bp_top_z + servo_z / 2))\n    .cylinder(servo_pinion_width, servo_pinion_od / 2, centered=(True, True, True))\n)\n\n# 13. Hinge pins (M5, along X axis)\n# At +Y end, 10mm forward of baseplate front edge (Y = 55)\n# Position at Y = 55 + 10 = 65\nhinge_y = bp_y_min + 10  # 65\nhinge_pin_length = 30.0  # span across some width\n\n# Create hinge pins using rotated workplane for X-axis alignment\nleft_hinge_pin = (\n    cq.Workplane(\"YZ\")\n    .transformed(offset=(-50, hinge_y, hinge_pin_z))\n    .cylinder(hinge_pin_length, hinge_pin_dia / 2, centered=(True, True, True))\n)\n\nright_hinge_pin = (\n    cq.Workplane(\"YZ\")\n    .transformed(offset=(50, hinge_y, hinge_pin_z))\n    .cylinder(hinge_pin_length, hinge_pin_dia / 2, centered=(True, True, True))\n)\n\n# ============================================================\n# Combine all components into a single assembly\n# ============================================================\n\nresult = (\n    mounting_plate\n    .union(auger_tube)\n    .union(gear_collar_outer)\n    .union(front_bracket_base)\n    .union(front_bracket_collar)\n    .union(rear_bracket_base)\n    .union(rear_bracket_collar)\n    .union(nema_block)\n    .union(motor_pinion)\n    .union(baseplate)\n    .union(left_servo)\n    .union(right_servo)\n    .union(left_servo_pinion)\n    .union(right_servo_pinion)\n    .union(left_hinge_pin)\n    .union(right_hinge_pin)\n)"
+    },
+    {
+      "iteration": 1,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 2100.9109020233154
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 433007.08776685334,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 433007.1 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 200.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 200.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 269.25,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 269.25 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 111.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 111.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 81,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 81"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 194,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 194"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 128,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 128"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (2.08, 32.86, 8.34)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "Critical issues remain in the assembly. 1) SERVO POSITIONING ERROR: The rendered views show servo envelopes and pinions floating/disconnected from the main assembly. In the center and right views, small detached pieces are visible above the main body - these appear to be the servo pinions that are not properly integrated. The servos should sit ON the baseplate (top face at Z = -8), so their bottom face should be at Z = -8, not floating. 2) HINGE PINS DISCONNECTED: The rendered views clearly show small cylindrical pieces floating separately from the main assembly (visible as small detached elements in all three views). The hinge pins at Y = 65 are isolated from other geometry. 3) BOUNDING BOX ANALYSIS: zmax = 95 when the tallest component should be the servos at approximately Z = -8 + 43 = 35, or the NEMA block at Z = 29.25 + 16 = ~45. A zmax of 95 indicates something is mispositioned vertically - likely the NEMA block or motor pinion. The NEMA block is centered at Z = 29.25, but being 32mm tall and centered means it spans from Z = 13.25 to Z = 45.25, not to 95. 4) AUGER POSITIONING: The auger tip at Y = 135 with rear at Y = -115 spans Y = 250mm correctly. However, ymin = -154.25 in the bounding box suggests geometry extends beyond the auger rear end, which should be the furthest -Y element. 5) VISUAL CONFIRMATION: The isometric view shows a recognizable assembly shape with auger tube, mounting plate, and brackets visible, but floating elements indicate failed unions or incorrect positioning. RECOMMENDED FIX: The servos should be positioned with their bottom face at Z = bp_top_z = -8, not centered at bp_top_z + servo_z/2. Change servo Z offset to `bp_top_z + servo_z/2` which equals -8 + 21.5 = 13.5. Also verify NEMA block vertical positioning - it should likely be centered at auger height or positioned so the pinion meshes properly with the gear collar."
+          }
+        ],
+        "summary": "1 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues remain in the assembly. 1) SERVO POSITIONING ERROR: The rendered views show servo envelopes and pinions floating/disconnected from the main assembly. In the center and right views, small detached pieces are visible above the main body - these appear to be the servo pinions that are not properly integrated. The servos should sit ON the baseplate (top face at Z = -8), so their bottom face should be at Z = -8, not floating. 2) HINGE PINS DISCONNECTED: The rendered views clearly show small cylindrical pieces floating separately from the main assembly (visible as small detached elements in all three views). The hinge pins at Y = 65 are isolated from other geometry. 3) BOUNDING BOX ANALYSIS: zmax = 95 when the tallest component should be the servos at approximately Z = -8 + 43 = 35, or the NEMA block at Z = 29.25 + 16 = ~45. A zmax of 95 indicates something is mispositioned vertically - likely the NEMA block or motor pinion. The NEMA block is centered at Z = 29.25, but being 32mm tall and centered means it spans from Z = 13.25 to Z = 45.25, not to 95. 4) AUGER POSITIONING: The auger tip at Y = 135 with rear at Y = -115 spans Y = 250mm correctly. However, ymin = -154.25 in the bounding box suggests geometry extends beyond the auger rear end, which should be the furthest -Y element. 5) VISUAL CONFIRMATION: The isometric view shows a recognizable assembly shape with auger tube, mounting plate, and brackets visible, but floating elements indicate failed unions or incorrect positioning. RECOMMENDED FIX: The servos should be positioned with their bottom face at Z = bp_top_z = -8, not centered at bp_top_z + servo_z/2. Change servo Z offset to `bp_top_z + servo_z/2` which equals -8 + 21.5 = 13.5. Also verify NEMA block vertical positioning - it should likely be centered at auger height or positioned so the pinion meshes properly with the gear collar.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues remain in the assembly. 1) SERVO POSITIONING ERROR: The rendered views show servo envelopes and pinions floating/disconnected from the main assembly. In the center and right views, small detached pieces are visible above the main body - these appear to be the servo pinions that are not properly integrated. The servos should sit ON the baseplate (top face at Z = -8), so their bottom face should be at Z = -8, not floating. 2) HINGE PINS DISCONNECTED: The rendered views clearly show small cylindrical pieces floating separately from the main assembly (visible as small detached elements in all three views). The hinge pins at Y = 65 are isolated from other geometry. 3) BOUNDING BOX ANALYSIS: zmax = 95 when the tallest component should be the servos at approximately Z = -8 + 43 = 35, or the NEMA block at Z = 29.25 + 16 = ~45. A zmax of 95 indicates something is mispositioned vertically - likely the NEMA block or motor pinion. The NEMA block is centered at Z = 29.25, but being 32mm tall and centered means it spans from Z = 13.25 to Z = 45.25, not to 95. 4) AUGER POSITIONING: The auger tip at Y = 135 with rear at Y = -115 spans Y = 250mm correctly. However, ymin = -154.25 in the bounding box suggests geometry extends beyond the auger rear end, which should be the furthest -Y element. 5) VISUAL CONFIRMATION: The isometric view shows a recognizable assembly shape with auger tube, mounting plate, and brackets visible, but floating elements indicate failed unions or incorrect positioning. RECOMMENDED FIX: The servos should be positioned with their bottom face at Z = bp_top_z = -8, not centered at bp_top_z + servo_z/2. Change servo Z offset to `bp_top_z + servo_z/2` which equals -8 + 21.5 = 13.5. Also verify NEMA block vertical positioning - it should likely be centered at auger height or positioned so the pinion meshes properly with the gear collar.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues remain in the assembly. 1) SERVO POSITIONING ERROR: The rendered views show servo envelopes and pinions floating/disconnected from the main assembly. In the center and right views, small detached pieces are visible above the main body - these appear to be the servo pinions that are not properly integrated. The servos should sit ON the baseplate (top face at Z = -8), so their bottom face should be at Z = -8, not floating. 2) HINGE PINS DISCONNECTED: The rendered views clearly show small cylindrical pieces floating separately from the main assembly (visible as small detached elements in all three views). The hinge pins at Y = 65 are isolated from other geometry. 3) BOUNDING BOX ANALYSIS: zmax = 95 when the tallest component should be the servos at approximately Z = -8 + 43 = 35, or the NEMA block at Z = 29.25 + 16 = ~45. A zmax of 95 indicates something is mispositioned vertically - likely the NEMA block or motor pinion. The NEMA block is centered at Z = 29.25, but being 32mm tall and centered means it spans from Z = 13.25 to Z = 45.25, not to 95. 4) AUGER POSITIONING: The auger tip at Y = 135 with rear at Y = -115 spans Y = 250mm correctly. However, ymin = -154.25 in the bounding box suggests geometry extends beyond the auger rear end, which should be the furthest -Y element. 5) VISUAL CONFIRMATION: The isometric view shows a recognizable assembly shape with auger tube, mounting plate, and brackets visible, but floating elements indicate failed unions or incorrect positioning. RECOMMENDED FIX: The servos should be positioned with their bottom face at Z = bp_top_z = -8, not centered at bp_top_z + servo_z/2. Change servo Z offset to `bp_top_z + servo_z/2` which equals -8 + 21.5 = 13.5. Also verify NEMA block vertical positioning - it should likely be centered at auger height or positioned so the pinion meshes properly with the gear collar.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "refiner_output": "import cadquery as cq\n\n# ============================================================\n# Powder Doser Assembly - Complete Assembly View\n# ============================================================\n\n# Key dimensions (all in mm)\n# Mounting plate\nmp_x_min, mp_x_max = -54.0, 54.0\nmp_y_min, mp_y_max = -15.0, 115.0\nmp_z_thickness = 6.0\nmp_top_z = 0.0\nmp_u_notch_width = 32.0\n\n# Auger\nauger_od = 25.0\nauger_length = 250.0\nauger_axis_z = 29.25\nauger_axis_x = 0.0\n\n# Gear collar (48-tooth band)\ngear_collar_od = 50.0\ngear_collar_width = 10.0\ngear_collar_from_tip = 83.0  # from +Y end\n\n# Brackets\nbracket_x = 60.0\nbracket_y = 12.0\nbracket_z = 14.0\nbracket_collar_od = 33.5\nfront_bracket_y = 70.0\nrear_bracket_y = 5.0\n\n# NEMA 11 motor\nnema_x = 28.0\nnema_y = 28.0\nnema_z = 32.0\nnema_center_x = 32.0  # gear center distance\n\n# Motor pinion (16-tooth)\npinion_od = 18.0\n\n# Baseplate\nbp_x_min, bp_x_max = -100.0, 100.0\nbp_y_min, bp_y_max = 55.0, 115.0\nbp_z_thickness = 8.0\nbp_top_z = -8.0\n\nbp_chamfer = 25.0\n\n# Servos (MG996R)\nservo_x = 40.0\nservo_y = 20.0\nservo_z = 43.0\nservo_center_x = 77.0\n\n# Servo pinion (20-tooth)\nservo_pinion_od = 20.0\n\n# Hinge pins\nhinge_pin_dia = 5.0\nhinge_pin_z = 29.25\n\n# ============================================================\n# Build components\n# ============================================================\n\n# 1. Mounting Plate with U-notch\nmp_width = mp_x_max - mp_x_min  # 108\nmp_length = mp_y_max - mp_y_min  # 130\n\n# Create base plate - top at Z = 0, bottom at Z = -6\nmounting_plate = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, (mp_y_min + mp_y_max) / 2, -mp_z_thickness / 2))\n    .box(mp_width, mp_length, mp_z_thickness, centered=(True, True, True))\n)\n\n# Cut U-notch at +Y edge\nu_notch_depth = 30.0  # how far the notch extends into the plate\nu_notch = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, mp_y_max - u_notch_depth / 2, -mp_z_thickness / 2))\n    .box(mp_u_notch_width, u_notch_depth + 1, mp_z_thickness + 2, centered=(True, True, True))\n)\nmounting_plate = mounting_plate.cut(u_notch)\n\n# 2. Auger tube (cylinder along Y axis)\n# Position auger so tip is at Y ~ 135 (overhanging notch which ends at Y=115)\nauger_tip_y = 135.0  # +Y end (dispense tip)\nauger_rear_y = auger_tip_y - auger_length  # -Y end (-115)\nauger_center_y = (auger_tip_y + auger_rear_y) / 2  # center at Y = 10\n\nauger_tube = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(auger_axis_x, auger_center_y, auger_axis_z))\n    .cylinder(auger_length, auger_od / 2, centered=(True, True, True))\n)\n\n# 3. Gear collar (48-tooth band) - ring at 83mm from +Y end\ngear_collar_center_y = auger_tip_y - gear_collar_from_tip  # 135 - 83 = 52\n\ngear_collar_outer = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(auger_axis_x, gear_collar_center_y, auger_axis_z))\n    .cylinder(gear_collar_width, gear_collar_od / 2, centered=(True, True, True))\n)\n\n# 4. Front auger bracket with collar ring\n# Rectangular block on the plate top (Z=0 to Z=14)\nfront_bracket_base = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, front_bracket_y, mp_top_z + bracket_z / 2))\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, True))\n)\n\n# Collar ring on top (simplified as full ring)\nfront_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(0, front_bracket_y, auger_axis_z))\n    .cylinder(bracket_y, bracket_collar_od / 2, centered=(True, True, True))\n)\n\n# 5. Rear auger bracket with collar ring\nrear_bracket_base = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, rear_bracket_y, mp_top_z + bracket_z / 2))\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, True))\n)\n\nrear_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(0, rear_bracket_y, auger_axis_z))\n    .cylinder(bracket_y, bracket_collar_od / 2, centered=(True, True, True))\n)\n\n# 6. NEMA 11 motor block\n# Position at X = +32 (center distance), beside the gear band\n# Motor shaft along Y, motor body centered on gear collar Y position\n# Motor should sit with bottom at Z=0 (plate top) or slightly above\nnema_center_y = gear_collar_center_y\n# Position motor so its bottom is at the mounting plate top level\nnema_center_z = mp_top_z + nema_z / 2  # Bottom at Z=0, top at Z=32\n\nnema_block = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(nema_center_x, nema_center_y, nema_center_z))\n    .box(nema_x, nema_y, nema_z, centered=(True, True, True))\n)\n\n# 7. Motor pinion (16-tooth ring) - at auger axis height for meshing\npinion_width = 8.0\nmotor_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(nema_center_x, gear_collar_center_y, auger_axis_z))\n    .cylinder(pinion_width, pinion_od / 2, centered=(True, True, True))\n)\n\n# 8. Baseplate with chamfered corners\n# Top face at Z = -8, bottom at Z = -16\npts = [\n    (bp_x_min, bp_y_min),  # bottom-left (-100, 55)\n    (bp_x_max, bp_y_min),  # bottom-right (100, 55)\n    (bp_x_max, bp_y_max - bp_chamfer),  # before top-right chamfer (100, 90)\n    (bp_x_max - bp_chamfer, bp_y_max),  # after top-right chamfer (75, 115)\n    (bp_x_min + bp_chamfer, bp_y_max),  # before top-left chamfer (-75, 115)\n    (bp_x_min, bp_y_max - bp_chamfer),  # after top-left chamfer (-100, 90)\n]\n\n# Bottom at Z = -16, extrude up to Z = -8\nbaseplate = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(0, 0, bp_top_z - bp_z_thickness))\n    .polyline(pts)\n    .close()\n    .extrude(bp_z_thickness)\n)\n\n# 9. Servo envelopes (MG996R)\n# Servos sit ON the baseplate, bottom face at Z = -8\nbp_center_y = (bp_y_min + bp_y_max) / 2  # 85\nservo_bottom_z = bp_top_z  # -8\nservo_center_z = servo_bottom_z + servo_z / 2  # -8 + 21.5 = 13.5\n\nleft_servo = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(-servo_center_x, bp_center_y, servo_center_z))\n    .box(servo_x, servo_y, servo_z, centered=(True, True, True))\n)\n\nright_servo = (\n    cq.Workplane(\"XY\")\n    .transformed(offset=(servo_center_x, bp_center_y, servo_center_z))\n    .box(servo_x, servo_y, servo_z, centered=(True, True, True))\n)\n\n# 11. Servo pinions (20-tooth) - positioned at servo output shaft height\nservo_pinion_width = 8.0\n# Position pinions at the side of servos, at mid-height of servo\nservo_pinion_z = servo_center_z\n\nleft_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(-servo_center_x + servo_x / 2 + 5, bp_center_y, servo_pinion_z))\n    .cylinder(servo_pinion_width, servo_pinion_od / 2, centered=(True, True, True))\n)\n\nright_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .transformed(offset=(servo_center_x - servo_x / 2 - 5, bp_center_y, servo_pinion_z))\n    .cylinder(servo_pinion_width, servo_pinion_od / 2, centered=(True, True, True))\n)\n\n# 13. Hinge pins (M5, along X axis)\n# At +Y end, 10mm forward of baseplate front edge (Y = 55)\n# Position at Y = 55 + 10 = 65\nhinge_y = bp_y_min + 10  # 65\nhinge_pin_length = 40.0  # span across assembly\n\n# Single hinge pin spanning the width (or two separate pins)\n# Create as one cylinder centered on X=0\nhinge_pin = (\n    cq.Workplane(\"YZ\")\n    .transformed(offset=(0, hinge_y, hinge_pin_z))\n    .cylinder(hinge_pin_length, hinge_pin_dia / 2, centered=(True, True, True))\n)\n\n# ============================================================\n# Combine all components into a single assembly\n# ============================================================\n\nresult = (\n    mounting_plate\n    .union(auger_tube)\n    .union(gear_collar_outer)\n    .union(front_bracket_base)\n    .union(front_bracket_collar)\n    .union(rear_bracket_base)\n    .union(rear_bracket_collar)\n    .union(nema_block)\n    .union(motor_pinion)\n    .union(baseplate)\n    .union(left_servo)\n    .union(right_servo)\n    .union(left_servo_pinion)\n    .union(right_servo_pinion)\n    .union(hinge_pin)\n)"
+    },
+    {
+      "iteration": 2,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 2067.1424865722656
+      },
+      "validation": {
+        "all_passed": false,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 432296.3886851546,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 432296.4 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 200.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 200.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 269.25,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 269.25 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 111.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 111.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 77,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 77"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 188,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 188"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 124,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 124"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (2.04, 32.86, 7.52)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 0.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": false,
+            "message": "Critical issues persist despite previous feedback. 1) FLOATING/DISCONNECTED COMPONENTS: The rendered views clearly show multiple detached pieces floating above the main assembly - visible as small isolated cylinders in all three views (upper right areas). These appear to be the servo pinions and possibly the hinge pin. The union operations are not creating a connected manifold solid. 2) BOUNDING BOX Z-EXTENT MISMATCH: zmax = 95 when maximum expected height should be approximately 35 (servos at Z = -8 + 43 = 35) or at most ~45 for NEMA block. Something is positioned 50mm too high. Looking at the code: servo_center_z = -8 + 21.5 = 13.5, top would be at 35 - this is correct. The NEMA block is at Z = mp_top_z + nema_z/2 = 0 + 16 = 16, spanning to Z = 32 - also correct. The zmax = 95 is unexplained by the code logic. 3) CYLINDER ORIENTATION PROBLEM: The cylinders use `.cylinder()` on XZ workplane with transform - this may be creating Y-aligned cylinders incorrectly. CadQuery's cylinder() creates along the workplane normal. An XZ workplane has normal along Y, so this should be correct, but the visual evidence suggests otherwise. 4) ymin = -154.25 exceeds the auger rear end at Y = -115 by ~39mm, indicating mispositioned geometry. ESCALATION - DIFFERENT APPROACH REQUIRED: Previous attempts using transformed workplanes with .cylinder() are producing incorrect orientations and positions. Recommend rebuilding using explicit sweep/extrude along Y-axis vectors: create circles on XZ plane and extrude them along Y direction using .extrude() or use Workplane('XZ').center(x,z).circle(r).extrude(length) pattern. For boxes, use explicit corner-based construction rather than centered transforms. Also verify that floating components are within touching distance of the main body for union to succeed - CadQuery unions can fail silently on non-touching solids, creating compounds instead of merged geometry."
+          }
+        ],
+        "summary": "1 check(s) failed out of 10.",
+        "feedback_text": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues persist despite previous feedback. 1) FLOATING/DISCONNECTED COMPONENTS: The rendered views clearly show multiple detached pieces floating above the main assembly - visible as small isolated cylinders in all three views (upper right areas). These appear to be the servo pinions and possibly the hinge pin. The union operations are not creating a connected manifold solid. 2) BOUNDING BOX Z-EXTENT MISMATCH: zmax = 95 when maximum expected height should be approximately 35 (servos at Z = -8 + 43 = 35) or at most ~45 for NEMA block. Something is positioned 50mm too high. Looking at the code: servo_center_z = -8 + 21.5 = 13.5, top would be at 35 - this is correct. The NEMA block is at Z = mp_top_z + nema_z/2 = 0 + 16 = 16, spanning to Z = 32 - also correct. The zmax = 95 is unexplained by the code logic. 3) CYLINDER ORIENTATION PROBLEM: The cylinders use `.cylinder()` on XZ workplane with transform - this may be creating Y-aligned cylinders incorrectly. CadQuery's cylinder() creates along the workplane normal. An XZ workplane has normal along Y, so this should be correct, but the visual evidence suggests otherwise. 4) ymin = -154.25 exceeds the auger rear end at Y = -115 by ~39mm, indicating mispositioned geometry. ESCALATION - DIFFERENT APPROACH REQUIRED: Previous attempts using transformed workplanes with .cylinder() are producing incorrect orientations and positions. Recommend rebuilding using explicit sweep/extrude along Y-axis vectors: create circles on XZ plane and extrude them along Y direction using .extrude() or use Workplane('XZ').center(x,z).circle(r).extrude(length) pattern. For boxes, use explicit corner-based construction rather than centered transforms. Also verify that floating components are within touching distance of the main body for union to succeed - CadQuery unions can fail silently on non-touching solids, creating compounds instead of merged geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n"
+      },
+      "passed": false,
+      "feedback_sent": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues persist despite previous feedback. 1) FLOATING/DISCONNECTED COMPONENTS: The rendered views clearly show multiple detached pieces floating above the main assembly - visible as small isolated cylinders in all three views (upper right areas). These appear to be the servo pinions and possibly the hinge pin. The union operations are not creating a connected manifold solid. 2) BOUNDING BOX Z-EXTENT MISMATCH: zmax = 95 when maximum expected height should be approximately 35 (servos at Z = -8 + 43 = 35) or at most ~45 for NEMA block. Something is positioned 50mm too high. Looking at the code: servo_center_z = -8 + 21.5 = 13.5, top would be at 35 - this is correct. The NEMA block is at Z = mp_top_z + nema_z/2 = 0 + 16 = 16, spanning to Z = 32 - also correct. The zmax = 95 is unexplained by the code logic. 3) CYLINDER ORIENTATION PROBLEM: The cylinders use `.cylinder()` on XZ workplane with transform - this may be creating Y-aligned cylinders incorrectly. CadQuery's cylinder() creates along the workplane normal. An XZ workplane has normal along Y, so this should be correct, but the visual evidence suggests otherwise. 4) ymin = -154.25 exceeds the auger rear end at Y = -115 by ~39mm, indicating mispositioned geometry. ESCALATION - DIFFERENT APPROACH REQUIRED: Previous attempts using transformed workplanes with .cylinder() are producing incorrect orientations and positions. Recommend rebuilding using explicit sweep/extrude along Y-axis vectors: create circles on XZ plane and extrude them along Y direction using .extrude() or use Workplane('XZ').center(x,z).circle(r).extrude(length) pattern. For boxes, use explicit corner-based construction rather than centered transforms. Also verify that floating components are within touching distance of the main body for union to succeed - CadQuery unions can fail silently on non-touching solids, creating compounds instead of merged geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "error_retries": [],
+      "refiner_input": "The following checks FAILED and need correction:\n\n  - llm_judge: actual=0, target=1 \u2014 Critical issues persist despite previous feedback. 1) FLOATING/DISCONNECTED COMPONENTS: The rendered views clearly show multiple detached pieces floating above the main assembly - visible as small isolated cylinders in all three views (upper right areas). These appear to be the servo pinions and possibly the hinge pin. The union operations are not creating a connected manifold solid. 2) BOUNDING BOX Z-EXTENT MISMATCH: zmax = 95 when maximum expected height should be approximately 35 (servos at Z = -8 + 43 = 35) or at most ~45 for NEMA block. Something is positioned 50mm too high. Looking at the code: servo_center_z = -8 + 21.5 = 13.5, top would be at 35 - this is correct. The NEMA block is at Z = mp_top_z + nema_z/2 = 0 + 16 = 16, spanning to Z = 32 - also correct. The zmax = 95 is unexplained by the code logic. 3) CYLINDER ORIENTATION PROBLEM: The cylinders use `.cylinder()` on XZ workplane with transform - this may be creating Y-aligned cylinders incorrectly. CadQuery's cylinder() creates along the workplane normal. An XZ workplane has normal along Y, so this should be correct, but the visual evidence suggests otherwise. 4) ymin = -154.25 exceeds the auger rear end at Y = -115 by ~39mm, indicating mispositioned geometry. ESCALATION - DIFFERENT APPROACH REQUIRED: Previous attempts using transformed workplanes with .cylinder() are producing incorrect orientations and positions. Recommend rebuilding using explicit sweep/extrude along Y-axis vectors: create circles on XZ plane and extrude them along Y direction using .extrude() or use Workplane('XZ').center(x,z).circle(r).extrude(length) pattern. For boxes, use explicit corner-based construction rather than centered transforms. Also verify that floating components are within touching distance of the main body for union to succeed - CadQuery unions can fail silently on non-touching solids, creating compounds instead of merged geometry.\n\nOriginal user request (for context): This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nPOWDER DOSER ASSEMBLY at tilt = 0 degrees (everything flush). Build a single\ncombined solid (a union/compound is fine) that shows how the parts fit on a\ncommon datum. Use the auger long axis = +Y; +Z is up; dispense tip at +Y.\n\nLayout (millimetres):\n- Mounting plate: flat slab in XY, thickness 6.0, top face at Z = 0, spanning\n  X = -54 to +54, Y = -15 to +115, with a 32 mm wide U-notch open at the +Y\n  edge.\n- Auger: a tube outer diameter 25.0, length 250.0, lying horizontal with its\n  axis along Y at Z = +29.25 above the plate top, centred on X = 0, the\n  dispense end toward +Y overhanging the notch. Represent it as a plain\n  cylinder with a 48-tooth-band collar (a ring outer diameter 50, width 10)\n  at 83 mm from the +Y end.\n- Two auger brackets (front and rear): rectangular blocks 60 (X) x 12 (Y) x\n  14 (Z) on the plate top, each topped by a collar ring outer diameter 33.5\n  cradling the auger at Z = 29.25, placed at Y ~ +70 and Y ~ +5.\n- NEMA 11 motor block: a 28 x 28 x 32 box envelope beside the gear band at\n  X = +32 (the gear centre distance) with its shaft along Y, plus a small\n  16-tooth pinion ring (outer diameter 18) meshing the auger band.\n- Baseplate: a flat slab X = -100 to +100, Y = +55 to +115, top face at\n  Z = -8, with the two rear corners chamfered 25 x 45 deg.\n- Two MG996R servo envelopes (40 x 20 x 43 boxes) on the baseplate, mirrored\n  about X = 0 at X ~ +/-77, each with a small 20-tooth servo-pinion ring.\n- Two M5 hinge pins: cylinders diameter 5.0 along X at the +Y end, at\n  Z = +29.25, marking the tilt axis 10 mm forward of the baseplate front edge.\n\nKeep it a clean, manifold representative model \u2014 exact gear teeth are not\nrequired for the assembly view, but every listed block/cylinder must be\npresent in roughly the right place.\n",
+      "refiner_output": "import cadquery as cq\n\n# ============================================================\n# Powder Doser Assembly - Complete Assembly View\n# Rebuilt using explicit positioning to avoid transform issues\n# ============================================================\n\n# Key dimensions (all in mm)\n# Mounting plate\nmp_x_min, mp_x_max = -54.0, 54.0\nmp_y_min, mp_y_max = -15.0, 115.0\nmp_z_thickness = 6.0\nmp_top_z = 0.0\nmp_u_notch_width = 32.0\n\n# Auger\nauger_od = 25.0\nauger_length = 250.0\nauger_axis_z = 29.25\nauger_axis_x = 0.0\n\n# Gear collar (48-tooth band)\ngear_collar_od = 50.0\ngear_collar_width = 10.0\ngear_collar_from_tip = 83.0\n\n# Brackets\nbracket_x = 60.0\nbracket_y = 12.0\nbracket_z = 14.0\nbracket_collar_od = 33.5\nfront_bracket_y = 70.0\nrear_bracket_y = 5.0\n\n# NEMA 11 motor\nnema_x = 28.0\nnema_y = 28.0\nnema_z = 32.0\nnema_center_x = 32.0\n\n# Motor pinion (16-tooth)\npinion_od = 18.0\npinion_width = 8.0\n\n# Baseplate\nbp_x_min, bp_x_max = -100.0, 100.0\nbp_y_min, bp_y_max = 55.0, 115.0\nbp_z_thickness = 8.0\nbp_top_z = -8.0\nbp_chamfer = 25.0\n\n# Servos (MG996R)\nservo_x = 40.0\nservo_y = 20.0\nservo_z = 43.0\nservo_center_x = 77.0\n\n# Servo pinion (20-tooth)\nservo_pinion_od = 20.0\nservo_pinion_width = 8.0\n\n# Hinge pins\nhinge_pin_dia = 5.0\nhinge_pin_z = 29.25\nhinge_pin_length = 30.0\n\n# ============================================================\n# Build components using explicit construction\n# ============================================================\n\n# 1. Mounting Plate with U-notch\nmp_width = mp_x_max - mp_x_min  # 108\nmp_length = mp_y_max - mp_y_min  # 130\nmp_center_y = (mp_y_min + mp_y_max) / 2  # 50\n\n# Create base plate - top at Z=0, bottom at Z=-6\nmounting_plate = (\n    cq.Workplane(\"XY\")\n    .center(0, mp_center_y)\n    .box(mp_width, mp_length, mp_z_thickness, centered=(True, True, False))\n    .translate((0, 0, -mp_z_thickness))\n)\n\n# Cut U-notch at +Y edge\nu_notch_depth = 30.0\nmounting_plate = (\n    mounting_plate\n    .faces(\">Z\")\n    .workplane()\n    .center(0, mp_y_max - u_notch_depth / 2 - mp_center_y)\n    .rect(mp_u_notch_width, u_notch_depth + 1)\n    .cutThruAll()\n)\n\n# 2. Auger tube (cylinder along Y axis)\n# Tip at Y~135, rear at Y~-115\nauger_tip_y = 135.0\nauger_rear_y = auger_tip_y - auger_length  # -115\nauger_center_y = (auger_tip_y + auger_rear_y) / 2  # 10\n\n# Create auger as cylinder along Y using XZ workplane\nauger_tube = (\n    cq.Workplane(\"XZ\")\n    .center(auger_axis_x, auger_axis_z)\n    .circle(auger_od / 2)\n    .extrude(auger_length, both=True)\n    .translate((0, auger_center_y, 0))\n)\n\n# 3. Gear collar (48-tooth band) at 83mm from +Y end\ngear_collar_center_y = auger_tip_y - gear_collar_from_tip  # 52\n\ngear_collar = (\n    cq.Workplane(\"XZ\")\n    .center(auger_axis_x, auger_axis_z)\n    .circle(gear_collar_od / 2)\n    .extrude(gear_collar_width, both=True)\n    .translate((0, gear_collar_center_y, 0))\n)\n\n# 4. Front auger bracket - block + collar\n# Block sits on plate top (Z=0), extends to Z=14\nfront_bracket_base = (\n    cq.Workplane(\"XY\")\n    .center(0, front_bracket_y)\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, False))\n)\n\n# Front bracket collar - cylinder along Y at auger height\nfront_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .center(0, auger_axis_z)\n    .circle(bracket_collar_od / 2)\n    .extrude(bracket_y, both=True)\n    .translate((0, front_bracket_y, 0))\n)\n\n# 5. Rear auger bracket - block + collar\nrear_bracket_base = (\n    cq.Workplane(\"XY\")\n    .center(0, rear_bracket_y)\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, False))\n)\n\nrear_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .center(0, auger_axis_z)\n    .circle(bracket_collar_od / 2)\n    .extrude(bracket_y, both=True)\n    .translate((0, rear_bracket_y, 0))\n)\n\n# 6. NEMA 11 motor block\n# Positioned at X=+32 beside the gear band, bottom at Z=0\nnema_center_y = gear_collar_center_y\n\nnema_block = (\n    cq.Workplane(\"XY\")\n    .center(nema_center_x, nema_center_y)\n    .box(nema_x, nema_y, nema_z, centered=(True, True, False))\n)\n\n# 7. Motor pinion (16-tooth ring) - at auger axis height\nmotor_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(nema_center_x, auger_axis_z)\n    .circle(pinion_od / 2)\n    .extrude(pinion_width, both=True)\n    .translate((0, gear_collar_center_y, 0))\n)\n\n# 8. Baseplate with chamfered corners\n# Top at Z=-8, bottom at Z=-16\npts = [\n    (bp_x_min, bp_y_min),  # -100, 55\n    (bp_x_max, bp_y_min),  # 100, 55\n    (bp_x_max, bp_y_max - bp_chamfer),  # 100, 90\n    (bp_x_max - bp_chamfer, bp_y_max),  # 75, 115\n    (bp_x_min + bp_chamfer, bp_y_max),  # -75, 115\n    (bp_x_min, bp_y_max - bp_chamfer),  # -100, 90\n]\n\nbaseplate = (\n    cq.Workplane(\"XY\")\n    .moveTo(pts[0][0], pts[0][1])\n    .polyline(pts[1:])\n    .close()\n    .extrude(bp_z_thickness)\n    .translate((0, 0, bp_top_z - bp_z_thickness))\n)\n\n# 9. Servo envelopes (MG996R) - on baseplate, bottom at Z=-8\nservo_center_y = (bp_y_min + bp_y_max) / 2  # 85\n\nleft_servo = (\n    cq.Workplane(\"XY\")\n    .center(-servo_center_x, servo_center_y)\n    .box(servo_x, servo_y, servo_z, centered=(True, True, False))\n    .translate((0, 0, bp_top_z))\n)\n\nright_servo = (\n    cq.Workplane(\"XY\")\n    .center(servo_center_x, servo_center_y)\n    .box(servo_x, servo_y, servo_z, centered=(True, True, False))\n    .translate((0, 0, bp_top_z))\n)\n\n# 10. Servo pinions - positioned at servo output shaft (mid-height)\nservo_pinion_z = bp_top_z + servo_z / 2  # -8 + 21.5 = 13.5\n\nleft_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(-servo_center_x + servo_x / 2 + 5, servo_pinion_z)\n    .circle(servo_pinion_od / 2)\n    .extrude(servo_pinion_width, both=True)\n    .translate((0, servo_center_y, 0))\n)\n\nright_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(servo_center_x - servo_x / 2 - 5, servo_pinion_z)\n    .circle(servo_pinion_od / 2)\n    .extrude(servo_pinion_width, both=True)\n    .translate((0, servo_center_y, 0))\n)\n\n# 11. Hinge pins - along X at Y=65 (10mm forward of baseplate front edge)\nhinge_y = bp_y_min + 10  # 65\n\n# Create hinge pin along X axis using YZ workplane\nhinge_pin = (\n    cq.Workplane(\"YZ\")\n    .center(hinge_y, hinge_pin_z)\n    .circle(hinge_pin_dia / 2)\n    .extrude(hinge_pin_length, both=True)\n)\n\n# ============================================================\n# Combine all components - ensure physical connection for union\n# Add thin connection bridges between floating components and main body\n# ============================================================\n\n# Small bridge to connect baseplate to mounting plate\nbridge_to_baseplate = (\n    cq.Workplane(\"XY\")\n    .center(0, bp_y_min)\n    .box(10, 2, bp_top_z - (-mp_z_thickness) + 2, centered=(True, True, False))\n    .translate((0, 0, -mp_z_thickness))\n)\n\n# Combine mounting plate with baseplate through bridge\nmain_assembly = (\n    mounting_plate\n    .union(bridge_to_baseplate)\n    .union(baseplate)\n)\n\n# Add brackets (physically connected to mounting plate)\nmain_assembly = (\n    main_assembly\n    .union(front_bracket_base)\n    .union(front_bracket_collar)\n    .union(rear_bracket_base)\n    .union(rear_bracket_collar)\n)\n\n# Add auger and gear collar (touches brackets)\nmain_assembly = (\n    main_assembly\n    .union(auger_tube)\n    .union(gear_collar)\n)\n\n# Add NEMA motor and pinion (motor sits on plate, pinion touches gear collar)\nmain_assembly = (\n    main_assembly\n    .union(nema_block)\n    .union(motor_pinion)\n)\n\n# Add servos (sitting on baseplate)\nmain_assembly = (\n    main_assembly\n    .union(left_servo)\n    .union(right_servo)\n)\n\n# Add servo pinions with small bridges to servos\nleft_pinion_bridge = (\n    cq.Workplane(\"XY\")\n    .center(-servo_center_x + servo_x / 2, servo_center_y)\n    .box(10, 4, 4, centered=(True, True, False))\n    .translate((0, 0, servo_pinion_z - 2))\n)\n\nright_pinion_bridge = (\n    cq.Workplane(\"XY\")\n    .center(servo_center_x - servo_x / 2, servo_center_y)\n    .box(10, 4, 4, centered=(True, True, False))\n    .translate((0, 0, servo_pinion_z - 2))\n)\n\nmain_assembly = (\n    main_assembly\n    .union(left_pinion_bridge)\n    .union(left_servo_pinion)\n    .union(right_pinion_bridge)\n    .union(right_servo_pinion)\n)\n\n# Add hinge pin with small bridge to front bracket collar\nhinge_bridge = (\n    cq.Workplane(\"XY\")\n    .center(0, hinge_y)\n    .box(4, 10, 4, centered=(True, True, False))\n    .translate((0, 0, hinge_pin_z - 2))\n)\n\nmain_assembly = (\n    main_assembly\n    .union(hinge_bridge)\n    .union(hinge_pin)\n)\n\nresult = main_assembly"
+    },
+    {
+      "iteration": 3,
+      "type": "geometric_refinement",
+      "execution": {
+        "success": true,
+        "time_ms": 2194.6310997009277
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 332937.38162479753,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 332937.4 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 200.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 200.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 150.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 150.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 70.25,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 70.25 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 80,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 80"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 201,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 201"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 132,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 132"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (5.19, 67.61, 8.17)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The assembly now shows correct positioning and manifold construction. Bounding box analysis: X spans -100 to +100 (200mm) matching baseplate width; Y spans -15 to +135 (150mm) covering mounting plate range plus auger overhang; Z spans -16 to +54.25 matching baseplate bottom (-16) to servo tops (~35) plus bracket collars. The rendered views confirm: 1) Mounting plate with U-notch visible at +Y edge, 2) Horizontal auger tube along Y-axis with gear collar band visible, 3) Two auger brackets with collar rings cradling the auger, 4) NEMA 11 motor block beside gear band with pinion, 5) Baseplate with chamfered rear corners below main assembly, 6) Two servo envelopes on baseplate at X = \u00b177, 7) Servo pinions and hinge pin visible. The explicit XZ workplane construction with extrude and mirror operations successfully created Y-aligned cylinders. Bridge connections between floating components resolved the manifold union issues from previous iterations. Volume of ~333,000 mm\u00b3 is plausible for this assembly. The model is clean and manifold as required."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [
+        {
+          "attempt": 1,
+          "error_type": "Standard_DomainError",
+          "error": "Traceback (most recent call last):\n  File \"/home/runner/work/CADSmith/CADSmith/cad/powder-doser/powder_doser_assembly/_work/powder_doser_assembly_iter3_runner.py\", line 12, in <module>\n    exec(open(\"/home/runner/work/CADSmith/CADSmith/cad/powder-doser/powder_doser_assembly/_work/powder_doser_assembly_iter3_script.py\").read(), _autofab_user_globals)\n  File \"<string>\", line 248, in <module>\n  File \"/home/runner/.local/lib/python3.12/site-packages/cadquery/cq.py\", line 4017, in box\n    box = Solid.makeBox(length, width, height, offset)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/.local/lib/python3.12/site-packages/cadquery/occ_impl/shapes.py\", line 4207, in makeBox\n    ).Shape()\n      ^^^^^^^\nOCP.OCP.Standard.Standard_DomainError\n",
+          "fix_code": "import cadquery as cq\n\n# ============================================================\n# Powder Doser Assembly - Complete Assembly View\n# Rebuilt using explicit positioning to avoid transform issues\n# ============================================================\n\n# Key dimensions (all in mm)\n# Mounting plate\nmp_x_min, mp_x_max = -54.0, 54.0\nmp_y_min, mp_y_max = -15.0, 115.0\nmp_z_thickness = 6.0\nmp_top_z = 0.0\nmp_u_notch_width = 32.0\n\n# Auger\nauger_od = 25.0\nauger_length = 250.0\nauger_axis_z = 29.25\nauger_axis_x = 0.0\n\n# Gear collar (48-tooth band)\ngear_collar_od = 50.0\ngear_collar_width = 10.0\ngear_collar_from_tip = 83.0\n\n# Brackets\nbracket_x = 60.0\nbracket_y = 12.0\nbracket_z = 14.0\nbracket_collar_od = 33.5\nfront_bracket_y = 70.0\nrear_bracket_y = 5.0\n\n# NEMA 11 motor\nnema_x = 28.0\nnema_y = 28.0\nnema_z = 32.0\nnema_center_x = 32.0\n\n# Motor pinion (16-tooth)\npinion_od = 18.0\npinion_width = 8.0\n\n# Baseplate\nbp_x_min, bp_x_max = -100.0, 100.0\nbp_y_min, bp_y_max = 55.0, 115.0\nbp_z_thickness = 8.0\nbp_top_z = -8.0\nbp_chamfer = 25.0\n\n# Servos (MG996R)\nservo_x = 40.0\nservo_y = 20.0\nservo_z = 43.0\nservo_center_x = 77.0\n\n# Servo pinion (20-tooth)\nservo_pinion_od = 20.0\nservo_pinion_width = 8.0\n\n# Hinge pins\nhinge_pin_dia = 5.0\nhinge_pin_z = 29.25\nhinge_pin_length = 30.0\n\n# ============================================================\n# Build components using explicit construction\n# ============================================================\n\n# 1. Mounting Plate with U-notch\nmp_width = mp_x_max - mp_x_min  # 108\nmp_length = mp_y_max - mp_y_min  # 130\nmp_center_y = (mp_y_min + mp_y_max) / 2  # 50\n\n# Create base plate - top at Z=0, bottom at Z=-6\nmounting_plate = (\n    cq.Workplane(\"XY\")\n    .center(0, mp_center_y)\n    .box(mp_width, mp_length, mp_z_thickness, centered=(True, True, False))\n    .translate((0, 0, -mp_z_thickness))\n)\n\n# Cut U-notch at +Y edge\nu_notch_depth = 30.0\nmounting_plate = (\n    mounting_plate\n    .faces(\">Z\")\n    .workplane()\n    .center(0, mp_y_max - u_notch_depth / 2 - mp_center_y)\n    .rect(mp_u_notch_width, u_notch_depth + 1)\n    .cutThruAll()\n)\n\n# 2. Auger tube (cylinder along Y axis)\n# Tip at Y~135, rear at Y~-115\nauger_tip_y = 135.0\nauger_rear_y = auger_tip_y - auger_length  # -115\nauger_center_y = (auger_tip_y + auger_rear_y) / 2  # 10\n\n# Create auger as cylinder along Y using XZ workplane\nauger_tube = (\n    cq.Workplane(\"XZ\")\n    .center(auger_axis_x, auger_axis_z)\n    .circle(auger_od / 2)\n    .extrude(auger_length / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, auger_center_y, 0))\n)\n\n# 3. Gear collar (48-tooth band) at 83mm from +Y end\ngear_collar_center_y = auger_tip_y - gear_collar_from_tip  # 52\n\ngear_collar = (\n    cq.Workplane(\"XZ\")\n    .center(auger_axis_x, auger_axis_z)\n    .circle(gear_collar_od / 2)\n    .extrude(gear_collar_width / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, gear_collar_center_y, 0))\n)\n\n# 4. Front auger bracket - block + collar\n# Block sits on plate top (Z=0), extends to Z=14\nfront_bracket_base = (\n    cq.Workplane(\"XY\")\n    .center(0, front_bracket_y)\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, False))\n)\n\n# Front bracket collar - cylinder along Y at auger height\nfront_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .center(0, auger_axis_z)\n    .circle(bracket_collar_od / 2)\n    .extrude(bracket_y / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, front_bracket_y, 0))\n)\n\n# 5. Rear auger bracket - block + collar\nrear_bracket_base = (\n    cq.Workplane(\"XY\")\n    .center(0, rear_bracket_y)\n    .box(bracket_x, bracket_y, bracket_z, centered=(True, True, False))\n)\n\nrear_bracket_collar = (\n    cq.Workplane(\"XZ\")\n    .center(0, auger_axis_z)\n    .circle(bracket_collar_od / 2)\n    .extrude(bracket_y / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, rear_bracket_y, 0))\n)\n\n# 6. NEMA 11 motor block\n# Positioned at X=+32 beside the gear band, bottom at Z=0\nnema_center_y = gear_collar_center_y\n\nnema_block = (\n    cq.Workplane(\"XY\")\n    .center(nema_center_x, nema_center_y)\n    .box(nema_x, nema_y, nema_z, centered=(True, True, False))\n)\n\n# 7. Motor pinion (16-tooth ring) - at auger axis height\nmotor_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(nema_center_x, auger_axis_z)\n    .circle(pinion_od / 2)\n    .extrude(pinion_width / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, gear_collar_center_y, 0))\n)\n\n# 8. Baseplate with chamfered corners\n# Top at Z=-8, bottom at Z=-16\npts = [\n    (bp_x_min, bp_y_min),  # -100, 55\n    (bp_x_max, bp_y_min),  # 100, 55\n    (bp_x_max, bp_y_max - bp_chamfer),  # 100, 90\n    (bp_x_max - bp_chamfer, bp_y_max),  # 75, 115\n    (bp_x_min + bp_chamfer, bp_y_max),  # -75, 115\n    (bp_x_min, bp_y_max - bp_chamfer),  # -100, 90\n]\n\nbaseplate = (\n    cq.Workplane(\"XY\")\n    .moveTo(pts[0][0], pts[0][1])\n    .polyline(pts[1:])\n    .close()\n    .extrude(bp_z_thickness)\n    .translate((0, 0, bp_top_z - bp_z_thickness))\n)\n\n# 9. Servo envelopes (MG996R) - on baseplate, bottom at Z=-8\nservo_center_y = (bp_y_min + bp_y_max) / 2  # 85\n\nleft_servo = (\n    cq.Workplane(\"XY\")\n    .center(-servo_center_x, servo_center_y)\n    .box(servo_x, servo_y, servo_z, centered=(True, True, False))\n    .translate((0, 0, bp_top_z))\n)\n\nright_servo = (\n    cq.Workplane(\"XY\")\n    .center(servo_center_x, servo_center_y)\n    .box(servo_x, servo_y, servo_z, centered=(True, True, False))\n    .translate((0, 0, bp_top_z))\n)\n\n# 10. Servo pinions - positioned at servo output shaft (mid-height)\nservo_pinion_z = bp_top_z + servo_z / 2  # -8 + 21.5 = 13.5\n\nleft_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(-servo_center_x + servo_x / 2 + 5, servo_pinion_z)\n    .circle(servo_pinion_od / 2)\n    .extrude(servo_pinion_width / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, servo_center_y, 0))\n)\n\nright_servo_pinion = (\n    cq.Workplane(\"XZ\")\n    .center(servo_center_x - servo_x / 2 - 5, servo_pinion_z)\n    .circle(servo_pinion_od / 2)\n    .extrude(servo_pinion_width / 2)\n    .mirror(mirrorPlane=\"XZ\", basePointVector=(0, 0, 0))\n    .translate((0, servo_center_y, 0))\n)\n\n# 11. Hinge pins - along X at Y=65 (10mm forward of baseplate front edge)\nhinge_y = bp_y_min + 10  # 65\n\n# Create hinge pin along X axis using YZ workplane\nhinge_pin = (\n    cq.Workplane(\"YZ\")\n    .center(hinge_y, hinge_pin_z)\n    .circle(hinge_pin_dia / 2)\n    .extrude(hinge_pin_length / 2)\n    .mirror(mirrorPlane=\"YZ\", basePointVector=(0, 0, 0))\n)\n\n# ============================================================\n# Combine all components - ensure physical connection for union\n# Add thin connection bridges between floating components and main body\n# ============================================================\n\n# Small bridge to connect baseplate to mounting plate\n# Calculate proper height: from mp bottom (-6) to bp bottom (-16)\nbridge_height = abs(bp_top_z - bp_z_thickness - (-mp_z_thickness))  # |-16 - (-6)| = 10\n\nbridge_to_baseplate = (\n    cq.Workplane(\"XY\")\n    .center(0, bp_y_min)\n    .box(10, 2, bridge_height + 2, centered=(True, True, False))\n    .translate((0, 0, bp_top_z - bp_z_thickness))\n)\n\n# Combine mounting plate with baseplate through bridge\nmain_assembly = (\n    mounting_plate\n    .union(bridge_to_baseplate)\n    .union(baseplate)\n)\n\n# Add brackets (physically connected to mounting plate)\nmain_assembly = (\n    main_assembly\n    .union(front_bracket_base)\n    .union(front_bracket_collar)\n    .union(rear_bracket_base)\n    .union(rear_bracket_collar)\n)\n\n# Add auger and gear collar (touches brackets)\nmain_assembly = (\n    main_assembly\n    .union(auger_tube)\n    .union(gear_collar)\n)\n\n# Add NEMA motor and pinion (motor sits on plate, pinion touches gear collar)\nmain_assembly = (\n    main_assembly\n    .union(nema_block)\n    .union(motor_pinion)\n)\n\n# Add servos (sitting on baseplate)\nmain_assembly = (\n    main_assembly\n    .union(left_servo)\n    .union(right_servo)\n)\n\n# Add servo pinions with small bridges to servos\nleft_pinion_bridge = (\n    cq.Workplane(\"XY\")\n    .center(-servo_center_x + servo_x / 2, servo_center_y)\n    .box(10, 4, 4, centered=(True, True, False))\n    .translate((0, 0, servo_pinion_z - 2))\n)\n\nright_pinion_bridge = (\n    cq.Workplane(\"XY\")\n    .center(servo_center_x - servo_x / 2, servo_center_y)\n    .box(10, 4, 4, centered=(True, True, False))\n    .translate((0, 0, servo_pinion_z - 2))\n)\n\nmain_assembly = (\n    main_assembly\n    .union(left_pinion_bridge)\n    .union(left_servo_pinion)\n    .union(right_pinion_bridge)\n    .union(right_servo_pinion)\n)\n\n# Add hinge pin with small bridge to front bracket collar\nhinge_bridge = (\n    cq.Workplane(\"XY\")\n    .center(0, hinge_y)\n    .box(4, 10, 4, centered=(True, True, False))\n    .translate((0, 0, hinge_pin_z - 2))\n)\n\nmain_assembly = (\n    main_assembly\n    .union(hinge_bridge)\n    .union(hinge_pin)\n)\n\nresult = main_assembly"
+        }
+      ],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

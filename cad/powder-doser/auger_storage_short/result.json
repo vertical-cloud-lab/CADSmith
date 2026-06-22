@@ -1,0 +1,189 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nArchimedes auger \u2014 STORAGE variant, SHORT bench-test length (no gear band).\n\nOuter tube: outer diameter 25.0, wall 2.0, bore inner diameter 21.0. Tube\nlength 90.0, axis vertical (Z). Top cap height 6.0 with 4 rectangular loading\nslots (4.0 x 7.0) on a 6.5 mm radius bolt circle 90 deg apart plus a central\nM3 pilot boss. Bottom funnel/cap height 12.0 tapering to a central exit hole\ndiameter 3.0.\n\nInternal Archimedean screw occupies ONLY the bottom one-third (~30 mm); the\ntop two-thirds of the bore is open reservoir. Screw: central shaft diameter\n8.0, single-start helical fin pitch 10.0 mm/turn, thickness 2.0, fin outer\nedge reaching the inner wall. No external gear band on this bench-test part.\n",
+  "design_plan": {
+    "description": "Archimedes auger storage variant for powder doser - short bench-test length with outer tube, top cap with loading slots, bottom funnel, and internal single-start helical screw in lower third only",
+    "components": [
+      "outer_tube_cylinder",
+      "top_cap_with_loading_slots",
+      "top_cap_m3_pilot_boss",
+      "bottom_funnel_cone",
+      "bottom_exit_hole",
+      "internal_central_shaft",
+      "internal_helical_fin_single_start"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 25.0,
+        "ylen": 25.0,
+        "zlen": 108.0
+      },
+      "key_dimensions": {
+        "tube_outer_diameter": 25.0,
+        "tube_wall_thickness": 2.0,
+        "tube_bore_inner_diameter": 21.0,
+        "tube_length": 90.0,
+        "top_cap_height": 6.0,
+        "loading_slot_width": 4.0,
+        "loading_slot_length": 7.0,
+        "loading_slot_bolt_circle_radius": 6.5,
+        "loading_slot_count": 4,
+        "loading_slot_angular_spacing": 90.0,
+        "m3_pilot_boss_hole_diameter": 2.7,
+        "bottom_funnel_height": 12.0,
+        "bottom_exit_hole_diameter": 3.0,
+        "central_shaft_diameter": 8.0,
+        "helical_fin_pitch": 10.0,
+        "helical_fin_thickness": 2.0,
+        "helical_fin_outer_diameter": 21.0,
+        "screw_zone_height": 30.0,
+        "reservoir_zone_height": 60.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 28500,
+      "num_holes": 5,
+      "hole_diameter": 2.7,
+      "symmetry": "4-fold rotational symmetry for loading slots, axial symmetry for main body",
+      "min_wall_thickness": 2.0,
+      "min_feature_size": 2.0,
+      "fdm_nozzle": 0.4,
+      "fdm_layer_height": 0.2
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 8,
+      "bbox_iou_threshold": 0.88
+    },
+    "notes": "Build from bottom to top: 1) Bottom funnel as truncated cone from OD 25 tapering to exit hole dia 3.0 over 12mm height, with central through-hole. 2) Main tube 90mm tall with OD 25, wall 2.0, bore 21.0. 3) Top cap 6mm thick solid disc with 4 rectangular slots (4x7mm) at 6.5mm radius, 90deg apart, plus central M3 pilot hole (2.7mm). 4) Internal helical screw only in bottom 30mm zone: central shaft dia 8.0 with single-start helix, pitch 10mm, fin thickness 2.0, fin extends from shaft radius 4.0 to bore radius 10.5. The helix makes 3 complete turns over 30mm. Upper 60mm of bore is open reservoir. Ensure helix is properly connected to shaft. Consider printing orientation - vertical axis recommended."
+  },
+  "converged": true,
+  "total_iterations": 1,
+  "total_time_ms": 85818.70079040527,
+  "total_llm_calls": 3,
+  "final_geometry": {
+    "volume": 18197.669119466245,
+    "center_of_mass": [
+      -5.4745875607743376e-11,
+      2.3381177652381324e-10,
+      56.89444958220757
+    ],
+    "bounding_box": {
+      "xmin": -12.5000001,
+      "xmax": 12.5000001,
+      "xlen": 25.0000002,
+      "ymin": -12.5000001,
+      "ymax": 12.5000001,
+      "ylen": 25.0000002,
+      "zmin": -1e-07,
+      "zmax": 108.0,
+      "zlen": 108.0000001
+    },
+    "is_valid": true,
+    "num_faces": 356,
+    "num_edges": 842,
+    "num_vertices": 592
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_storage_short/_work/auger_storage_short_iter0.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/auger_storage_short/_work/auger_storage_short_iter0.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 23530.88903427124
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 18197.669119466245,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 18197.7 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 25.0000002,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 25.00 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 25.0000002,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 25.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 108.0000001,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 108.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 356,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 356"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 842,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 842"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 592,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 592"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-0.00, 0.00, 56.89)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The generated part correctly implements the Archimedes auger STORAGE variant: (1) Outer tube: 25mm OD confirmed by bounding box (25.0mm x 25.0mm), total height 108mm matches tube_length(90) + top_cap(6) + funnel(12). (2) Top cap: Visible in center view with 4 rectangular loading slots (4x7mm) at 90\u00b0 intervals on the bolt circle, plus central M3 pilot hole (2.7mm). (3) Bottom funnel: Conical taper visible in isometric and front profile views, terminating at 3mm exit hole. (4) Internal helical screw: The helical fin is clearly visible in the high-angle rear view, showing the single-start Archimedean screw pattern occupying the bottom portion. Central shaft (8mm dia) with helical fin (pitch 10mm, 2mm thick) extending to bore wall is properly constructed. (5) Volume ~18,198 mm\u00b3 is physically plausible for hollow tube with internal screw mechanism. (6) No external gear band as specified for bench-test variant. All FDM printability constraints (>=2mm features) are satisfied."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}

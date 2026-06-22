@@ -1,0 +1,185 @@
+{
+  "prompt": "This part belongs to the Vertical Cloud Lab \"Powder Doser\" \u2014 an auger-fed,\nscrew-metered dry-powder dispenser. Design it as a single, manifold,\nFDM-printable solid (0.4 mm nozzle, ~0.2 mm layers; fin/wall features >= 2 mm).\nAll dimensions are in millimetres.\n\nShared fits & fasteners (apply where relevant):\n- M3 clearance hole = 3.4 mm dia; M3 self-tap pilot = 2.7 mm; M3 setscrew pilot = 2.5 mm.\n- M5 clearance hole = 5.4 mm dia.\n- Auger / collar / bracket running fit over the 25.0 mm auger OD = bore 25.5 mm.\n- Printed gears: module given per part, 20 deg pressure angle.\n\nMOUNTING PLATE (\"the table\") \u2014 the tilting platform that carries the auger.\n\nFlat plate, thickness 6.0, lying in the XY plane, symmetric about X=0.\nX envelope about -54.1 to +54.1 (width ~108.2). Y envelope about -15 to +115\n(~130 deep). Cut an open U-notch in the +Y edge: width 32.0 (X = -16 to +16),\nstarting 35 mm back from the +Y front edge (so it runs from Y=+115 inward to\nY=+80), open to the +Y edge, for the auger to overhang. Add four M3 clearance\nholes (3.4 mm) as bracket mounting points on the top surface near the notch\nsides at X = +/-24, Y = +60 and Y = +10. Everything mounts on the top (+Z)\nsurface; nothing hangs below the plate.\n",
+  "design_plan": {
+    "description": "Mounting plate (table) for Powder Doser - a flat tilting platform that carries the auger assembly, with a U-notch for auger overhang and M3 mounting holes for brackets",
+    "components": [
+      "main_flat_plate",
+      "u_notch_cutout",
+      "m3_clearance_holes_x4"
+    ],
+    "dimensions": {
+      "overall_bbox": {
+        "xlen": 108.2,
+        "ylen": 130.0,
+        "zlen": 6.0
+      },
+      "key_dimensions": {
+        "plate_thickness": 6.0,
+        "plate_x_min": -54.1,
+        "plate_x_max": 54.1,
+        "plate_y_min": -15.0,
+        "plate_y_max": 115.0,
+        "u_notch_width": 32.0,
+        "u_notch_x_min": -16.0,
+        "u_notch_x_max": 16.0,
+        "u_notch_y_start": 80.0,
+        "u_notch_y_end": 115.0,
+        "u_notch_depth": 35.0,
+        "m3_clearance_hole_dia": 3.4,
+        "hole_x_positions": [
+          24.0,
+          -24.0
+        ],
+        "hole_y_position_front": 60.0,
+        "hole_y_position_rear": 10.0
+      }
+    },
+    "constraints": {
+      "volume_estimate": 82000,
+      "num_holes": 4,
+      "hole_diameter": 3.4,
+      "symmetry": "symmetric about X=0 (YZ plane)",
+      "fdm_printable": true,
+      "min_wall_thickness": 2.0,
+      "orientation": "plate lies in XY plane, thickness in Z direction",
+      "z_base": 0.0,
+      "z_top": 6.0
+    },
+    "acceptance_criteria": {
+      "volume_error_threshold_pct": 5,
+      "bbox_iou_threshold": 0.9
+    },
+    "notes": "Create plate with Z from 0 to 6. The U-notch is an open cutout at the +Y edge: remove material from X=-16 to X=+16, Y=80 to Y=115, full Z height. Four M3 clearance holes (3.4mm diameter) are through-holes at positions (X=+24, Y=60), (X=-24, Y=60), (X=+24, Y=10), (X=-24, Y=10). Holes go through full plate thickness. Plate is symmetric about X=0. The notch is open to the +Y edge, not a closed pocket."
+  },
+  "converged": true,
+  "total_iterations": 1,
+  "total_time_ms": 31177.404642105103,
+  "total_llm_calls": 3,
+  "final_geometry": {
+    "volume": 77458.09913354703,
+    "center_of_mass": [
+      -1.5924767107347013e-15,
+      45.78060223550841,
+      2.9999999999999982
+    ],
+    "bounding_box": {
+      "xmin": -54.1,
+      "xmax": 54.1,
+      "xlen": 108.2,
+      "ymin": -15.0,
+      "ymax": 115.0,
+      "ylen": 130.0,
+      "zmin": 0.0,
+      "zmax": 6.0,
+      "zlen": 6.0
+    },
+    "is_valid": true,
+    "num_faces": 14,
+    "num_edges": 36,
+    "num_vertices": 24
+  },
+  "final_step_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/mounting_plate/_work/mounting_plate_iter0.step",
+  "final_stl_path": "/home/runner/work/CADSmith/CADSmith/cad/powder-doser/mounting_plate/_work/mounting_plate_iter0.stl",
+  "iterations": [
+    {
+      "iteration": 0,
+      "type": "initial",
+      "execution": {
+        "success": true,
+        "time_ms": 1815.6797885894775
+      },
+      "validation": {
+        "all_passed": true,
+        "checks": [
+          {
+            "metric": "solid_valid",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "Solid is valid (watertight)"
+          },
+          {
+            "metric": "volume",
+            "actual": 77458.09913354703,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Volume: 77458.1 mm\u00b3"
+          },
+          {
+            "metric": "bbox_xlen",
+            "actual": 108.2,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox xlen: 108.20 mm"
+          },
+          {
+            "metric": "bbox_ylen",
+            "actual": 130.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox ylen: 130.00 mm"
+          },
+          {
+            "metric": "bbox_zlen",
+            "actual": 6.0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "BBox zlen: 6.00 mm"
+          },
+          {
+            "metric": "num_faces",
+            "actual": 14,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_faces: 14"
+          },
+          {
+            "metric": "num_edges",
+            "actual": 36,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_edges: 36"
+          },
+          {
+            "metric": "num_vertices",
+            "actual": 24,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "num_vertices: 24"
+          },
+          {
+            "metric": "center_of_mass",
+            "actual": 0,
+            "target": null,
+            "threshold": null,
+            "passed": true,
+            "message": "Center of mass: (-0.00, 45.78, 3.00)"
+          },
+          {
+            "metric": "llm_judge",
+            "actual": 1.0,
+            "target": 1.0,
+            "threshold": null,
+            "passed": true,
+            "message": "All constraints met. The mounting plate correctly matches all specified dimensions: bounding box is 108.2 \u00d7 130.0 \u00d7 6.0 mm (X: -54.1 to +54.1, Y: -15 to +115, Z: 0 to 6), confirming the plate envelope and thickness. The U-notch is visible in all three views as an open rectangular cutout at the +Y edge, 32 mm wide (X = -16 to +16), extending from Y=115 down to Y=80 (35 mm deep). Four M3 clearance holes (3.4 mm diameter) are clearly visible in the isometric and high-angle views at the correct positions: X = \u00b124 at Y = 60 and Y = 10, symmetric about X=0 and positioned near the notch sides. The volume of ~77,458 mm\u00b3 is consistent with the plate geometry minus the notch and holes. The center of mass at Y \u2248 45.8 mm (shifted from geometric center Y=50 toward -Y) correctly reflects material removed from the +Y region by the notch. The part is a single manifold solid suitable for FDM printing."
+          }
+        ],
+        "summary": "All validation checks passed.",
+        "feedback_text": "All checks passed. The generated geometry meets all constraints."
+      },
+      "passed": true,
+      "feedback_sent": "All checks passed. The generated geometry meets all constraints.",
+      "error_retries": [],
+      "refiner_input": null,
+      "refiner_output": null
+    }
+  ]
+}
